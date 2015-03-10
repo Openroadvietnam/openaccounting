@@ -1,0 +1,80 @@
+﻿<ul class="breadcrumb">
+  <li><a href="#!/">Trang chủ</a></li>
+  <li><a href="#!/{{app._id}}">{{app.name}}</a></li>
+  <li class='active'>Xác nhận</li>
+</ul>
+<shop-banner></shop-banner>
+<div class='main'>
+	<form name="form" novalidate >
+		
+		<!--phuong thuc thanh toan-->
+		<h3>Phương thức thanh toán</h3>
+		<div class='form-group'>
+			<div ng-repeat='pt in ptthanhtoan' class='col-sm-12'>
+				<label class='control-label'><input type='radio' name ='pt_thanh_toan' ng-model ='so1.pt_thanh_toan' value='{{pt._id}}'> {{pt.ten}}</label>
+				<div style='padding-left:20px' ng-show='pt.tai_khoan_nh'>
+					<div>Số tài khoản: <b>{{pt.tai_khoan_nh}}</b></div>
+					<div>Chủ tài khoản: <b>{{pt.chu_tai_khoan}}</b></div>
+					<div>Tại ngân hàng: <b>{{pt.ngan_hang}}</b></div>
+				</div>
+			</div>
+		</div>
+		
+		<!--dia chi giao hang-->
+		<h3>Địa chỉ giao hàng</h3>
+		<div><span style='color:red'>(*)</span> là bắt buộc</div>
+		<br/>
+		
+		<div class="form-group">
+			<label class='col-sm-2'>Tên người nhận hàng <span style='color:red' title='Không được trống'>(*)</span></label>
+			<div  class='col-sm-4'>
+				<input type="text"  class="form-control" ng-model='dia_chi_giao_hang.ten_nguoi_nhan' ng-required ="true">
+			</div>
+			
+			<label  class='col-sm-2'>Điện thoại <span style='color:red' title='Không được trống'>(*)</span></label>
+			<div  class='col-sm-4'>
+				<input type="text" class="form-control" ng-model='dia_chi_giao_hang.dien_thoai' ng-required="true">
+			</div>
+		</div>
+		<br/>
+		<div class="form-group">
+			<label  class='col-sm-2'>Email</label>
+			<div  class='col-sm-4'>
+				<input type="text" class="form-control" ng-model='dia_chi_giao_hang.email'>
+			</div>
+			
+			<label  class='col-sm-2'>Địa chỉ <span style='color:red' title='Không được trống'>(*)</span></label>
+			<div  class='col-sm-4'>
+				<input type="text" class="form-control" ng-model='dia_chi_giao_hang.dia_chi' ng-required="true">
+			</div>
+		</div>
+		<br/>
+		<div class="form-group">
+			<label  class='col-sm-2'>Xã/phường <span style='color:red' title='Không được trống'>(*)</span></label>
+			<div  class='col-sm-4'>
+				<input type="text" class="form-control" ng-model='dia_chi_giao_hang.xa_phuong' ng-required="true">
+			</div>
+			
+			<label  class='col-sm-2'>Quận/huyện <span style='color:red' title='Không được trống'>(*)</span></label>
+			<div  class='col-sm-4'>
+				<input type="text" class="form-control" ng-model='dia_chi_giao_hang.quan_huyen' ng-required="true">
+			</div>
+		</div>
+		<br/>
+		<div class="form-group">
+			<label  class='col-sm-2'>Tỉnh thành <span style='color:red' title='Không được trống'>(*)</span></label>
+			<div  class='col-sm-10'>
+				<select class="form-control" ng-model='dia_chi_giao_hang.tinh_thanh' ng-required="true">
+					<option ng-value='tt' ng-repeat='tt in province'>{{tt}}</option>
+				</select>
+			</div>
+		</div>
+		<br/>
+		<div class="form-group">
+			
+			<button class='btn btn-lg btn-primary' ng-disabled='form.$invalid || !so1.pt_thanh_toan' ng-click='xacnhan()'>Xác nhận</button>
+			
+		</div>
+		
+	</form>
+</div>

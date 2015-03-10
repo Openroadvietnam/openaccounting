@@ -1,0 +1,30 @@
+<div class='main'>
+	<div class='row'>
+		<div class='col-sm-12' style='font-weight:bold'>
+			<div class='input-group'>
+				<span class='input-group-addon'>Chọn khu vực</span>
+				<select class='form-control' ng-model='tinh_thanh' ng-change ='gotoProvince(tinh_thanh)'>
+					<option value='' select>Toàn quốc</option>
+					<option ng-value='tt' ng-repeat='tt in province'>
+						{{tt}}
+					</option>
+				</select>
+			</div>
+			<br/>
+		</div>
+	</div>
+	<div class="row">
+	  <div class="col-xs-6 col-sm-3 col-md-2" ng-repeat='app in apps'>
+		<div class="thumbnail" style="width:100%"  title ='<div class="text-left"><b>{{app.name}}</b><p>{{app.nganh_nghe}}</p><p>{{app.gioi_thieu}}</p></div>'  data-toggle="tooltip" data-placement="top">
+		  <a href='#!/{{app._id}}'>
+			<div class='ctyimage-thumb' style="background-image:url('{{app.logo}}')" alt="{{app.name}}" >
+					
+			</div>
+		  </a>
+		  <div class="caption">
+			<div  style="height:50px;overflow:hidden" class='text-center'>{{app.name}}</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+</div>

@@ -1,0 +1,45 @@
+﻿<ul class="breadcrumb">
+  <li><a href="#!/">Trang chủ</a></li>
+  <li class='active'>Giỏ hàng</li>
+</ul>
+<div class='main'>
+	<h3>{{title}}</h3>
+	<hr/>
+	<div ng-show='cart.listshops.length==0'>
+		Bạn chưa chọn mua sản phẩm nào
+	</div>
+	<div ng-show='cart.listshops.length>0'>
+		<div ng-repeat ='shop in cart.listshops'>
+			<h3><a href='#!/{{shop._id}}'>{{shop.name}}</a></h3>
+			<div ng-repeat="vt in shop.listproducts" class="media" >
+				<a class="media-left" href="#!/{{shop._id}}/SP.{{vt._id}}">
+					<img ng-src="{{vt.picture_thumb}}" style="width:100px;height:100px">
+				</a>
+				<div class="media-body" style='width:100%'>
+					<h4 class="media-heading">{{vt.ten_vt}}</h5>
+					<div class='row'>
+						<div class='col-md-3'>Số lượng: <input style='color:blue;font-weight:bold;width:80px' min="0" type='number' ng-change='cart.delete2cart(shop._id,vt._id,vt.sl_xuat,true)' ng-model='vt.sl_xuat'/></div>
+						<div class='col-md-3'>Giá: <span style='color:blue;font-weight:bold'>{{vt.gia_ban_thuc|number:0}}</span> đ/{{vt.ma_dvt}}</div>
+						<div class='col-md-6'>Thành tiền: <span style='color:blue;font-weight:bold'>{{vt.tien|number:0}}</span> đ</div>
+					</div>
+					<br/>
+					<a class='btn btn-xs btn-danger' ng-click='cart.delete2cart(shop._id,vt._id,0)'>Xóa</a>
+					<a class='btn btn-xs btn-primary' ng-click='cart.delete2cart(shop._id,vt._id,1)'>&nbsp&nbsp+&nbsp&nbsp</a>
+					<a class='btn btn-xs btn-primary' ng-click='cart.delete2cart(shop._id,vt._id,-1)'>&nbsp&nbsp-&nbsp&nbsp</a>
+				</div>
+			</div>
+			<p>
+				<div class="row">
+					<h3 class='col-sm-6'>Cộng: <span style='color:blue'>{{shop.t_tien|number:0}}</span> đ</h3>
+				</div>
+				<div>
+					<a class='btn btn-success btn-sm' href='#!/tt/{{shop._id}}'>Xác nhận</a>
+				</div>
+			</p>
+			<hr/>
+		</div>
+		<p ng-show='cart.listshops.length>1'>
+			<strong style="font-size:25px">Tổng cộng: <span style='color:blue'>{{cart.t_tien|number:0}}</span> đ</strong>
+		</p>
+	</div>
+</div>

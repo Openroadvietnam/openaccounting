@@ -1,6 +1,15 @@
 {
-	"name": "acc-api",
+	"name": "open-accounting",
 	"main": "app.js",
+	"description": "Viet Nam Open Accounting",
+	"version": "0.0.1",
+	"author": {
+		"name": "Van Truong Pham",
+		"email": "invncur@gmail.com"
+	  },
+	"keywords": [
+		"accounting"
+	  ],
 	"dependencies": {
 		"express": "latest",
 		"mongoose": "latest",

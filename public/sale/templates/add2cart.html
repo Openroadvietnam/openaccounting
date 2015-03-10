@@ -1,0 +1,20 @@
+﻿<div class="dialog-contents">
+    <h5>
+		Bạn đã thêm một sản phẩm vào giỏ.
+	</h5>
+	<div class="media">
+		<a class="media-left" href="#!/{{shop._id}}/SP.{{vt._id}}" ng-click="close()">
+			<img ng-src="{{vt.picture_thumb}}" style="width:100px;height:100px">
+		</a>
+		<div class="media-body">
+			<h4 class="media-heading">{{vt.ten_vt}}</h5>
+			<div>Số lượng: <input style='color:blue;font-weight:bold;width:50px' min="0" type='number' ng-change='delete2cart(shop._id,vt._id,vt.sl_xuat,true)' ng-model='vt.sl_xuat'/><br/> Giá: <span style='color:blue;font-weight:bold'>{{vt.gia_ban_thuc|number:0}}</span> đ/{{vt.ma_dvt}}<br/> Thành tiền: <span style='color:blue;font-weight:bold'>{{vt.tien|number:0}}</span> đ</div>
+			<a class='btn btn-xs btn-danger' ng-click='delete2cart(shop._id,vt._id,0)'>Xóa</a>
+			<a class='btn btn-xs btn-primary' ng-click='delete2cart(shop._id,vt._id,1)'>&nbsp&nbsp+&nbsp&nbsp</a>
+			<a class='btn btn-xs btn-primary' ng-click='delete2cart(shop._id,vt._id,-1)'>&nbsp&nbsp-&nbsp&nbsp</a>
+		</div>
+	</div>
+	<div style='border-top:1px solid silver;padding-top:10px;margin:10px' class ="text-center">
+		<a href='#!/cart' class='btn btn-danger btn-md form-control' ng-click='close()'>Giỏ hàng</a>
+	</div>
+</div>

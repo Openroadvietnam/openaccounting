@@ -1,0 +1,42 @@
+﻿<html>
+	<head>
+		<title>Đơn đặt hàng</title>
+	</head>
+	<body>
+		<p>Đơn hàng được gửi tới từ <a href='http://cuahangvietonline.com'>http://cuahangvietonline.com</a>.</p>
+		<hr/>
+		<div>
+			<h1>ĐƠN ĐẶT HÀNG</h1>
+			<p>Số: <strong>{{order.so_ct}}</strong> - Ngày: <strong>{{order.ngay_ct}}</strong></p>
+			<p>Người nhận hàng: <strong>{{order.ten_nguoi_nhan}}</strong></p>
+			<p>Điện thoại: <strong>{{order.dien_thoai}}</strong></p>
+			<p>Email: <strong>{{order.email}}</strong></p>
+			<p>Địa chỉ: <strong>{{order.dia_chi}}, {{order.xa_phuong}}, {{order.quan_huyen}}, {{order.tinh_thanh}}</strong></p>
+			
+			<p style='color:red'>Phương thức thanh toán: <strong>{{order.ten_pt_thanh_toan}}</strong></p>
+			<p>
+				<table style="border-collapse: collapse;border:1px solid gray;width:100%">
+					<tr>
+						<th style="border:1px solid gray;width:100px">Mã sản phẩm</th>
+						<th style="border:1px solid gray;width:250px">Tên sản phẩm</th>
+						<th style="border:1px solid gray;width:100px">Đơn vị tính</th>
+						<th style="border:1px solid gray;width:100px">Số lượng</th>
+						<th style="border:1px solid gray;width:100px">Giá</th>
+						<th style="border:1px solid gray;width:100px">Thành tiền</th>
+					</tr>
+					{{order.rows}}
+					<tr>
+						<td style="border:1px solid gray"></td>
+						<td style="border:1px solid gray"></td>
+						<td style="border:1px solid gray"><b>Tổng cộng</b></td>
+						<td style="border:1px solid gray"><b>{{order.t_sl}}</b></td>
+						<td style="border:1px solid gray"></td>
+						<td style="border:1px solid gray"><b>{{order.t_tt}}</b></td>
+					</tr>
+				</table>
+			</p>
+			
+			
+		</div>
+	</body>
+</html>

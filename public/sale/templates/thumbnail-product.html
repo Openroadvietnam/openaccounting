@@ -1,0 +1,28 @@
+﻿<div class='thumbnail-product'>
+  <a href='#!/{{product.id_app}}/SP.{{product._id}}'  title ='{{product.ten_vt}}'>
+	<div class='image'>
+		<img ng-src='{{product.picture_thumb}}' alt="{{product.ten_vt}}"/>
+	</div>
+	
+	<div class="caption" >
+		<div class='product-name'>{{product.ten_vt}}</div>
+		<div>
+			<div class='product-price'>
+				<span style='color:red'  ng-show='!(product.gia_ban_thuc && product.gia_ban_thuc!=0)'>Liên hệ</span> 
+				<span ng-show='product.gia_ban_thuc && product.gia_ban_thuc!=0'>
+					{{product.gia_ban_thuc|number:0}} đ
+				</span>
+			</div>
+			<div ng-show='product.gia_ban_le!=product.gia_ban_thuc'>
+				<span class='product-price-ori'>{{product.gia_ban_le|number:0}} đ</span>
+				<span class='poff-new'>
+					({{product.gia_ban_le>product.gia_ban_thuc?'-':'+'}}{{product.ty_le_ck}}%)
+				</span>
+			</div>
+		</div>
+		<!--<p><a ng-click="cart.add2cart(product,app)" class="btn btn-primary" role="button"  ng-disabled='!(product.gia_ban_thuc && product.gia_ban_thuc!=0 && (!product.tinh_trang || product.tinh_trang=="1"))'>Mua</a> <a ng-show='false' ng-click="cart.add2like(product,app)" class="btn btn-success" role="button">Thích</a></p>-->
+	
+	  </div>
+  </a>
+  
+</div>

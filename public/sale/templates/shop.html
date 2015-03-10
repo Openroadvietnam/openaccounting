@@ -1,0 +1,61 @@
+
+<ul class="breadcrumb">
+  <li><a href="#!/">Trang chủ</a></li>
+  <li class="active">{{app.name}}</li>
+</ul>
+<shop-banner></shop-banner>
+<div class='main'>
+	<div class='row'>
+		<div class='col-sm-6' style='font-weight:bold'>
+			<div class='input-group'>
+				<span class='input-group-addon'>Nhóm sản phẩm</span>
+				<select class='form-control' ng-model='ma_nvt' ng-options ='nh._id as nh.ten_nvt for nh in dmnvt' ng-change ='search(ma_vt,1,ma_nvt)'>
+					<option value='' select>Tất cả</option>
+				</select>
+			</div>
+			<br/>
+		</div>
+		<div class=' col-sm-6'>
+			<div class="input-group">
+				<input type='text' class='form-control' placeholder='Nhập mã hoặc tên sản phẩm rồi nhấn Enter để tìm...' ng-model='ma_vt' ng-keyup='searchKeyup($event)'/>
+				<span class='btn btn-lg input-group-addon' ng-click='search(ma_vt,1,ma_nvt)'>Tìm</span>
+			</div>
+			<br/>
+		</div>
+	</div>
+	<div class="text-center" ng-show='spNoiBat && spNoiBat.length>0 && !searched'>
+		<div class="carousel-shop">
+			<ul rn-carousel rn-carousel-index="carouselIndex2" rn-carousel-auto-slide rn-carousel-buffered style='width:100%'>
+				<li ng-repeat="slide in spNoiBat" ng-class="'id-' + slide.id">
+					<a href='#!/{{slide.id_app}}/{{slide._id}}'>
+						<div style="background-image:url('{{slide.picture_slide}}')"  class="bgimage">
+						  <b>{{ slide.ten_vt }}</b>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<!--<div rn-carousel-indicators ng-if="spNoiBat.length > 1" slides="spNoiBat" rn-carousel-index="carouselIndex2"></div>-->
+		</div>
+	</div>
+	<br/>
+	<div>
+		<div class='text-center' ng-show='vts.length==0 && ma_vt'>
+			<i>Không tìm thấy sản phẩm nào với từ khóa "{{ma_vt}}" trong nhóm sản phẩm trên.</i>
+		</div>
+		<div class='text-center' ng-show='vts.length==0 && !ma_vt'>
+			<i>Nhóm sản phẩm này chưa có sản phẩm nào.</i>
+		</div>
+		
+		
+		<div ng-show='vts && vts.length>0'>
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-md-3" ng-repeat='vt in vts'>
+					<thumbnail-product product = "vt"></thumbnail-product>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class='text-center' ng-show ='current_page_data.length==24'>
+		<a class='btn btn-md btn-primary' ng-click='next()'>Tải thêm các sản phẩm tiếp theo</a>
+	</div>
+</div>

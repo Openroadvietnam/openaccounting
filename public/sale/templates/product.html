@@ -1,0 +1,110 @@
+
+<ul class="breadcrumb">
+  <li><a href="#!/">Trang chủ</a></li>
+  <li><a href="#!/{{app._id}}">{{app.name}}</a></li>
+  <li class="active">{{vt.ten_vt}}</li>
+</ul>
+<shop-banner></shop-banner>
+<div class="main">
+	<div class='row'>
+		<div class='col-sm-5'>
+			<div class='large-image'>
+				<a href='{{picture}}'>
+					<img ng-src='{{picture}}'/>
+				</a>
+			</div>
+			<div style='margin-top:5px'>
+				<img ng-show='vt.picture2_thumb || vt.picture3_thumb || vt.picture4_thumb || vt.picture5_thumb' ng-src='{{vt.picture_thumb}}' style="width:50px;height:50px;cursor:pointer" ng-click='picture = vt.picture'/>
+				<img ng-show='vt.picture2_thumb' ng-src='{{vt.picture2_thumb}}' style="width:50px;height:50px;cursor:pointer" ng-click='picture = vt.picture2'/>
+				<img ng-show='vt.picture3_thumb' ng-src='{{vt.picture3_thumb}}' style="width:50px;height:50px;cursor:pointer" ng-click='picture =vt.picture3'/>
+				<img ng-show='vt.picture4_thumb' ng-src='{{vt.picture4_thumb}}' style="width:50px;height:50px;cursor:pointer" ng-click='picture =vt.picture4'/>
+				<img ng-show='vt.picture5_thumb' ng-src='{{vt.picture5_thumb}}' style="width:50px;height:50px;cursor:pointer"  ng-click='picture=vt.picture5'/>
+			</div>
+		</div>
+		<div class='col-sm-4'>
+			<h1 class='title-product'>{{vt.ten_vt}}</h1>
+			
+			<div ng-if="true" class="fb-like"  data-href="{{og_url}}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+			
+			<div>Mã: {{vt.ma_vt}}</div>
+			<p ng-show='vt.gia_ban_thuc!=vt.gia_ban_le'  style='text-decoration:line-through;color:gray'>Giá gốc: {{vt.gia_ban_le|number:0}}</p>
+			<p>
+				Giá: 
+				<span style='color:red'  ng-show='!(vt.gia_ban_thuc && vt.gia_ban_thuc!=0)'>Liên hệ</span>
+				<span ng-show='vt.gia_ban_thuc && vt.gia_ban_thuc!=0'>
+					<b style='font-size:20px;color:blue'>{{vt.gia_ban_thuc|number:0}}</b> đ/{{vt.ma_dvt}}.
+				</span>
+				<span style='color:red' ng-show='vt.tien_ck!=0'>Bạn tiết kiệm: {{vt.tien_ck|number:0}} đ <span ng-show='vt.ty_le_ck'>({{vt.ty_le_ck}}%)</span></span>
+			</p>
+			
+			<p>
+				<b  style='color:green' ng-show='!vt.tinh_trang || vt.tinh_trang=="1"'><i>Đang có hàng</i></b>
+				<b  style='color:#10B038' ng-show='vt.tinh_trang=="2"'><i>Sắp có hàng</i></b>
+				<b style='color:#EB683D' ng-show='vt.tinh_trang=="3"'><i>Hết hàng</i></b>
+			</p>
+			<p><a ng-click="cart.add2cart(vt,app)" class="btn btn-primary" role="button"  ng-disabled='!(vt.gia_ban_thuc && vt.gia_ban_thuc!=0 && (!vt.tinh_trang || vt.tinh_trang=="1"))'>Thêm vào giỏ</a> <a ng-show='false' ng-click="cart.add2like(vt,app)" class="btn btn-success" role="button">Thích</a></p>
+			
+			<fieldset ng-show='vt.khuyen_mai'> <legend>Ưu đãi & khuyến mãi</legend>
+				<p parse-html='vt.khuyen_mai'></p>
+			</fieldset>
+			
+			<fieldset ng-show='vt.mieu_ta'><legend>Mô tả</legend>
+				<p parse-html='vt.mieu_ta'></p>
+			</fieldset>
+			
+		</div>
+		<div class='col-sm-3' style='padding:10px' >
+			<div class='panel panel-primary'>
+				<div class='panel-heading'>Giỏ hàng</div>
+				<div class='panel-body'>
+					
+						<div  class='text-left'>
+							<div>Số lượng: 
+							<b style='color:blue;font-size:18px'>{{cart.t_sl|number:0}}</b> sp</div>
+						</div>
+						<div  class='text-left'>
+							<div>Tiền: 
+							<b  style='color:blue;font-size:16px'>{{cart.t_tien|number:0}}</b> đ</div>
+						</div>
+						<br/>
+						<div><a href='#!/cart' class='btn btn-sm btn-danger form-control'>Chi tiết</a></div>
+					
+				</div>
+				
+			</div>
+			<div  ng-show='app.bao_hanh' class='panel panel-primary'>
+				<div class='panel-heading'>
+					Chính sách bảo hành
+				</div>
+				<div class='panel-body'>
+					<p  parse-html='app.bao_hanh'></p>
+				</div>
+			</div>
+			<div  ng-show='app.van_chuyen' class='panel panel-primary'>
+				<div class='panel-heading'>
+					Chính sách vận chuyển
+				</div>
+				<div class='panel-body'>
+					<p  parse-html='app.van_chuyen'></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<fieldset ng-show='vt.mieu_ta_chi_tiet'>
+		<legend>Chi tiết sản phẩm</legend>
+		<p parse-html='vt.mieu_ta_chi_tiet'></p>
+	</fieldset>
+		
+	<fieldset ng-show='other_products && other_products.length>0'>
+		<legend>Sản phẩm khác</legend>
+		<div class="row">
+		  <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat='vt in other_products'>
+			<thumbnail-product product ="vt"></thumbnail-product>
+		  </div>
+		</div>
+	</fieldset>
+	<!---facebook comment-->
+	<div ng-if="true"  class="fb-comments text-center" data-width="{{comment_width}}" data-href="{{og_url}}" data-numposts="5" data-colorscheme="light"></div>
+	   
+</div>

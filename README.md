@@ -22,4 +22,4 @@
 ## Demo
 	[Demo]: http://ungdungquanly.vn/admin
 ## License
-GNU GENERAL PUBLIC LICENSE Version 3
+GNU AFFERO GENERAL PUBLIC LICENSE Version 3
