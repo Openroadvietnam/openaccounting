@@ -1,0 +1,1 @@
+var dmdvtModule = new baseInput('dmdvt','dmdvt',["ma_dvt","ten_dvt"],'Danh mục đơn vị tính');

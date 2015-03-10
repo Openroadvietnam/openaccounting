@@ -1,0 +1,31 @@
+﻿<navbar-print></navbar-print>
+<div>
+	<div><b>{{appInfo.name}}</b></div>
+	<div><i>{{appInfo.address}}</i></div>
+</div>
+<h3 class='text-center'>{{title}}</h3>
+<div class='text-center'>Số chứng từ: {{dataSource.so_ct}}</div>
+<div class='text-center'>Ngày chứng từ: {{dataSource.ngay_ct|date:'dd/MM/yyyy'}}</div>
+
+<div>
+<table style='width:100%;margin-top:30px' class='table table-bordered'>
+	<tr>
+		<th style='text-align:center'>Tài khoản nợ</th>
+		<th style='text-align:center'>Tài khoản có</th>
+		<th style='text-align:center'>Tiền</th>
+		<th style='text-align:center'>Diễn giải</th>
+	</tr>
+	<tr ng-repeat='r in dataSource.socai'>
+		<td>{{r.tk_no}}</td>
+		<td>{{r.tk_co}}</td>
+		<td style='text-align:right'>{{r.tien|number:0}}</td>
+		<td>{{r.dien_giai}}</td>
+	</tr>
+</table>
+</div>
+<div type='margin-top:30px' class='row'>
+	<span class='col-xs-12'>
+		<div style='float:left;width:30%;text-align:center'>Kế toán trưởng</div>
+		<div style='float:right;width:30%;text-align:center'>Người lập</div>
+	</span>
+</div>

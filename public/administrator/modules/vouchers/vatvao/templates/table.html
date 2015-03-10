@@ -1,0 +1,61 @@
+﻿<div>
+	<div class="table-responsive"  style="overflow: auto">
+		<table class="table table-striped  table-hover table-bordered">
+			<tr>
+				<th class='text-center' style='width:30px'>Chọn</th>
+				<th>Số hóa đơn</th>
+				<th>Số seri</th>
+				<th>Ngày hóa đơn</th>
+				<th>Tiền hàng {{ngMasterData.ma_nt}}</th>
+				<th ng-show="ngMasterData.ma_nt!='VND'">Tiền hàng VND</th>
+				<th>Thuế suất</th>
+				<th>Tiền thuế {{ngMasterData.ma_nt}}</th>
+				<th  ng-show="ngMasterData.ma_nt!='VND'">Tiền thuế VND</th>
+			</tr>
+			<tr ng-repeat ="r in ngData">
+				<td class='text-center'>
+					<input type='checkbox' ng-model='r.sel'/>
+				</td>
+				<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+					{{r.so_hd}}
+				</td>
+				<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+					{{r.so_seri}}
+				</td>
+				<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+					{{r.ngay_hd|date:'dd/MM/yyyy'}}
+				</td>
+				<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+					{{r.t_tien_nt|number}}
+				</td>
+				<td  style='cursor:pointer'  ng-show="ngMasterData.ma_nt!='VND'" ng-click='editDetail(r.line)'>
+					{{r.t_tien|number}}
+				</td>
+				<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+					{{r.ma_thue}}
+				</td>
+				<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+					{{r.t_thue_nt|number}}
+				</td>
+				<td  style='cursor:pointer'  ng-show="ngMasterData.ma_nt!='VND'" ng-click='editDetail(r.line)'>
+					{{r.t_thue|number}}
+				</td>
+			</tr>
+			<tr ng-show='ngData.length>0'>
+				<td class='total' colspan='4'>Tổng cộng</td>
+		
+				<td class='total' ng-data='ngData' ng-sum='t_tien_nt' ng-model='t_tien_nt'>{{t_tien_nt|number:2}}</td>
+				<td class='total'  ng-data='ngData' ng-sum='t_tien' ng-model='t_tien' ng-show="ngMasterData.ma_nt!='VND'">{{t_tien|number:0}}</td>
+				<td class='total'></td>
+				<td class='total' ng-data='ngData' ng-sum='t_thue_nt' ng-model='t_thue_nt'>{{t_thue_nt|number:2}}</td>
+				<td class='total'  ng-data='ngData' ng-sum='t_thue' ng-model='t_thue' ng-show="ngMasterData.ma_nt!='VND'">{{t_thue|number:0}}</td>
+			</tr>
+		</table>
+	</div>
+	<div style='padding-bottom:2px;padding-top:2px'>
+		<div class='btn-group'>
+			<button class='btn btn-sm btn-primary'  ng-click="addDetail()">Mới</button>
+			<button class='btn btn-sm btn-danger' ng-click="deleteRow(ngData)" ng-disabled="isNotRowwSelected(ngData)">Xóa</button>
+		</div>
+	</div>
+</div>

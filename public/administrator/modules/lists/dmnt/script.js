@@ -1,0 +1,1 @@
+var dmntModule = new baseInput('dmnt','currency',["ma_nt","ten_nt"],'Danh mục ngoại tệ');

@@ -1,0 +1,342 @@
+<html   ng-app="accApp" id="controller" ng-controller="homeController">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="icon" href="images/favicon.ico">
+		<title>OPEN ACCOUNTING</title>
+		<link rel ="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="libs/angular-loading-bar/build/loading-bar.min.css">
+		<link rel="stylesheet" href="libs/ngtoast/dist/ngToast.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<!-- MetisMenu CSS -->
+		<link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+		<!-- Custom CSS -->
+		<link href="css/sb-admin-2.css" rel="stylesheet">
+		
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script src="libs/jquery/dist/jquery.min.js"></script>
+		<script src="libs/SocketIO.js"></script>
+		<script src="libs/angular/angular.min.js"></script>
+		<script src="libs/angular-cookies/angular-cookies.min.js"></script>
+		<script src="libs/angular-route/angular-route.min.js"></script>
+		<script src="libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+		<script src="libs/angular-loading-bar/build/loading-bar.min.js"></script>
+		
+		<script src="libs/angular-animate/angular-animate.min.js"></script>
+		<script src="libs/angular-sanitize/angular-sanitize.min.js"></script>
+		<script src="libs/ngtoast/dist/ngToast.min.js"></script>
+		
+		<script src="libs/underscore/underscore.js"></script>
+		<script src="libs/async/lib/async.js"></script>
+		<script src="libs/scrollglue.js"></script>
+		
+		
+		
+		<script src="libs/highstock.js"></script>
+		<script src="libs/highcharts-ng-master/dist/highcharts-ng.min.js"></script>
+		
+		<script src='modules/login/login.js'></script>
+		<script src="modules/dashboard/script.js"></script>
+		<script src="bases/appInfo.js"></script>
+		
+		
+		
+		<script src="bases/baseService.js"></script>
+		<script src="bases/baseRpt.js"></script>
+		<script src="bases/baseInput.js"></script>
+		<script src="bases/baseVoucher.js"></script>
+		
+		<script src="modules/lists/app/script.js"></script>
+		<script src="modules/lists/colleague/script.js"></script>
+		<script src="modules/lists/notification/script.js"></script>
+		<script src="modules/lists/message/script.js"></script>
+	
+		
+		<script src="modules/lists/dvcs/script.js"></script>
+		<script src="modules/lists/dmtc/script.js"></script>
+		<script src="modules/lists/dmdvt/script.js"></script>
+		<script src="modules/lists/dmvt/script.js"></script>
+		<script src="modules/lists/dmnvt/script.js"></script>
+		<script src="modules/lists/dmkho/script.js"></script>
+		<script src="modules/lists/dmvat/script.js"></script>
+		<script src="modules/lists/dmnt/script.js"></script>
+		<script src="modules/lists/dmtk/script.js"></script>
+		<script src="modules/lists/dmkc/script.js"></script>
+		<script src="modules/lists/dmkh/script.js"></script>
+		<script src="modules/lists/dmcpmh/script.js"></script>
+		<script src="modules/lists/cdtk/script.js"></script>
+		<script src="modules/lists/cdkh/script.js"></script>
+		<script src="modules/lists/cdvt/script.js"></script>
+		<script src="modules/lists/ptthanhtoan/script.js"></script>
+		
+		<script src="modules/vouchers/vatvao/script.js"></script>
+		<script src="modules/vouchers/vatra/script.js"></script>
+		<script src="modules/vouchers/tdttco/script.js"></script>
+		<script src="modules/vouchers/tdttno/script.js"></script>
+		<script src="modules/vouchers/ctcpmh/script.js"></script>
+		
+		<script src="modules/vouchers/pkt/script.js"></script>
+		<script src="modules/vouchers/pkc/script.js"></script>
+		
+		<script src="modules/vouchers/pn1/script.js"></script>
+		<script src="modules/vouchers/pn2/script.js"></script>
+		<script src="modules/vouchers/pn3/script.js"></script>
+		<script src="modules/vouchers/pn5/script.js"></script>
+		
+		<script src="modules/vouchers/pnk/script.js"></script>
+		<script src="modules/vouchers/pxk/script.js"></script>
+		<script src="modules/vouchers/pxc/script.js"></script>
+		
+		<script src="modules/vouchers/pc1/script.js"></script>
+		<script src="modules/vouchers/pt1/script.js"></script>
+		
+		<script src="modules/vouchers/hd2/script.js"></script>
+		<script src="modules/vouchers/hd1/script.js"></script>
+		<script src="modules/vouchers/hd3/script.js"></script>
+		<script src="modules/vouchers/pbl/script.js"></script>
+		<script src="modules/vouchers/so1/script.js"></script>
+		
+		<script src="modules/reports/search/script.js"></script>
+		<script src="modules/reports/bkct/script.js"></script>
+		<script src="modules/reports/scttk/script.js"></script>
+		<script src="modules/reports/cdpstk/script.js"></script>
+		
+		<script src="modules/reports/sctcnkh/script.js"></script>
+		<script src="modules/reports/cdpskh/script.js"></script>
+		
+		<script src="modules/reports/bkvatvao/script.js"></script>
+		<script src="modules/reports/bkvatra/script.js"></script>
+		<script src="modules/lists/kbmtkgtgt/script.js"></script>
+		<script src="modules/reports/tkgtgt/script.js"></script>
+		
+		<script src="modules/reports/bcdkt/script.js"></script>
+		<script src="modules/lists/kbmbcdkt/script.js"></script>
+		
+		<script src="modules/lists/kbmkqhdkd/script.js"></script>
+		<script src="modules/reports/kqhdkd/script.js"></script>
+		
+		<script src="modules/lists/kbmlctttt/script.js"></script>
+		<script src="modules/reports/lctttt/script.js"></script>
+		
+		<script src="modules/lists/kbmlcttgt/script.js"></script>
+		<script src="modules/reports/lcttgt/script.js"></script>
+		
+		<script src="modules/reports/thnxt/script.js"></script>
+		<script src="modules/reports/sctvt/script.js"></script>
+		<script src="modules/reports/tinhgiatb/script.js"></script>
+		
+		
+		<script src="modules/reports/dtbanletheongay/script.js"></script>
+		<script src="modules/reports/dtbanletheothang/script.js"></script>
+		<script src="modules/reports/dtbanletheoquy/script.js"></script>
+		<script src="modules/reports/dtbanletheonam/script.js"></script>
+		<script src="modules/reports/dtbanletheovt/script.js"></script>
+		<script src="modules/reports/dtbanletheokh/script.js"></script>
+		<script src="modules/reports/ctbanle/script.js"></script>
+		
+		<script src="modules/lists/dmbp/script.js"></script>
+		<script src="modules/lists/dmloaits/script.js"></script>
+		<script src="modules/lists/dmtanggiamts/script.js"></script>
+		<script src="modules/lists/dmnguonvon/script.js"></script>
+		<script src="modules/vouchers/qts/script.js"></script>
+		<script src="modules/reports/tinhkhauhaots/script.js"></script>
+		<script src="modules/lists/hspbts/script.js"></script>
+		<script src="modules/lists/dckhauhaots/script.js"></script>
+		<script src="modules/vouchers/pkh/script.js"></script>
+		
+		
+		
+		<script src="app.js"></script>
+		<script src="bases/directives.js"></script>
+		
+		
+		<script src="libs/FileSaver.js"></script>
+		<script src="libs/Export2Excel.js"></script>
+		<script src="libs/js-xlsx/xlsx.full.min.js"></script>
+		 
+		
+		
+		
+	</head>
+	<body>
+		<toast></toast>
+		<div id="wrapper">
+			<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background-color:#337ab7">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a style="text-decoration:none;color:white" href="#" class="navbar-brand" >{{program_name}} <i style="font-size:10;font-weight:normal; padding-left:1px">{{program_version}}</i></a>
+				</div>
+					
+				<ul class ="nav navbar-top-links navbar-right" ng-show="user.name">
+					<li dropdown class="dropdown" ng-show='isLogined'>
+						<a class="dropdown-toggle"  dropdown-toggle style="color:white"  ng-click='getMessages()' title="Tin nhắn"><i class="fa fa-envelope fa-fw"></i> <span class="badge">{{messages_count}}</span></span></a>
+						<ul class="dropdown-menu">
+							<li ng-repeat='msg in msgs|limitTo:5' style='width:350px'>
+								<a href ="#message/chat/{{msg.email_sender}}"  ng-show='msg.name_sender'>
+									<div>
+										
+										<img ng-src='{{msg.picture_sender}}' style='width:30px;height:30px'/>
+										<b>{{msg.name_sender}}</b> 
+									</div>
+									<div>
+										
+											<span>{{msg.content}}</span>
+										
+									</div>
+								</a>
+								<div ng-show='!msg.name_sender'>
+									<span>{{msg.content}}</span>	
+								</div>
+								
+							</li>
+							<li>
+								<a href="#message"  ng-click='disable_menu()'>Xem tất cả</a>
+							</li>
+						</ul>
+					</li>
+					<li dropdown  class="dropdown" ng-show='isLogined'>
+						<a  class="dropdown-toggle"  dropdown-toggle  ng-click='getInvitations()' style="color:white" title ="Thông báo"><i class="fa fa-bell fa-fw"></i> <span class="badge">{{notifies_count}}</span></a>
+						<ul class="dropdown-menu">
+							<!--tham gia nhom-->
+							<li ng-repeat='inf in notifies.colls' style='width:350px;padding:5px'>
+								<div ng-show='inf.name_invitor'>
+									<img ng-src='{{inf.picture_invitor}}' style='width:30px;height:30px'/>
+									<b>{{inf.name_invitor}}</b> mời bạn tham gia nhóm của anh ấy
+								</div>
+								<p> {{inf.content}}</p>
+								<div class='btn-group'  ng-show='inf.name_invitor'>
+									<button class='btn btn-primary btn-xs' ng-click="acceptInvitor('colleague',inf._id)">Chấp nhận</button>
+									<button class='btn btn-danger btn-xs' ng-click="notAcceptInvitor('colleague',inf._id)">Hủy</button>
+								</div>
+								<hr  ng-show='inf.name_invitor'/>
+							</li>
+							<!--tham gia cong ty-->
+							<li ng-repeat='inf in notifies.apps' style='width:350px;padding:5px'>
+								<div ng-show='inf.name_invitor'>
+									<img ng-src='{{inf.picture_invitor}}' style='width:30px;height:30px'/>
+									<b>{{inf.name_invitor}}</b> mời bạn tham gia {{inf.company_name}}
+								</div>
+								<br />
+								<div class='btn-group'  ng-show='inf.name_invitor'>
+									<button class='btn btn-primary btn-xs' ng-click="acceptInvitor('app',inf._id)">Chấp nhận</button>
+									<button class='btn btn-danger btn-xs' ng-click="notAcceptInvitor('app',inf._id)">Hủy</button>
+								</div>
+								<hr  ng-show='inf.name_invitor'/>
+							</li>
+							<!--thong bao khac-->
+							<li ng-repeat='inf in notifies.notifications' style='width:350px;padding:5px'>
+								<div ng-show='inf.name_sender'>
+									<img ng-src='{{inf.picture_sender}}' style='width:30px;height:30px'/>
+									<b>{{inf.name_sender}}</b> 
+									<a href = '#notification/view/{{inf._id}}'>{{inf.content}}</a>
+								</div>
+								<hr  ng-show='inf.name_sender'/>
+							</li>
+							
+							<li>
+								<a href="#notification"  ng-click='disable_menu()'>Xem tất cả</a>
+							</li>
+						</ul>
+					</li>
+					<li dropdown class="dropdown" ng-show='isLogined'>
+						<a class="dropdown-toggle"   dropdown-toggle  style="color:white" title ="{{user.name}}"><i class="fa fa-user fa-fw"></i></a>
+						<ul class='dropdown-menu'>
+							<li  style='width:350px'>
+								<div class='row'>
+									<div class='col-xs-5'>
+										<img style='width:150px;height:150px' ng-src='{{user.picture}}'/>
+									</div>
+									<div class='col-xs-7'>
+										<strong>{{user.name}}</strong>
+										<hr/>
+										<ul class='list-unstyled'>
+											<li><a href="#profile"  ng-click='disable_menu()'><i class='fa fa-user fa-fw'></i> Thông tin cá nhân</a></li>
+											<li><a href="#app" ng-click='disable_menu()'><i class="fa fa-building fa-fw"></i> Danh sách công ty</a></li>
+											<li><a href="#colleague" ng-click='disable_menu()'><i class="fa fa-group fa-fw"></i> Nhóm</a></li>
+											<li><a href="#logout" ng-click='disable_menu()'><i class='fa fa-sign-out fa-fw'></i> Đăng xuất</a></li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							
+						</ul>
+					</li>
+				</ul>
+			
+				<div class="navbar-default sidebar" role="navigation" ng-show='!printing && isLogined && id_app'>
+					<div class="sidebar-nav navbar-collapse">
+						<ul class="nav" id="side-menu">
+							 <li class="sidebar-search">
+								<div class="input-group custom-search-form">
+									<input type="text" class="form-control" placeholder="Tìm..." ng-model='searchword' ng-keyup="searchAllKeyup($event,searchword)">
+									<a class='btn btn-lg input-group-addon'  href='#search/{{searchword}}' ng-disabled='!searchword'>
+										<i class="fa fa-search"></i>
+									</a>
+								</div>
+								<!-- /input-group -->
+							</li>
+							<!--cong ty-->
+							<li data-toggle="collapse" data-target=".navbar-collapse">
+								<a ng-click='disable_menu()' href="#app/view/{{app_info._id}}"><i class="fa fa-building fa-fw"></i>{{app_info.name}}</a>
+							</li>
+							<!--bang dieu khien-->
+							<li data-toggle="collapse" data-target=".navbar-collapse">
+								<a ng-click='disable_menu()' href="#dashboard"><i class="fa fa-dashboard fa-fw"></i> Bảng điều khiển</a>
+							</li>
+							
+							<li ng-repeat="module in commands" ng-show='module.visiable'>
+								<a><i ng-class="module.icon"></i> {{module.module}} <span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
+									<li ng-repeat ="group in module.items" visiable="group.visiable"  ng-if="module.items.length>1">
+										<a><i ng-class="group.icon"></i>{{group.group}}<span class="fa arrow"></span></a>
+										<ul class="nav nav-third-level">
+											<li ng-repeat="item in group.items"  ng-show="item.visiable"   data-toggle="collapse" data-target=".navbar-collapse">
+												<a href="#{{item.path}}"  ng-click='disable_menu()' ng-class="item.path=='dxd'?'cdxd':''">{{item.header}}</a>
+											</li>
+										</ul>
+									</li>
+									
+									
+									<li  ng-if="module.items.length==1" ng-repeat="item in module.items[0].items"  ng-show="item.visiable"   data-toggle="collapse" data-target=".navbar-collapse">
+										<a href="#{{item.path}}"  ng-click='disable_menu()' ng-class="item.path=='dxd'?'cdxd':''">{{item.header}}</a>
+									</li>
+										
+								</ul>
+								
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+			</nav>
+			<div ng-class ='printing || !isLogined || !id_app? "":"page-wrapper"'>
+				<div class="row">
+					<div class="col-xs-12"  style="margin-top:10px">
+						<div class='page' ng-view></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class='text-center' style='border-top:1px solid #e7e7e7' ng-show='!printing'>
+			<i>Bản quyền 2015 <a href='http://saotienphong.com.vn'>Sao Tiên Phong</a>. Mọi quyền được bảo lưu.</i>
+		</div>
+		<script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- Metis Menu Plugin JavaScript -->
+		<script src="libs/plugins/metisMenu/metisMenu.min.js"></script>
+		<!-- Custom Theme JavaScript -->
+		<script src="libs/sb-admin-2.js"></script>
+		
+	</body>
+</html>

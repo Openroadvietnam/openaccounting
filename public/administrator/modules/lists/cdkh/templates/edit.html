@@ -1,0 +1,56 @@
+﻿<div>
+	<form name="form" novalidate class ="css-form form-horizontal form-input" >
+		<header-form-input></header-form-input>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Đơn vị cơ sở</label>
+			<div class="col-sm-10">
+				<ng-selector ng-model='data.ma_dvcs' ng-required='true'
+					options ="item._id as item.ten_dvcs for item in items" 
+					module='dvcs' fields='_id,ten_dvcs' field-model='_id' field-label='ten_dvcs'></ng-selector>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Tài khoản</label>
+			<div class ="col-sm-4">
+				<ng-typeahead ng-model='data.tk' ng-required='true' condition='loai_tk:1,tk_cn:true'
+					module='dmtk' fields='tk,ten_tk' field-model='tk' field-label='ten_tk' label='data.ten_tk' >
+				</ng-typeahead>
+			</div>
+			<label>{{data.ten_tk}}</label>
+		</div>
+			
+		<div class="form-group">
+				<label class="control-label col-sm-2">Khách hàng</label>
+				<div class="col-sm-4">
+					<ng-typeahead ng-model='data.ma_kh' ng-required='true' label='data.ten_kh'
+					module='dmkh' fields='ma_kh,ten_kh' field-model='ma_kh' field-label='ten_kh'></ng-typeahead>
+				</div>
+				<label>{{data.ten_kh}}</label>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-2">Đầu kỳ nợ</label>
+			<div class="col-sm-4">
+				<input  type="text" format="number" class="form-control" name ="data.du_no00" ng-model="data.du_no00"/>
+			</div>
+			
+			<label class="control-label col-sm-2">Đầu kỳ có</label>
+			<div class="col-sm-4">
+				<input type="text" format="number"  class="form-control" name="data.du_co00"  ng-model="data.du_co00"/>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Đầu năm nợ</label>
+			<div class="col-sm-4">
+				<input  type="text" format="number" class="form-control" name ="data.du_no1"  ng-model="data.du_no1"/>
+			</div>
+			
+			<label class="control-label col-sm-2">Đầu năm có</label>
+			<div class="col-sm-4">
+				<input type="text" format="number"  class="form-control" name="data.du_co1"  ng-model="data.du_co1"/>
+			</div>
+		</div>
+		<footer-form-input></footer-form-input>
+	</form>
+</div>

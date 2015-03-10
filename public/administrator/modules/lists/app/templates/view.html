@@ -1,0 +1,81 @@
+﻿
+<h2>{{data.name}} <button class='btn btn-xs btn-primary'ng-click='edit()'>Chỉnh sửa</button></h2>
+<hr/>
+<h4 style="color:#4A76A1">Thông tin chung</h4>
+<hr/>
+<div class='row'>
+	<div class='col-sm-6'>
+		<div class="row">
+			<label class="col-sm-4 text-right">Tên công ty: </label>
+			<div class='col-sm-8 text-left'>{{data.name}}</div>
+		</div>
+		<div class="row">
+			<label class="col-sm-4 text-right">Địa chỉ: </label>
+			<div class='col-sm-8 text-left'>{{data.address}}</div>
+		</div>
+		<div class="row">
+			<label class="col-sm-4 text-right">Thành phố: </label>
+			<div class='col-sm-8 text-left'>{{data.city}}</div>
+		</div>
+		<div class="row">
+			<label class="col-sm-4 text-right">Tỉnh: </label>
+			<div class='col-sm-8 text-left'>{{data.province}}</div>
+		</div>
+		<div class="row">
+			<label class="col-sm-4 text-right">Quốc gia: </label>
+			<div class='col-sm-8 text-left'>{{data.country}}</div>
+		</div>
+		<div class="row">
+			<label class="col-sm-4 text-right">Giám đốc: </label>
+			<div class='col-sm-8 text-left'>{{data.giam_doc}}</div>
+		</div>
+		<div class="row">
+			<label class="col-sm-4 text-right">Kế toán trưởng: </label>
+			<div class='col-sm-8 text-left'>{{data.ke_toan_truong}}</div>
+		</div>
+	</div>
+	<div class ='col-sm-6'>
+		<div class="row">
+			<label class="col-sm-6 text-right">Ngày đầu năm tài chính: </label>
+			<div class='col-sm-6 text-left'>{{data.ngay_dn|date:'dd/MM/yyyy'}}</div>
+		</div>
+		<div class="row">
+			<label class="col-sm-6 text-right">Ngày sử dụng chương trình: </label>
+			<div class='col-sm-6 text-left'>{{data.ngay_ky1|date:'dd/MM/yyyy'}}</div>
+		</div>
+		<div class="row">
+			<label class="col-sm-6 text-right">Ngày khóa sổ: </label>
+			<div class='col-sm-6 text-left'>{{data.ngay_ks|date:'dd/MM/yyyy'}}</div>
+		</div>
+		<div class="row">
+			<label class="col-sm-6 text-right">Người nộp thuế: </label>
+			<div class='col-sm-6 text-left'>{{data.nguoi_nop_thue}}</div>
+		</div>
+		<div class="row">
+			<label class="col-sm-6 text-right">Mã số thuế: </label>
+			<div class='col-sm-6 text-left'>{{data.ma_so_thue}}</div>
+		</div>
+	</div>
+</div>
+<hr/>
+<h4 style="color:#4A76A1">Những người tham gia</h4>
+<table class='table table-bordered'>
+	<tr>
+		<th>Tên</th><th style='width:100px' class='text-center'>Quản trị</th><th style='width:150px' class='text-center'>Phân quyền</th>
+	</tr>
+	<tr ng-repeat='r in data.participants'>
+		<td>
+			<img ng-src='{{r.picture}}' style='width:30px;height:30px'/> {{r.name}}
+		</td>
+		
+		<td class='checkbox text-center'>
+			<input type='checkbox' ng-model='r.admin' ng-disabled='true'/>
+		</td>
+		<td  class='text-center' >
+			<a href="#assign/{{data._id}}/{{r.email}}" ng-show ='!r.admin && data.user_created ==current_user.email'>Phân quyền</button>
+		</td>
+	</tr>
+</table>
+
+
+

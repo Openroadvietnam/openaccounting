@@ -1,0 +1,14 @@
+﻿<stplistheader></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr><th>#</th><th>Loại tài sản</th></tr>
+		<tr ng-repeat="r in list">
+			<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				<div>{{ r.ten_loai_ts }}</div>
+				<div style="font-size:12px"><i>{{ r.ma_loai_ts}}</i></div>
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

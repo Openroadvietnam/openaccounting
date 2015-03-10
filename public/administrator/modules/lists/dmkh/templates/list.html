@@ -1,0 +1,38 @@
+﻿<stplistheader btnimport ="text:'Import...'"></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr><th>#</th><th>Mã khách hàng</th><th>Tên khách hàng</th><th>Địa chỉ</th><th>Điện thoại</th><th>Email</th><th>Mã số thuế</th></tr>
+		<tr ng-repeat="r in list">
+			<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td    style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.ma_kh }}
+			</td>
+			<td    style='cursor:pointer' ng-click='edit(r._id)'>
+				
+					{{ r.ten_kh }}
+				
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				
+					{{ r.dia_chi }}
+				
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				
+					{{ r.dien_thoai }}
+				
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				
+					{{ r.email }}
+				
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				
+					{{ r.ma_so_thue }}
+				
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

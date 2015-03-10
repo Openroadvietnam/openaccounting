@@ -1,0 +1,14 @@
+﻿<div class="modal-header">
+	<header-dialog-select title="Danh mục nhóm sản phẩm"></header-dialog-select>
+ </div>
+ <div class="modal-body">
+	<div class="table-responsive">
+		<table  class ="table table-striped table-bordered">
+			<tr ng-repeat ="item in items" style ='cursor:pointer' ng-click="select(item)">
+				<td>
+					<div>{{item.ten_nvt}}</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+ </div>

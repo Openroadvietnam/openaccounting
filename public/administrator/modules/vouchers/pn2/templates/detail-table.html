@@ -1,0 +1,41 @@
+﻿
+<div class="table-responsive">
+	<table class="table table-striped  table-hover table-bordered">
+		
+		<tr><th class='text-center' style='width:30px'>Chọn</th>
+			<th>TK nợ</th>
+			<th>Tiền {{ngMasterData.ma_nt}}</th> <th ng-show="ngMasterData.ma_nt!='VND'">Tiền VND</th>
+		</tr>
+		
+		<tr ng-repeat="r in ngMasterData.details">
+			<td class='text-center'>
+				<input type='checkbox' ng-model='r.sel'/>
+			</td>
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				<div><b>{{r.ten_tk_no}}</b></div>
+				<i style="font-size:12px">{{r.tk_no}}<i>
+			</td>
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.tien_nt|number:2}}
+			</td>
+			<td  ng-show="ngMasterData.ma_nt!='VND'"  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.tien|number:0}}
+			</td>
+		
+		</tr>
+		
+		<tr ng-show='ngMasterData.details.length>0'>
+			<td colspan='2' class='total'>Tổng cộng:</td>
+			<td  class='total' ng-data='ngMasterData.details' ng-sum='tien_nt'  ng-model='ngMasterData.t_tien_nt' >{{ngMasterData.t_tien_nt|number:0}}</td>
+			<td  class='total' ng-show="ngMasterData.ma_nt!='VND'" ng-data='ngMasterData.details' ng-sum='tien'  ng-model='ngMasterData.t_tien' >{{ngMasterData.t_tien|number:0}}</td>
+			
+		</tr>
+		
+	</table>
+	<div style='padding-bottom:2px;padding-top:2px'>
+		<div class='btn-group'>
+			<button class='btn btn-sm btn-primary'  ng-click="addDetail()">Mới</button>
+			<button class='btn btn-sm btn-danger' ng-click="deleteRow(ngMasterData.details)" ng-disabled="isNotRowSelected(ngMasterData.details)">Xóa</button>
+		</div>
+	</div>
+</div>

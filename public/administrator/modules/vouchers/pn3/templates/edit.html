@@ -1,0 +1,88 @@
+﻿<!--master form-->
+<div>
+	<form name="form" novalidate class ="css-form form-horizontal form-input">
+		<header-form-input></header-form-input>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Đơn vị cơ sở <span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+			<div class="col-sm-10">
+				<ng-selector
+					module='dvcs' fields ='_id,ten_dvcs' field-model='_id' field-label='ten_dvcs'
+					options ="item._id as item.ten_dvcs for item in items" 
+					ng-model="data.ma_dvcs" ng-required="true">
+				</ng-selector>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Số chứng từ <span class='required' title="Số chứng từ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" style='text-transform:uppercase' name ='so_ct' class="form-control" ng-model='data.so_ct' ng-required="true"/>
+			</div>
+			
+			<label class="control-label col-sm-2">Ngày chứng từ <span class='required' title="Ngày chứng từ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-datepicker ng-model='data.ngay_ct' ng-required='true'></ng-datepicker>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Ngoại tệ <span class='required' title="Ngoại tệ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-selector 
+					module='dmnt' fields ='ma_nt,ten_nt' field-model='ma_nt' field-label='ten_nt'
+					ng-model="data.ma_nt" ng-required="true">
+				</ng-selector>
+			</div>
+			
+			<label class="control-label col-sm-2">Tỷ giá <span class='required' title="Tỷ giá không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" ng-tygia="data.ma_nt" ng-data-loaded='isDataLoaded'  ng-disabled="data.ma_nt=='VND' || !isDataLoaded" format="number" name ='ty_gia' class="form-control" placeholder='Nhập tỷ giá' ng-model='data.ty_gia' ng-required="true"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Nhà cung cấp <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmkh' fields='ma_kh,ten_kh' field-model='ma_kh' field-label='ten_kh'
+					ng-model='data.ma_kh' label='data.ten_kh' ng-required='true'>
+				</ng-typeahead>
+			</div>
+			<div  class="col-sm-6">{{data.ten_kh}}</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Tài khoản có <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmtk' fields='tk,ten_tk' field-model='tk' field-label='ten_tk'
+					ng-model='data.tk_co' label='data.ten_tk_co' ng-required='true' condition="loai_tk:1">
+				</ng-typeahead>
+			</div>
+			<div   class="col-sm-6">{{data.ten_tk_co}}</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Diễn giải</label>
+			<div class="col-sm-10">
+				<input type="text"  name ='dien_giai' class="form-control" ng-model='data.dien_giai'/>
+			</div>
+		</div>
+	
+		<div class="form-group">
+			<!--table detail-->
+			<tabset class="col-sm-12">
+				<tab heading='Chi tiết'>
+					<pn3-detail-table ng-master-data='data'></pn3-detail-table>
+				</tab>
+				<tab heading="VAT đầu vào">
+					<ng-vatvao ng-data='data.vatvaos' ng-master-data='data' tk-du-thue='data.tk_co' t-tien-nt="data.t_cp_nt" t-tien ="data.t_cp" ten-vt ='data.dien_giai' ma-kh ='data.ma_kh'></ng-vatvao>
+				</tab>
+				<tab heading="Chi phí mua hàng">
+					<ng-ctcpmh ng-data='data.ctcpmhs' ng-master-data='data' allocate="allocate(allocate_by_field)"></ng-ctcpmh>
+				</tab>
+			</tabset>
+			
+		</div>
+		
+		<footer-form-input></footer-form-input>
+	</form>
+</div>
+
+

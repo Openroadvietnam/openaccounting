@@ -1,0 +1,148 @@
+﻿<div class="modal-header">
+	<button type="button" class="close" ng-click ='cancelDetail()' aria-hidden="true"> &times;</button>
+	<h4 class="modal-title" id="detailModalLabel">
+	   Thông tin thuế VAT đầu ra
+	</h4>
+ </div>
+ <div class="modal-body">
+	<form name="formdetail" novalidate class="css-form form-horizontal">
+		<div class="form-group">
+			<label class="control-label col-sm-2">Kỹ hiệu số HĐ <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" style='text-transform:uppercase' name ='ky_hieu_hoa_don' class="form-control" ng-model='dt_current.ky_hieu_hoa_don' ng-required="true"/>
+	
+			</div>
+			
+			<label class="control-label col-sm-2">Số hóa đơn <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" style='text-transform:uppercase' name ='so_hd' class="form-control" ng-model='dt_current.so_hd' ng-required="true"/>
+				
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Số seri <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" style='text-transform:uppercase' name ='so_seri' class="form-control"  ng-model='dt_current.so_seri' ng-required="true"/>
+				
+			</div>
+			
+			<label class="control-label col-sm-2">Ngày hd <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-datepicker ng-model="dt_current.ngay_hd" ng-required="true"></ng-datepicker>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Thuế suất <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-10">
+				<ng-selector
+					module="dmvat" fields="ma_thue,ten_thue" field-model="ma_thue" field-label="ten_thue"
+					ng-model='dt_current.ma_thue' ng-required="true"/>
+				</ng-selector>
+				<input type='text' ng-show="false"
+					ng-get-info="module:'dmvat',fieldInfo:'thue_suat',condition:{ma_thue:'???'}" condition-value="dt_current.ma_thue"
+					ng-model='dt_current.thue_suat'
+				    run-when-condition-changed="status.isOpened">
+				<span ng-show="false"
+					ng-get-info="module:'dmvat',fieldInfo:'tk_thue_co',condition:{ma_thue:'???'}" condition-value="dt_current.ma_thue"
+					ng-model='dt_current.tk_thue_co'
+				    run-when-condition-changed="status.isOpened"></span>
+			</div>
+			
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">TK thuế <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4" >
+				<ng-typeahead 
+					module="dmtk" fields="tk,ten_tk" field-model="tk" field-label="ten_tk"
+					condition ="loai_tk:1"
+					ng-model='dt_current.tk_thue_co'   ng-required="true" ng-disabled="true"  label="ten_tk_du">
+				</ng-typeahead>
+			</div>
+			
+			<label class="control-label col-sm-2">TK đối ứng <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-typeahead
+					module="dmtk" fields="tk,ten_tk" field-model="tk" field-label="ten_tk"
+					condition ="loai_tk:1"
+					ng-model='dt_current.tk_du_thue' ng-required="true" label="ten_tk_du">
+				</ng-typeahead>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Tiền hàng {{ngMasterData.ma_nt}} <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" format="number" ng-model="dt_current.t_tien_nt"  ng-required="true"/>
+			</div>
+
+			<label class="control-label col-sm-2" ng-show="ngMasterData.ma_nt!='VND'">Tiền hàng quy đổi</label>
+			<div class="col-sm-4" ng-show="ngMasterData.ma_nt!='VND'">
+				<input type="text" class="form-control" format="number" ng-model="dt_current.t_tien"  ng-required="true"/>
+			</div>
+		</div>
+		
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Tiền thuế {{ngMasterData.ma_nt}} <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" format="number" ng-model="dt_current.t_thue_nt"   ng-required="true"/>
+			</div>
+
+			<label class="control-label col-sm-2"  ng-show="ngMasterData.ma_nt!='VND'">Tiền thuế quy đổi</label>
+			<div class="col-sm-4"  ng-show="ngMasterData.ma_nt!='VND'">
+				<input type="text" class="form-control" format="number" ng-model="dt_current.t_thue"  ng-required="true"/>
+			</div>
+		</div>
+		
+			
+		<div class="form-group">
+			<label class="control-label col-sm-2">Khách hàng</label>
+			<div class="col-sm-4">
+				<ng-typeahead
+					module="dmkh" fields="ma_kh,ten_kh" field-model="ma_kh" field-label="ten_kh"
+					ng-model='dt_current.ma_kh' ng-required-cn = "dt_current.tk_du_thue" label="ten_kh">
+				</ng-typeahead>
+			</div>
+			
+			<label class="control-label col-sm-2">Tên khách hàng</label>
+			<div class="col-sm-4">
+				<input type="text"  name ='ten_kh' class="form-control" 
+					ng-get-info ="module:'dmkh',fieldInfo:'ten_kh',condition:{ma_kh:'???'}"
+					condition-value ="dt_current.ma_kh" run-when-condition-changed ='status.isOpened'
+					ng-model='dt_current.ten_kh'/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Địa chỉ</label>
+			<div class="col-sm-4">
+				<input type="text"  name ='dia_chi' class="form-control"
+					ng-get-info="module:'dmkh',fieldInfo:'dia_chi',condition:{ma_kh:'???'}" condition-value='dt_current.ma_kh'
+					run-when-condition-changed='status.isOpened' ng-model='dt_current.dia_chi'/>
+			
+			</div>
+			
+			<label class="control-label col-sm-2">Mã số thuế</label>
+			<div class="col-sm-4">
+				<input type="text"  name ='ma_so_thue' class="form-control" 
+					ng-get-info="module:'dmkh',fieldInfo:'ma_so_thue',condition:{ma_kh:'???'}" condition-value='dt_current.ma_kh'
+					run-when-condition-changed='status.isOpened'
+					ng-model='dt_current.ma_so_thue'/>
+			
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Tên sản phẩm, dịch vụ</label>
+			<div class="col-sm-10">
+				<input type="text"  name ='ten_vt' class="form-control" ng-model='dt_current.ten_vt'/>
+			
+			</div>
+		</div>
+		
+	</form>
+ </div>
+ <div class="modal-footer">
+	<button type="button" class="btn btn-primary" ng-click="updateDetail()"  ng-disabled="formdetail.$invalid">
+	   Nhận
+	</button>
+	<button type="button" class="btn btn-default" ng-click='cancelDetail()'>Hủy</button>
+ </div>

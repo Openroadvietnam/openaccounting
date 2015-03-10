@@ -1,0 +1,24 @@
+﻿<stplistheader btnadd="text:'Mời một đồng nghiệp mới'" btndelete="show:false"></stplistheader>
+<br />
+<div class="container-fluid">
+	<div class="row">
+		<div class ="col-xs-6 col-md-3"  ng-repeat="r in list">
+			<div class='thumbnail'>
+				<img ng-src='{{r.picture_coll}}' style='width:60xp;height:60px;cursor:pointer' title ="{{r.email_coll}}" ng-click='openProfile(r.email_coll)'/>
+				<div class="caption text-center">
+					<strong>{{r.name_coll.length>15?r.name_coll.substring(0,11) + '..':r.name_coll}}</strong>
+					<p><i ng-show='r.active' style='color:green'>Đã kích hoạt</i><i ng-show='!r.active' style='gray'>Chưa kích hoạt</i></p>
+					<p>
+						<button class="btn btn-primary btn-xs" ng-show='r.active' role="button" ng-click='sendMessage(r.email_coll)'>Nhắn tin</button>
+						<button class="btn btn-primary btn-xs" ng-show='!r.active && !r.cancel && r.user.email==r.email' ng-click="active(r._id)">Chấp nhận</button>
+						<button class="btn btn-danger btn-xs" role="button" ng-click='unLink(r._id)' ng-show='r.user.email==r.email' title='Ra khỏi nhóm của {{r.name_owner}}'>Xóa</button>
+						<button class="btn btn-danger btn-xs" role="button" ng-click='delete(r._id)' ng-show='r.user.email!=r.email' title ='Xóa khỏi nhóm của tôi'>Xóa</button>
+					</p>
+				 </div>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+<ng-page></ng-page>

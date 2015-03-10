@@ -1,0 +1,27 @@
+﻿<stplistheader btnadd ='show:false'></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped">
+		<tr><th>#</th><th></th><th>Nội dung</th><th>Thời gian</th><th class='text-center'>Đọc</th></tr>
+		<tr ng-repeat="r in list">
+			<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td width='100px'>
+				<img ng-src='{{r.picture_sender}}' style='width:32px;height:32px' title ='{{r.name_sender}}'> > 
+				<img ng-src='{{r.picture_receiver}}' style='width:32px;height:32px'  title ='{{r.name_receiver}}'>
+			</td>
+			<td   style='cursor:pointer;color:black' ng-click='view(r._id)'  ng-show='!r.read'>
+					{{ r.content }}
+			</td>
+			<td   style='cursor:pointer;color:gray' ng-click='view(r._id)' ng-show='r.read'>
+					{{ r.content }}
+			</td>
+		
+			<td   style='cursor:pointer;width:200px' ng-click='view(r._id)'>
+					{{ r.date_created|date:'dd/MM/yyyy hh:mm:ss' }}
+			</td>
+			<td class='text-center'>
+				<input type='checkbox' ng-model='r.read' ng-disabled='true'/>
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

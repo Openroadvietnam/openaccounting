@@ -1,0 +1,16 @@
+﻿<div class="modal-header">
+	<button type="button" class="close" ng-click ='cancel()' aria-hidden="true"> &times;</button>
+	<h4 class="modal-title" id="detailModalLabel">
+	   Thêm nhanh một thuế suất
+	</h4>
+	<div class="text-right">
+		<button class="btn btn-primary" ng-click="save()"  ng-disabled="form.$invalid">Lưu</button>
+		<button class="btn btn-default" ng-click="cancel()">Hủy</button>
+	</div>
+</div>
+
+<div class="modal-body">
+	<div class="container-fluid">
+		<dmvat-form></dmvat-form>
+	</div>
+</div>

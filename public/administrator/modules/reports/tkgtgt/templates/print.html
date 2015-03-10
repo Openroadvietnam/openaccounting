@@ -1,0 +1,42 @@
+﻿<navbar-print></navbar-print>
+<div><b>{{appInfo.name}}</b></div>
+<div><i>{{appInfo.address}}</i></div>
+<h3 class='text-center'>{{title}}</h3>
+<h5 class='text-center'>Từ ngày {{condition.tu_ngay|date:'dd/MM/yyyy'}} Đến ngày {{condition.den_ngay|date:'dd/MM/yyyy'}}</h5>
+<div>
+	<table class='table  table-striped  table-hover table-bordered' id ='exportable'>
+		
+		<tr>
+			<th>STT</th>
+			<th>Chỉ tiêu</th>
+			<th>Mã số</th>
+			<th>Doanh số</th>
+			<th>Thuế</th>
+		</tr>
+		
+		<tr ng-repeat='r in data' ng-class="r.bold?'cbold':'cnormal'" ng-show="r.print">
+			<td>
+				{{r.stt_in}}
+			</td>
+			<td>
+				{{r.chi_tieu}}
+			</td>
+			<td>
+				{{r.ma_so}}
+			</td>
+			<td>
+				{{r.t_tien|number:0}}
+			</td>
+			<td>
+				{{r.t_thue|number:0}}
+			</td>
+		</tr>
+		
+	</table>
+</div>
+<div type='margin-top:30px' class='row'>
+	<span class='col-xs-12'>
+		<div style='float:left;width:30%;text-align:center'>Kế toán trưởng</div>
+		<div style='float:right;width:30%;text-align:center'>Người lập</div>
+	</span>
+</div>

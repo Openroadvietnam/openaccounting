@@ -1,0 +1,46 @@
+﻿<div class="container-fluid">
+	<div class='row'>
+		<div class='col-md-6'>
+			<div class="row">
+				<label class="col-md-3 text-right">Tên công ty: </label>
+				<div class='col-md-9 text-left'>{{data.name}}</div>
+			</div>
+			<div class="row">
+				<label class="col-md-3 text-right">Địa chỉ: </label>
+				<div class='col-md-9 text-left'>{{data.address}}</div>
+			</div>
+			<div class="row">
+				<label class="col-md-3 text-right">Thành phố: </label>
+				<div class='col-md-9 text-left'>{{data.city}}</div>
+			</div>
+			<div class="row">
+				<label class="col-md-3 text-right">Tỉnh: </label>
+				<div class='col-md-9 text-left'>{{data.province}}</div>
+			</div>
+			<div class="row">
+				<label class="col-md-3 text-right">Quốc gia: </label>
+				<div class='col-md-9 text-left'>{{data.country}}</div>
+			</div>
+		</div>
+		<div class ='col-md-6'>
+			<div class="row">
+				<label class="col-md-6 text-right">Ngày bắt đầu năm tài chính: </label>
+				<div class='col-md-6 text-left'>{{data.ngay_dn|date:'dd/MM/yyyy'}}</div>
+			</div>
+			<div class="row">
+				<label class="col-md-6 text-right">Ngày bắt đầu sử dụng chương trình: </label>
+				<div class='col-md-6 text-left'>{{data.ngay_ky1|date:'dd/MM/yyyy'}}</div>
+			</div>
+			<div class="row">
+				<label class="col-md-6 text-right">Ngày khóa sổ: </label>
+				<div class='col-md-6 text-left'>{{data.ngay_ks|date:'dd/MM/yyyy'}}</div>
+			</div>
+		</div>
+	</div>
+	<hr />
+	<div class='text-center'>
+		<button class='btn btn-danger'ng-click='edit()'>Chỉnh sửa</button>
+	</div>
+</div>
+
+

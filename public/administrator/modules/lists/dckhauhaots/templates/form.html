@@ -1,0 +1,19 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2">Giá trị khấu hao kỳ </label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" format="number" ng-model="data.gia_tri_kh_ky" ng-required="true"/>
+		</div>
+		<div class="col-sm-10 col-sm-offset-2">
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" ng-model="data.sua_kh"/>
+					Không tính lại khấu hao
+				</label>
+			</div>
+		</div>
+	</div>
+	<footer-form-input></footer-form-input>
+</form>

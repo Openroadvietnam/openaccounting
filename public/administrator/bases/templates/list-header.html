@@ -1,0 +1,26 @@
+﻿
+<nav class="navbar navbar-default" >
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<div class="navbar-brand">
+				{{title}} <span class="label label-info">{{ list.length }}</span>
+			</div>
+		</div>
+		<div class=" nav narbar-nav navbar-right">
+			<button type="button" class="btn btn-success  navbar-btn" ng-click="btn1_click()" ng-show='btn1_show'>{{btn1_text}}</button>
+			<button type="button" class="btn btn-success  navbar-btn" ng-click="btn2_click()" ng-show='btn2_show'>{{btn2_text}}</button>
+			<button type="button" class="btn btn-primary  navbar-btn" ng-click="add()"  ng-show='add_show'>{{add_text}}</button>
+			<button type="button" class="btn btn-danger  navbar-btn" ng-disabled="isUnSelected()" ng-click ="delete()"  ng-show='delete_show'>{{delete_text}}</button>
+			<button type="button" class="btn btn-default  navbar-btn" ng-click="btn3_click()" ng-show='btn3_show'>{{btn3_text}}</button>
+			<button type="button" class="btn btn-default  navbar-btn" ng-click="btn4_click()" ng-show='btn4_show'>{{btn4_text}}</button>
+			<button type="button" class="btn btn-default  navbar-btn" ng-click="btn5_click()" ng-show='btn5_show'>{{btn5_text}}</button>
+			<button type="button" class="btn btn-info  navbar-btn" ng-click="import()" ng-show='import_show'>{{import_text}}</button>
+			<button type="button" class="btn btn-default  navbar-btn" ng-click="options()" ng-show='options_show'>{{options_text}}</button>
+		</div>
+	</div>
+</nav>
+<div class="input-group" ng-show="boxSearch">
+	<input type='text' ng-model="condition" ng-keyup="searchKeyup($event)" class="form-control" placeholder="Nhập từ cần tìm rồi nhấn Enter"/>
+	<span class='btn btn-lg input-group-addon'  ng-click="search()">Tìm</span>
+</div>
+<br/>

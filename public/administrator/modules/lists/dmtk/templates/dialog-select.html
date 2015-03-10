@@ -1,0 +1,15 @@
+﻿<div class="modal-header">
+	<header-dialog-select title="Danh mục tài khoản"></header-dialog-select>
+ </div>
+ <div class="modal-body">
+	<div class="table-responsive">
+		<table  class ="table table-striped table-bordered">
+			<tr ng-repeat ="item in items" style ='cursor:pointer' ng-click="select(item)">
+				<td>
+					<div><b>{{item.ten_tk}}</b></div>
+					<div><i>{{item.tk}}</i></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+ </div>

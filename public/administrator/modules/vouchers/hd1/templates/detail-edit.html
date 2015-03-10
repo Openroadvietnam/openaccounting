@@ -1,0 +1,74 @@
+﻿<div class="modal-header">
+	<button type="button" class="close" ng-click ='cancelDetail()' aria-hidden="true"> &times;</button>
+	<h4 class="modal-title" id="detailModalLabel">
+	   Thông tin chi tiết
+	</h4>
+ </div>
+ <div class="modal-body">
+	<form name="formdetail" novalidate class="css-form form-horizontal">
+		
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">TK doanh thu <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmtk' field-model='tk' field-label='ten_tk' fields='tk,ten_tk'
+					ng-model='dt_current.tk_dt'  label='dt_current.ten_tk_dt' ng-required='true' condition ="loai_tk:1">
+				</ng-typeahead>
+			</div>
+			<div class=' col-sm-6'>{{dt_current.ten_tk_dt}}</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Doanh thu  {{data.ma_nt}} <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" format="number" ng-model="dt_current.tien_nt"  ng-required="true"/>
+			</div>
+			
+			<label class="control-label col-sm-2" ng-show="data.ma_nt!='VND'">Doanh thu VND <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4"  ng-show="data.ma_nt!='VND'">
+				<input type="text" class="form-control" format="number" ng-model="dt_current.tien"  ng-required="true"/>
+			</div>
+			
+		</div>
+
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Tỷ lệ CK</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" format="number" ng-model="dt_current.ty_le_ck"/>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Tiền CK {{data.ma_nt}}</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" format="number" ng-model="dt_current.tien_ck_nt"/>
+			</div>
+				
+			<label class="control-label col-sm-2"  ng-show="data.ma_nt!='VND'">Tiền CK VND</label>
+			<div class="col-sm-4"  ng-show="data.ma_nt!='VND'">
+				<input type="text" class="form-control " format="number" ng-model="dt_current.tien_ck"/>
+			</div>
+			
+		</div>
+		<div class="form-group" ng-show="dt_current.tien_ck_nt!=0 || dt_current.tien_ck!=0 ">
+			<label class="control-label col-sm-2">TK chiết khấu</span></label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmtk' field-model='tk' field-label='ten_tk' fields='tk,ten_tk'
+					ng-model='dt_current.tk_ck'  label='dt_current.ten_tk_ck' condition ="loai_tk:1">
+				</ng-typeahead>
+			</div>
+			<div class=' col-sm-6'>{{dt_current.ten_tk_ck}}</div>
+		</div>
+		
+
+	</form>
+ </div>
+ <div class="modal-footer">
+	<button type="button" class="btn btn-primary" ng-click="updateDetail()"  ng-disabled="formdetail.$invalid">
+	   Nhận
+	</button>
+	<button type="button" class="btn btn-default" ng-click='cancelDetail()'>Hủy</button>
+ </div>

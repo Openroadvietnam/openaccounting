@@ -1,0 +1,154 @@
+﻿<div class="row">
+	<div class="col-lg-12">
+		<h2>Bảng điều khiển</h2>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!--<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-envelope fa-5x"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge">{{!msg_count?0:msg_count}}</div>
+						<div>Tin nhắn mới!</div>
+					</div>
+				</div>
+			</div>
+			<a href="#message">
+				<div class="panel-footer">
+					<span class="pull-left">Xem chi tiết</span>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-green">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-bell fa-5x"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge">{{!alert_count?0:alert_count}}</div>
+						<div>Thông báo mới!</div>
+					</div>
+				</div>
+			</div>
+			<a href="#notification">
+				<div class="panel-footer">
+					<span class="pull-left">Xem chi tiết</span>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>
+-->
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default" ng-show='orders && orders.length>0'>
+			<div class="panel-heading">
+				<i class="fa fa-bar-chart-o fa-fw"></i> Đơn hàng chưa giao
+			</div>
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+				<div ng-show='!orders || orders.length==0'>Không có đơn hàng nào</div>
+				<div  ng-show='orders && orders.length>0'>
+					<table class ="table table-striped table-hover table-bordered">
+						<tr><th>Đơn hàng</th><th>Trạng thái</th><th>Khách hàng</th><th>Số lượng</th><th>Tiền hàng</th></tr>
+						<tr ng-repeat="r in orders">
+							<td   style='cursor:pointer' ng-click='editOrder(r._id)'>
+								<div>Số: {{ r.so_ct }} - ngày <b>{{ r.date_created|date:'dd/MM/yyyy - lúc HH:mm:ss'}}</b></div>
+							</td>
+							<td   style='cursor:pointer;width:100px' ng-class="'so1-' + r.trang_thai" ng-click='editOrder(r._id)'>
+								<div>{{ r.ten_trang_thai }}</div>
+							</td>
+							<td   style='cursor:pointer' ng-click='editOrder(r._id)'>
+								<div>{{r.ten_kh}}</div>
+								<div style="font-size:12px"><i>{{r.ma_kh}}</i></div>
+							</td>
+							
+							<td   style='cursor:pointer' ng-click='editOrder(r._id)'>
+								{{ r.t_sl|number:0 }}
+							</td>
+							
+							<td   style='cursor:pointer' ng-click='editOrder(r._id)'>
+								{{ r.t_tien|number:0 }}
+							</td>
+							
+							
+							
+						</tr>
+					</table>
+				</div>		
+					
+			</div>
+			<!-- /.panel-body -->
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-bar-chart-o fa-fw"></i> Báo cáo
+				<div class="pull-right">
+					<div>
+						Năm <select ng-model="nam" ng-options="n as n for n in nams">
+						</select>
+					</div>
+				</div>
+			</div>
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+				<tabset class="col-md-12">
+					<tab heading='Doanh thu' >
+						<!--<div class="row-fluid">Chọn kiểu đồ thị <select ng-model="chartConfig.options.chart.type" ng-options="t.id as t.title for t in chartTypes"></select></div>
+						<br/>
+						-->
+						
+							<div>
+								<highchart id="chart1" config="chartConfigRevenue"></highchart>
+							</div>
+							
+						
+					</tab>
+					<tab heading='Chi phí'>
+						<div class="row">
+							<div class="col-md-12">
+								<highchart id="chart2" config="chartConfigExpenseQLDN" ></highchart>
+							</div>
+							
+						</div>
+						<div class="row">
+							
+							<div class="col-md-12">
+								<highchart id="chart3" config="chartConfigExpenseBH" ></highchart>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<highchart id="chart4" config="chartConfigExpenseGV" ></highchart>
+							</div>
+						</div>
+					</tab>
+					<tab heading='Lợi nhuận ròng'>
+						<div class="row">
+							
+								<highchart id="chart5" config="chartConfigNetIncome" ></highchart>
+							
+						</div>
+					</tab>
+				</tabset>
+			</div>
+			<!-- /.panel-body -->
+		</div>
+	</div>
+</div>

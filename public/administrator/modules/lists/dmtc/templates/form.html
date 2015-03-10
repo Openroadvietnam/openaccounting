@@ -1,0 +1,24 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Mã tính chất <span style='color:red' title='Mã tính chất không được trống'>(*)</span></label>
+		<div class="col-sm-10">
+			<input type="text" name ='ma_tc' style="text-transform:uppercase" class="form-control" ng-model='data.ma_tc' ng-required ="true">
+			
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Tên tính chất <span style='color:red' title='Tên tính chất không được trống'>(*)</span></label>
+		<div class="col-sm-10">
+			<input type="text" name ='ten_tc' class="form-control" ng-model='data.ten_tc' ng-required="true">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="data.status" /> Còn sử dụng</label>
+			</div>
+		</div>
+	</div>
+	<footer-form-input></footer-form-input>
+</form>

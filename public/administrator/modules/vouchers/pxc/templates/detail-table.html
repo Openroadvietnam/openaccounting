@@ -1,0 +1,73 @@
+﻿
+<div class="table-responsive"  style="overflow: auto">
+	<table class="table table-striped  table-hover table-bordered">
+		
+		<tr><th class='text-center' style='width:30px'>Chọn</th>
+			<th>Vật tư</th><th>Kho xuất</th><th>Kho nhập</th><th>Tk vật tu</th><th>Tk đối ứng</th>
+			<th>SL xuất</th>
+			<th>Giá vốn {{ngMasterData.ma_nt}}</th> <th ng-show="ngMasterData.ma_nt!='VND'">Giá vốn VND</th>
+			<th>Tiền xuất {{ngMasterData.ma_nt}}</th> <th ng-show="ngMasterData.ma_nt!='VND'">Tiền xuất VND</th>
+		</tr>
+		
+		<tr ng-repeat="r in ngMasterData.details">
+			<td class='text-center'>
+				<input type='checkbox' ng-model='r.sel'/>
+			</td>
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				<div>{{r.ten_vt}}</div>
+				<i style="font-size:12px">
+					<div>Mã: {{r.ma_vt}}</div>
+					<div>ĐVT: {{r.ma_dvt}}</div>
+				</i>
+			</td>
+			
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.ma_kho_x}}
+			</td>
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.ma_kho_n}}
+			</td>
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.tk_vt}}
+			</td>
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.tk_du}}
+			</td>
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.sl_xuat|number:2}}
+			</td>
+			
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.gia_von_nt|number:2}}
+			</td>
+			<td  ng-show="ngMasterData.ma_nt!='VND'"  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.gia_von|number:0}}
+			</td>
+		
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.tien_xuat_nt|number:2}}
+			</td>
+			<td  ng-show="ngMasterData.ma_nt!='VND'"  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.tien_xuat|number:0}}
+			</td>
+		
+		</tr>
+		
+		<tr ng-show='ngMasterData.details.length>0'>
+			<td colspan='6' class='total'>Tổng cộng:</td>
+			<td  class='total' ng-data='ngMasterData.details' ng-sum ='sl_xuat' ng-model='ngMasterData.t_sl_xuat'>{{ngMasterData.t_sl_xuat|number:2}}</td>
+			<td  class='total'></td>
+			<td  class='total' ng-show="ngMasterData.ma_nt!='VND'"></td>
+			<td  class='total' ng-data='ngMasterData.details' ng-sum ='tien_xuat_nt' ng-model='ngMasterData.t_tien_xuat_nt'>{{ngMasterData.t_tien_xuat_nt|number:2}}</td>
+			<td  class='total' ng-show="ngMasterData.ma_nt!='VND'" ng-data='ngMasterData.details' ng-sum='tien_xuat'  ng-model='ngMasterData.t_tien_xuat' >{{ngMasterData.t_tien_xuat|number:0}}</td>
+			
+		</tr>
+		
+	</table>
+	<div style='padding-bottom:2px;padding-top:2px'>
+		<div class='btn-group'>
+			<button class='btn btn-sm btn-primary'  ng-click="addDetail()">Mới</button>
+			<button class='btn btn-sm btn-danger' ng-click="deleteRow(ngMasterData.details)" ng-disabled="isNotRowSelected(ngMasterData.details)">Xóa</button>
+		</div>
+	</div>
+</div>

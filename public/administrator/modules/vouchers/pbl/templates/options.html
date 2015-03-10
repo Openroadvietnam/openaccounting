@@ -1,0 +1,81 @@
+﻿<div class="modal-header">
+	<button type="button" class="close" ng-click ='cancel()' aria-hidden="true"> &times;</button>
+	<h4 class="modal-title" id="findModalLabel">
+	   Tùy chọn
+	</h4>
+ </div>
+ <div class="modal-body">
+	<form name="formFind" novalidate class="css-form form-horizontal">
+		<div class="form-group">
+			<label class="control-label col-sm-2">TK tiền</label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmtk' field-model='tk' field-label='ten_tk' fields='tk,ten_tk'
+					placeholder="Nhập tk hoặc tên tk..."
+					ng-model='options.tk_tien' condition="loai_tk:1" label='options.ten_tk_tien' ng-required='true'>
+				</ng-typeahead>
+			</div>
+			<div class='col-sm-6'>
+				{{options.ten_tk_tien}}
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">TK công nợ</label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmtk' field-model='tk' field-label='ten_tk' fields='tk,ten_tk'
+					placeholder="Nhập tk hoặc tên tk..."
+					ng-model='options.tk_cn' condition="loai_tk:1" label='options.ten_tk_cn' ng-required='true'>
+				</ng-typeahead>
+			</div>
+			<div class='col-sm-6'>
+				{{options.ten_tk_cn}}
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">TK doanh thu</label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmtk' field-model='tk' field-label='ten_tk' fields='tk,ten_tk'
+					placeholder="Nhập tk hoặc tên tk..."
+					ng-model='options.tk_dt' condition="loai_tk:1" label='options.ten_tk_dt' ng-required='true'>
+				</ng-typeahead>
+			</div>
+			<div class='col-sm-6'>
+				{{options.ten_tk_dt}}
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">TK chiết khấu</label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmtk' field-model='tk' field-label='ten_tk' fields='tk,ten_tk'
+					placeholder="Nhập tk hoặc tên tk..."
+					ng-model='options.tk_ck' condition="loai_tk:1" label='options.ten_tk_ck' ng-required='true'>
+				</ng-typeahead>
+			</div>
+			<div class='col-sm-6'>
+				{{options.ten_tk_ck}}
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">TK giá vốn</label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmtk' field-model='tk' field-label='ten_tk' fields='tk,ten_tk'
+					placeholder="Nhập tk hoặc tên tk..."
+					ng-model='options.tk_gv' condition="loai_tk:1" label='options.ten_tk_gv' ng-required='true'>
+				</ng-typeahead>
+			</div>
+			<div class='col-sm-6'>
+				{{options.ten_tk_gv}}
+			</div>
+		</div>
+	</form>
+ </div>
+ <div class="modal-footer">
+	<button type="button" class="btn btn-primary" ng-click="save()" ng-disabled='formFind.$invalid'  ng-disabled="formFind.$invalid">
+	   Lưu
+	</button>
+	<button type="button" class="btn btn-default" ng-click='cancel()'>Hủy</button>
+ </div>

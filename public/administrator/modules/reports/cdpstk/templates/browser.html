@@ -1,0 +1,87 @@
+﻿<rpt-header></rpt-header>
+<div class="container-fluid">
+	<form name='form' novalidate class='form-horizontal'  ng-show='condition_show'>
+		<div class='form-group'>
+			<label class='control-label col-sm-2'>Từ ngày</label>
+			<div class='col-sm-4'>
+				<ng-datepicker ng-model='condition.tu_ngay' ng-required='true'></ng-datepicker>
+			</div>
+			
+			<label class='control-label col-sm-2'>Đến ngày</label>
+			<div class='col-sm-4'>
+				<ng-datepicker ng-model='condition.den_ngay' ng-required='true'></ng-datepicker>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class='control-label col-sm-2'>Tài khoản</label>
+			<div class='col-sm-4'>
+				<ng-typeahead
+					module="dmtk" fields ="tk,ten_tk" field-model="tk" field-label="ten_tk"
+					ng-model='condition.tk' label="condition.ten_tk">
+				</ng-typeahead>
+			</div>
+			<div class='col-sm-6'>{{condition.ten_tk}}</div>
+		</div>
+		<div class='form-group'>
+			<div class='col-sm-offset-2 col-sm-10 checkbox' >
+				<label><input type='checkbox' ng-model='condition.bu_tru'/>Bù trừ công nợ</label>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class='control-label col-sm-2'>Đơn vị cơ sở</label>
+			<div class='col-sm-10'>
+				<ng-selector
+					module="dvcs" fields ="_id,ten_dvcs" field-model="_id" field-label="ten_dvcs"
+					options ="item._id as item.ten_dvcs for item in items"
+					ng-model='condition.ma_dvcs' empty-yn='true'>
+				</ng-selector>
+			</div>
+		</div>
+
+	</form>
+	
+	
+</div>
+<div class='table-responsive'  id ='exportable'>
+	<table class='table  table-striped  table-hover table-bordered'>
+		<tr>
+			<th>Tài khoản</th>
+			<th>Đầu kỳ nợ</th>
+			<th>Đầu kỳ có</th>
+			<th>Phát sinh nợ</th>
+			<th>Phát sinh có</th>
+			<th>Cuối kỳ nợ</th>
+			<th>Cuối kỳ có</th>
+			<th>Tên tài khoản</th>
+		</tr>
+		<tr ng-repeat='r in data'  style='cursor:pointer'  ng-click='drilldown(r)'  ng-class="r.bold?'cbold':'cnormal'">
+			<td>
+				{{r.tk}}
+			</td>
+
+			<td>
+				{{r.dk_no|number:0}}
+			</td>
+			<td>
+				{{r.dk_co|number:0}}
+			</td>
+			
+			<td>
+				{{r.ps_no|number:0}}
+			</td>
+			<td>
+				{{r.ps_co|number:0}}
+			</td>
+			<td>
+				{{r.ck_no|number:0}}
+			</td>
+			<td>
+				{{r.ck_co|number:0}}
+			</td>
+			<td>
+				{{r.ten_tk}}
+			</td>
+			
+		</tr>
+	</table>
+</div>

@@ -1,0 +1,57 @@
+﻿
+<div class="table-responsive">
+	<table class="table table-striped  table-hover table-bordered">
+		
+		<tr>
+			<th class='text-center' style='width:30px'>Chọn</th>
+			<th>Nguồn vốn</th>
+			<th>Nguyên giá</th>
+			
+			<th>Giá trị đã khấu hao</th>
+			<th>Giá trị còn lại</th>
+			<th>Giá trị khấu hao kỳ</th>
+		</tr>
+		
+		<tr ng-repeat="r in ngMasterData.details">
+			<td class='text-center'>
+				<input type='checkbox' ng-model='r.sel'/>
+			</td>
+			
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				<div>{{r.ten_nguon_von}}</div>
+				<div style="font-size:12px"><i>{{r.ma_nguon_von}}</i></div>
+			</td>
+
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.nguyen_gia|number:0}}
+			</td>
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.gia_tri_da_kh|number:0}}
+			</td>
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.gia_tri_con_lai|number:0}}
+			</td>
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				{{r.gia_tri_kh_ky|number:0}}
+			</td>
+		</tr>
+		
+		<tr ng-show='ngMasterData.details.length>0'>
+			<td colspan='2' class='total'>Tổng cộng:</td>
+			
+			<td  class='total' ng-data='ngMasterData.details' ng-sum ='nguyen_gia' ng-model='ngMasterData.t_nguyen_gia'>{{ngMasterData.t_nguyen_gia|number:0}}</td>
+			<td  class='total' ng-data='ngMasterData.details' ng-sum ='gia_tri_da_kh' ng-model='ngMasterData.t_gia_tri_da_kh'>{{ngMasterData.t_gia_tri_da_kh|number:0}}</td>
+			<td  class='total' ng-data='ngMasterData.details' ng-sum ='gia_tri_con_lai' ng-model='ngMasterData.t_gia_tri_con_lai'>{{ngMasterData.t_gia_tri_con_lai|number:0}}</td>
+			<td  class='total' ng-data='ngMasterData.details' ng-sum ='gia_tri_kh_ky' ng-model='ngMasterData.t_gia_tri_kh_ky'>{{ngMasterData.t_gia_tri_kh_ky|number:0}}</td>
+			
+			
+		</tr>
+		
+	</table>
+	<div style='padding-bottom:2px;padding-top:2px'>
+		<div class='btn-group'>
+			<button class='btn btn-sm btn-primary'  ng-click="addDetail()">Mới</button>
+			<button class='btn btn-sm btn-danger' ng-click="deleteRow(ngMasterData.details)" ng-disabled="isNotRowSelected(ngMasterData.details)">Xóa</button>
+		</div>
+	</div>
+</div>

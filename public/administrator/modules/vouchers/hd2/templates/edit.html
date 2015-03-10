@@ -1,0 +1,157 @@
+﻿<!--master form-->
+<div>
+	<form name="form" novalidate class ="css-form form-horizontal form-input">
+		<header-form-input></header-form-input>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Đơn vị cơ sở <span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+			<div class="col-sm-10">
+				<ng-selector
+					module='dvcs' fields ='_id,ten_dvcs' field-model='_id' field-label='ten_dvcs'
+					options ="item._id as item.ten_dvcs for item in items" 
+					ng-model="data.ma_dvcs" ng-required="true">
+				</ng-selector>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Số chứng từ <span class='required' title="Số chứng từ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" style='text-transform:uppercase' name ='so_ct' class="form-control" ng-model='data.so_ct' ng-required="true"/>
+			</div>
+			
+			<label class="control-label col-sm-2">Ngày chứng từ <span class='required' title="Ngày chứng từ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-datepicker ng-model='data.ngay_ct' ng-required='true'></ng-datepicker>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Ngoại tệ <span class='required' title="Ngoại tệ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-selector 
+					module='dmnt' fields ='ma_nt,ten_nt' field-model='ma_nt' field-label='ten_nt'
+					ng-model="data.ma_nt" ng-required="true">
+				</ng-selector>
+			</div>
+			
+			<label class="control-label col-sm-2">Tỷ giá <span class='required' title="Tỷ giá không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" ng-tygia="data.ma_nt" ng-data-loaded='isDataLoaded'  ng-disabled="data.ma_nt=='VND' || !isDataLoaded" format="number" name ='ty_gia' class="form-control" placeholder='Nhập tỷ giá' ng-model='data.ty_gia' ng-required="true"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Khách hàng <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmkh' fields='ma_kh,ten_kh' field-model='ma_kh' field-label='ten_kh'
+					ng-model='data.ma_kh' label='data.ten_kh' ng-required='true'>
+				</ng-typeahead>
+			</div>
+			<div class="col-sm-6">{{data.ten_kh}}</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Tài khoản nợ <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmtk' fields='tk,ten_tk' field-model='tk' field-label='ten_tk'
+					ng-model='data.tk_no' label='data.ten_tk_no' ng-required='true' condition="loai_tk:1">
+				</ng-typeahead>
+			</div>
+			<div class="col-sm-6">{{data.ten_tk_no}}</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Diễn giải</label>
+			<div class="col-sm-10">
+				<input type="text"  name ='dien_giai' class="form-control" ng-model='data.dien_giai'/>
+			</div>
+		</div>
+	
+		<div class="form-group">
+			<!--table detail-->
+			<tabset class="col-sm-12">
+				<tab heading='Chi tiết'>
+					<hd2-detail-table ng-master-data='data'></hd2-detail-table>
+				</tab>
+				<tab heading="Kê khai thuế">
+					<br/>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Mã số thuế</label>
+						<div class="col-sm-10">
+							<input type="text" style='text-transform:uppercase' class="form-control" ng-model='data.ma_so_thue'
+								ng-get-info="module:'dmkh',fieldInfo:'ma_so_thue',condition:{ma_kh:'???'}" condition-value="data.ma_kh"
+								run-when-condition-changed="isDataLoaded"/>
+						</div>
+						
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Ký hiệu số HD</label>
+						<div class="col-sm-4">
+							<input type="text" style='text-transform:uppercase' class="form-control" ng-model='data.ky_hieu_hoa_don'/>
+						</div>
+						
+						<label class="control-label col-sm-2">Số hóa đơn</label>
+						<div class="col-sm-4">
+							<input type="text" style='text-transform:uppercase' class="form-control" ng-model='data.so_hd'/>
+						</div>
+						
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Ngày hóa đơn</label>
+						<div class="col-sm-4">
+							<ng-datepicker ng-model='data.ngay_hd'></ng-datepicker>
+						</div>
+						
+						<label class="control-label col-sm-2">Số seri</label>
+						<div class="col-sm-4">
+							<input type="text" style='text-transform:uppercase' class="form-control" ng-model='data.so_seri'/>
+						</div>
+						
+						
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Thuế suất</label>
+						<div class="col-sm-4">
+							<ng-selector
+								module="dmvat" fields="ma_thue,ten_thue" field-model="ma_thue" field-label="ten_thue" empty-yn="true"
+								ng-model='data.ma_thue'/>
+							</ng-selector>
+							<input type='text' ng-show="false"
+								ng-get-info="module:'dmvat',fieldInfo:'thue_suat',condition:{ma_thue:'???'}" condition-value="data.ma_thue"
+								ng-model='data.thue_suat'
+								run-when-condition-changed="isDataLoaded">
+							<span ng-show="false"
+								ng-get-info="module:'dmvat',fieldInfo:'tk_thue_co',condition:{ma_thue:'???'}" condition-value="data.ma_thue"
+								ng-model='data.tk_thue_co'
+								run-when-condition-changed="isDataLoaded"></span>
+						</div>
+						
+						<label class="control-label col-sm-2">TK thuế</label>
+						<div class="col-sm-4" >
+							<ng-typeahead 
+								module="dmtk" fields="tk,ten_tk" field-model="tk" field-label="ten_tk"
+								condition ="loai_tk:1"
+								ng-model='data.tk_thue_co' ng-disabled="true"  label="data.ten_tk_thue_co">
+							</ng-typeahead>
+						</div>
+						
+					</div>		
+					<div class="form-group">
+						<label class="control-label col-sm-2">Tiền thuế {{data.ma_nt}}</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" format="number" ng-model="data.t_thue_nt"/>
+						</div>
+
+						<label class="control-label col-sm-2"  ng-show="data.ma_nt!='VND'">Tiền thuế VND</label>
+						<div class="col-sm-4"  ng-show="data.ma_nt!='VND'">
+							<input type="text" class="form-control" format="number" ng-model="data.t_thue"/>
+						</div>
+					</div>
+				</tab>
+			</tabset>
+			
+		</div>
+		
+		<footer-form-input></footer-form-input>
+	</form>
+</div>
+
+

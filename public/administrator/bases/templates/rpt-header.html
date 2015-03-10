@@ -1,0 +1,25 @@
+﻿
+<nav class="navbar navbar-default" >
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<div class="navbar-brand">
+				{{title}}
+			</div>
+		</div>
+		<div class=" nav narbar-nav navbar-right">
+			<button type="button" class="btn btn-success  navbar-btn" ng-show='kbm_yn' ng-click="openKbm()">Khai báo mẫu</button>
+			<button type="button" class="btn btn-success  navbar-btn" ng-click="btn1_click()" ng-show='btn1_show'>{{btn1_text}}</button>
+			<button type="button" class="btn btn-success  navbar-btn" ng-click="btn2_click()" ng-show='btn2_show'>{{btn2_text}}</button>
+
+			<button type="button" class="btn btn-primary  navbar-btn" ng-click="condition_show=!condition_show">Điều kiện lọc</button>
+			<button type="button" class="btn btn-primary  navbar-btn" ng-click='getData()' ng-disabled='form.$invalid' ng-show='btnok_show'>{{btnok_text}}</button>
+			<button type="button" class="btn btn-primary  navbar-btn" ng-click='print()' ng-disabled='!data'>In</button>
+			<button type="button" class="btn btn-primary  navbar-btn" ng-click='exportExcel()' >Excel</button>
+		
+			<button type="button" class="btn btn-default  navbar-btn" ng-click="btn3_click()" ng-show='btn3_show'>{{btn3_text}}</button>
+			<button type="button" class="btn btn-default  navbar-btn" ng-click="btn4_click()" ng-show='btn4_show'>{{btn4_text}}</button>
+			<button type="button" class="btn btn-default  navbar-btn" ng-click="btn5_click()" ng-show='btn5_show'>{{btn5_text}}</button>
+		</div>
+	</div>
+</nav>
+<div class="alert alert-danger" ng-show="error">{{error}}</div>

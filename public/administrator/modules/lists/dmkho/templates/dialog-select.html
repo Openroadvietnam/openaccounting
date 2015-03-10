@@ -1,0 +1,16 @@
+﻿<div class="modal-header">
+	<header-dialog-select title="Danh mục kho hàng"></header-dialog-select>
+ </div>
+ <div class="modal-body">
+	<div class="table-responsive">
+		<table  class ="table table-striped table-bordered">
+			<tr ng-repeat ="item in items" style ='cursor:pointer' ng-click="select(item)">
+				<td>
+					<div><b>{{item.ten_kho}}</b></div>
+					<div><i>{{item.ma_kho}}</i></div>
+				</td>
+				
+			</tr>
+		</table>
+	</div>
+ </div>

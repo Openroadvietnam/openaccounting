@@ -1,0 +1,63 @@
+﻿<div class="modal-header">
+	<button type="button" class="close" ng-click ='cancel()' aria-hidden="true"> &times;</button>
+	<h4 class="modal-title" id="detailModalLabel">
+	   Chọn hóa đơn
+	</h4>
+ </div>
+ <div class="modal-body">
+	<div>
+		<form name="form_getinvoice" novalidate class ="css-form form-horizontal form-input">
+			<div class="form-group">
+				<label class="control-label col-xs-2">Từ ngày <span class='required' title="Không được trống">(*)</span></label>
+				<div class="col-xs-4">
+					<ng-datepicker ng-model='condition.tu_ngay' ng-required='true'></ng-datepicker>
+				</div>
+				<label class="control-label col-xs-2">Đến ngày <span class='required' title="Không được trống">(*)</span></label>
+				<div class="col-xs-4">
+					<ng-datepicker ng-model='condition.den_ngay' ng-required='true'></ng-datepicker>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-xs-2">Số phiếu nhập</label>
+				<div class="col-xs-4">
+					<input type="input" class="form-control" ng-model="condition.so_ct"/>
+				</div>
+				<button class="btn btn-primary btn-sm" ng-disabled="form_getinvoice.$invalid" ng-click="loadInvoice()">Tìm</button>
+			</div>
+		</form>
+		
+	</div>
+	<!--master-->
+	<div  class="table-responsive">
+		<table class="table table-striped table-hover table-bordered">
+			<tr>
+				<th>Chọn</th> <th>Số chứng từ</th><th>Ngày chứng từ</th>
+			</tr>
+			<tr ng-repeat="r in masters">
+				<td width='50px' style='cursor:pointer' ng-click="invoiceClick(r._id)"> <input type="checkbox" ng-model="r.sel"/> </td>
+				<td  style='cursor:pointer' ng-click="invoiceClick(r._id)">{{r.so_ct}}</td>
+				<td  style='cursor:pointer' ng-click="invoiceClick(r._id)">{{r.ngay_ct|date:'dd/MM/yyyy'}}</td>
+			</tr>
+		</table>
+	</div>
+	<!--detail-->
+	<div  class="table-responsive">
+		<table class="table table-striped table-hover table-bordered">
+			<tr>
+				<th>Chọn</th> <th>Mã vật tư</th><th>Tên vật tư</th><th>Số lượng</th>
+			</tr>
+			<tr ng-repeat="r in details">
+				<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
+				<td>{{r.ma_vt}}</td>
+				<td>{{r.ten_vt}}</td>
+				<td>{{r.sl_xuat|number:2}}</td>
+			</tr>
+		</table>
+	</div>
+ </div>
+ <div class="modal-footer">
+	<button type="button" class="btn btn-primary" ng-click="ok()"  ng-disabled="formdetail.$invalid">
+	   Nhận
+	</button>
+	<button type="button" class="btn btn-default" ng-click='cancel()'>Hủy</button>
+ </div>

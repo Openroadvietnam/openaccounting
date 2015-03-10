@@ -1,0 +1,38 @@
+﻿<stplistheader btnimport="text:'Import...'"></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr><th>#</th><th class="text-center">Hình</th><th>Mã vật tư</th><th>Tên vật tư</th><th>Đơn vị tính</th><th class="text-right">Giá bán lẻ</th></tr>
+		<tr ng-repeat="r in list">
+			<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)' class="text-center">
+				
+					<img ng-src="{{r.picture_thumb}}" style="width:64px;height:64px"/>
+				
+				
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				
+					{{ r.ma_vt}}
+				
+				
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				
+					{{ r.ten_vt }}
+			
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				
+					{{ r.ma_dvt }}
+			
+			</td>
+			<td  class="text-right">
+				
+					<input type='text' class='text-right' style='width:120px' format='number' ng-change='r.updated=false' ng-model='r.gia_ban_le'/>
+					<div style='margin-top:5px' ng-show='r.updated!=undefined && !r.updated'><a class='btn btn-xs btn-primary' ng-click='updatePrice(r)'>Cập nhật</a></div>
+			
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

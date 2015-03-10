@@ -1,0 +1,37 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	<div class="form-group">
+		<label class="control-label col-md-3">Tên phương thức <span class="required">(*)</span></label>
+		<div class="col-md-6">
+			<input type="text" class="form-control"  ng-model='data.ten' required>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Tài khoản ngân hàng</label>
+		<div class="col-md-6">
+			<input type="text" class="form-control"  ng-model='data.tai_khoan_nh'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Chủ tài khoản</label>
+		<div class="col-md-6">
+			<input type="text" class="form-control"  ng-model='data.chu_tai_khoan'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Tại ngân hàng</label>
+		<div class="col-md-6">
+			<input type="text" class="form-control"  ng-model='data.ngan_hang'>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-md-offset-3 col-md-10">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="data.status" /> Còn sử dụng</label>
+			</div>
+		</div>
+	</div>
+
+	<footer-form-input></footer-form-input>
+</form>

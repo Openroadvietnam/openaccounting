@@ -1,0 +1,16 @@
+﻿<div class="modal-header">
+	<button type="button" class="close" ng-click ='cancel()' aria-hidden="true"> &times;</button>
+	<h4 class="modal-title" id="detailModalLabel">
+	   Nhắn tin
+	</h4>
+	<div class="text-right">
+		<button class="btn btn-primary" ng-click="create()"  ng-disabled="form.$invalid">Gửi</button>
+		<button class="btn btn-default" ng-click="cancel()">Hủy</button>
+	</div>
+</div>
+
+<div class="modal-body">
+	<div class="container-fluid">
+		<message-form></message-form>
+	</div>
+</div>

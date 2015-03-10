@@ -1,0 +1,52 @@
+﻿<navbar-print></navbar-print>
+<div><b>{{appInfo.name}}</b></div>
+<div><i>{{appInfo.address}}</i></div>
+<h3 class='text-center'>{{title}}</h3>
+<h5 class='text-center'> Từ ngày {{condition.tu_ngay|date:'dd/MM/yyyy'}} đến ngày {{condition.den_ngay|date:'dd/MM/yyyy'}}</h5>
+<div>
+	<table class='table table-bordered'>
+		<tr>
+			<th>Ngày</th>
+			<th>Số lượng</th>
+			<th>Tiền hàng</th>
+			<th>Chiết khấu theo mặt hàng</th>
+			<th>Chiết khấu theo hóa đơn</th>
+			<th>Doanh thu</th>
+			<th>Tiền vốn</th>
+			<th>Tiền lãi</th>
+			
+		</tr>
+		<tr ng-repeat='r in data' ng-class="r.bold?'cbold':'cnormal'">
+			
+			<td>
+				{{r.ngay_ct|date:'dd/MM/yyyy'}}
+			</td>
+
+			<td>
+				{{r.t_so_luong|number:2}}
+			</td>
+			<td>
+				{{r.t_tien_hang|number:0}}
+			</td>
+			<td>
+				{{r.t_tien_ck|number:0}}
+			</td>
+			<td>
+				{{r.tien_ck_hd|number:0}}
+			</td>
+			<td>
+				{{r.t_doanh_thu|number:0}}
+			</td>
+			<td>
+				{{r.t_tien_xuat|number:0}}
+			</td>
+			<td>
+				{{r.t_lai|number:0}}
+			</td>
+			
+		</tr>
+	</table>
+</div>
+<div type='margin-top:30px' class='row'>
+	<div style='float:right;width:30%;text-align:center' class='col-xs-12'>Người lập</div>
+</div>

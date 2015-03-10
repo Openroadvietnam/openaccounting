@@ -1,0 +1,1 @@
+var dmtcModule = new baseInput('dmtc','tc',["ma_tc","ten_tc"],'Danh mục tính chất thuế');

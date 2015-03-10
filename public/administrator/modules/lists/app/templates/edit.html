@@ -1,0 +1,194 @@
+﻿<div>
+	<form name="form" novalidate class ="css-form form-horizontal form-input" >
+		<header-form-input></header-form-input>
+		<div class='row'>
+			<div class='col-sm-6'>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Tên công ty/cửa hàng <span class="required">(*)</span></label>
+					<div class="col-sm-8">
+						<input type="text" name ='name'  class="form-control"  ng-model='data.name' ng-required>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Địa chỉ <span class="required">(*)</span></label>
+					<div class="col-sm-8">
+						<input type="text" name ='address'   class="form-control"  ng-model='data.address' ng-required='true'>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Quận huyện</label>
+					<div class="col-sm-8">
+						<input type="text" name ='city'   class="form-control"  ng-model='data.city'>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Tỉnh thành  <span class="required">(*)</span></label>
+					<div class="col-sm-8">
+						<select ng-model='data.province' class='form-control' ng-required='true'>
+							<option ng-repeat='tt in province'  ng-value='tt'>{{tt}}</option>
+						</select>
+					</div>
+				</div>
+				<!--<div class="form-group">
+					<label class="control-label col-sm-4">Quốc gia</label>
+					<div class="col-sm-8">
+						<input type="text" name ='country'   class="form-control"  ng-model='data.country'>
+					
+					</div>
+				</div>
+				-->
+				<div class="form-group">
+					<label class="control-label col-sm-4">Điện thoại <span class="required">(*)</span></label>
+					<div class="col-sm-8">
+						<input type="text"   class="form-control"  ng-model='data.phone' ng-required='true'>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Email <span class="required">(*)</span></label>
+					<div class="col-sm-8">
+						<input type="text"   class="form-control"  ng-model='data.email' ng-required='true'>
+					
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-4">Giám đốc</label>
+					<div class="col-sm-8">
+						<input type="text"  class="form-control"  ng-model='data.giam_doc'>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Kế toán trưởng</label>
+					<div class="col-sm-8">
+						<input type="text"  class="form-control"  ng-model='data.ke_toan_truong'>
+					
+					</div>
+				</div>
+			</div>
+			<div class ='col-sm-6'>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Ngày đầu năm tài chính  <span class="required">(*)</span></label>
+					<div class="col-sm-6">
+						<ng-datepicker ng-model='data.ngay_dn' ng-required='true'></ng-datepicker>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Ngày sử dụng chương trình  <span class="required">(*)</span></label>
+					<div class="col-sm-6">
+						<ng-datepicker ng-model='data.ngay_ky1' ng-required='true'></ng-datepicker>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Ngày khóa sổ  <span class="required">(*)</span></label>
+					<div class="col-sm-6">
+						<ng-datepicker ng-model='data.ngay_ks' ng-required='true'></ng-datepicker>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Người nộp thuế</label>
+					<div class="col-sm-6">
+						<input type="text"  class="form-control"  ng-model='data.nguoi_nop_thue'>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Mã số thuế</label>
+					<div class="col-sm-6">
+						<input type="text"  class="form-control"  ng-model='data.ma_so_thue'>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Giới thiệu về công ty/cửa hàng</label>
+			<div class="col-sm-10">
+				<textarea class="form-control"  ng-model='data.gioi_thieu'></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Ngành kinh doanh</label>
+			<div class="col-sm-10">
+				<textarea class="form-control"  ng-model='data.nganh_nghe'></textarea>
+			</div>
+		</div>
+		<div>
+			<div class="form-group">
+				<div class='col-sm-offset-2 col-sm-10  checkbox'>
+					<label><input type='checkbox' ng-model='data.sale_online'/> Bán hàng online</label>
+				</div>
+			</div>
+			<div class="form-group"  ng-show='data.sale_online'>
+				<label class="control-label col-sm-2">Chính sách vận chuyển</label>
+				<div class="col-sm-10">
+					<textarea  class="form-control"  ng-model='data.van_chuyen'></textarea>
+				</div>
+			</div>
+			<div class="form-group"  ng-show='data.sale_online'>
+				<label class="control-label col-sm-2">Chính sách bảo hàng</label>
+				<div class="col-sm-10">
+					<textarea class="form-control"  ng-model='data.bao_hanh'></textarea>
+				</div>
+			</div>
+			<div class="form-group"  ng-show='data.sale_online'>
+				<div class="col-sm-offset-2 col-sm-10">
+					<a href='#ptthanhtoan' target="_blank">Phương thức thanh toán</a>
+				</div>
+				
+			</div>
+			
+		</div>
+		<div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">Logo</label>
+				<div class="col-sm-8">
+					<a ng-click="changePicture()" title="Kích vào đây để thay đổi logo"><img ng-src="{{data.logo}}" style="width:128px;height:128px"/></a>
+				</div>
+			</div>
+		</div>
+		<div>
+			<hr />
+			<h4 style="color:#4A76A1">Những người tham gia</h4>
+			<table class='table table-bordered'>
+				<tr>
+					<th>Tên</th><th style='width:100px'>Quản trị</th>
+					<th style='width:150px' class='text-center'>Phân quyền</th>
+					<th style='width:80px'  class='text-center'>Xóa</th>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<ng-typeahead ng-model='participant'
+							module="colleague" fields="email,email_owner" field-model="email_coll" field-label = "name_coll" label ="name_coll"
+							condition ='active:true' on-select ='addParticipant($item)'>
+						</ng-typeahead>
+					</td>
+					
+				</tr>
+				<tr ng-repeat='r in data.participants'>
+					<td>
+						<img ng-src='{{r.picture}}' style='width:30px;height:30px'/> {{r.name}}
+					</td>
+					
+					<td class='checkbox text-center'>
+						<input type='checkbox' ng-model='r.admin'/>
+					</td>
+					<td class='text-center'>
+						<a ng-show='data._id' target='_blank' class='btn btn-primary btn-xs' href='#/assign/{{data._id}}/{{r.email}}' ng-show='!r.admin && (!data.user_created || data.user_created==current_user.email) && data._id'>Phân quyền</a>
+					</td>
+					<td class='text-center'>
+						<a class='btn btn-danger btn-xs' ng-click ='deleteParticipant(r.email)'>Xóa</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<footer-form-input></footer-form-input>
+	</form>
+</div>
+
+

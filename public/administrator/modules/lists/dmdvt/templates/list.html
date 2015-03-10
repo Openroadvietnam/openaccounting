@@ -1,0 +1,22 @@
+﻿<stplistheader></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr><th>#</th><th>Mã đơn vị tính</th><th>Tên đơn vị tính</th></tr>
+		<tr ng-repeat="r in list">
+			<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				
+					{{ r.ma_dvt}}
+				
+				
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				
+					{{ r.ten_dvt }}
+				
+				
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

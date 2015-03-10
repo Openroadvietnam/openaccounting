@@ -1,0 +1,53 @@
+﻿<h3>Phân quyền<small> cho {{email}}</small></h3>
+<div class="row">
+	<div class='col-sm-6'>
+		<select class='form-control' ng-model='module' ng-options ='cmd as cmd.module for cmd in commands' ng-change ="group = module.items[0]"><select>
+	</div>
+	<div class='col-sm-6'>
+		<select class='form-control'  ng-model='group' ng-options ='group as group.group for group in module.items'><select>
+	</div>
+</div>
+<br/>
+<div class="table-responsive">
+	<table class='table table-bordered'>
+		<tr>
+			<th style='width:200px'>
+				Chức năng
+			</th>
+			<th class='text-center' style='width:50px'>
+				Xem
+			</th>
+			<th class='text-center' style='width:50px'>
+				Thêm mới
+			</th>
+			<th class='text-center' style='width:50px'>
+				Cập nhật
+			</th>
+			<th class='text-center' style='width:50px'>
+				Xóa
+			</th>
+		</tr>
+		<tr ng-repeat='item in group.items'>
+			<td style='width:200px'>
+				{{item.header}}
+			</td>
+			<td class='text-center'  style='width:50px'>
+				<input type='checkbox' ng-model='item.view' ng-change='change(item,"view")'/>
+			</td>
+			<td class='text-center'  style='width:50px'>
+				<input type='checkbox' ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.add'  ng-change='change(item,"add")'/>
+			</td>
+			<td class='text-center'  style='width:50px'>
+				<input type='checkbox'  ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.update'  ng-change='change(item,"update")'/>
+			</td>
+			<td class='text-center'  style='width:50px'>
+				<input type='checkbox'  ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.delete'  ng-change='change(item,"delete")'/>
+			</td>
+		</tr>
+		
+	</table>
+</div>
+
+
+
+

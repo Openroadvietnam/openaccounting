@@ -1,0 +1,60 @@
+﻿<div class="container-fluid">
+	<div class ="row">
+	<div class="col-sm-12">
+		<h3><a ng-click="changeAvatar()" title="Kích vào đây để thay đổi hình đại diện"><img ng-src="{{data.picture}}" style="width:60px;height:60px"/></a>{{data.name}}</h3>
+		<div ng-class="alertType=='danger'?'alert alert-danger':'alert alert-success'" ng-show="messageError">{{messageError}}</div>
+		<!-- Profile FORM -->
+		<form novalidate name ="form_profile">
+			<div class="form-group">
+				<label>Email</label>
+				<input type="text" class="form-control"  ng-model="data.email" ng-required="true" ng-readonly="true"/>
+				
+			</div>
+			<div class="form-group">
+				<label>Họ và tên <span class='required'>(*)</span></label>
+				<input type="text" class="form-control"  ng-model="data.name" ng-required="true"/>
+				
+			</div>
+			<div class="form-group">
+				<label>Địa chỉ</label>
+				<input type="text" class="form-control"  ng-model="data.address"/>
+				
+			</div>
+			<div class="form-group">
+				<label>Điện thoại</label>
+				<input type="text" class="form-control"  ng-model="data.phone"/>
+			</div>
+			<div class="form-group">
+				<label>Tổ chức, công ty </label>
+				<input type="text" class="form-control"  ng-model="data.company"/>
+			</div>
+			
+			<button class="btn btn-warning btn-md" ng-click ="updateProfile()" ng-disabled="form_profile.$invalid">Cập nhật</button>
+		</form>
+
+		<hr>
+		<!-- password FORM -->
+		<div ng-class="alertTypeChangePass=='danger'?'alert alert-danger':'alert alert-success'" ng-show="messageErrorChangePass">{{messageErrorChangePass}}</div>
+		<form novalidate name ="form_password">
+			<div class="form-group">
+				<label>Mật khẩu cũ</label>
+				<input type="password" class="form-control"  ng-model="oldPassword" />
+				
+			</div>
+			<div class="form-group">
+				<label>Mật khẩu mới<span class='required'>(*)</span></label>
+				<input type="password" class="form-control"  ng-model="newPassword"  ng-required="true"/>
+				
+			</div>
+			<div class="form-group">
+				<label>Nhập lại mật khẩu mới <span class='required'>(*)</span></label>
+				<input type="password" class="form-control"  ng-model="reNewPassword"  ng-required="true"/>
+				
+			</div>
+			<button class="btn btn-warning btn-md" ng-click ="updatePassword()" ng-disabled="form_password.$invalid">Cập nhật</button>
+		</form>
+		
+	</div>
+	</div>
+		
+</div>

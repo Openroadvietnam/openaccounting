@@ -1,0 +1,30 @@
+{
+	"name": "acc-api",
+	"main": "app.js",
+	"dependencies": {
+		"express": "latest",
+		"mongoose": "latest",
+		"body-parser": "latest",
+		"passport":"latest",
+		"passport-google-oauth":"latest",
+		"passport-facebook":"latest",
+		"passport-http-bearer":"latest",
+		"passport-http":"latest",
+		"underscore":"latest",
+		"socket.io":"latest",
+		"async":"latest",
+		"validator":"latest",
+		"nodemailer":"latest",
+		"nodemailer-smtp-transport":"latest",
+		"nodemailer-wellknown":"latest",
+		"multer":"latest",
+		"gm":"latest",
+		"request":"latest",
+		"node-xlsx":"latest",
+		"node-zip":"latest",
+		"elementtree":"latest",
+		"excel-report":"latest",
+		"numeral":"latest",
+		"phantom":"latest"
+	}
+}

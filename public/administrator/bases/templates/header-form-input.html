@@ -1,0 +1,14 @@
+﻿<div class='form-group'>
+	<!--header of form-->
+	<div class='col-xs-6'>
+		<div style='font-size:20px'>{{title}}</div>
+		<div style='font-size:12px' ng-show='action'><i>{{action}}</i></div>
+	</div>
+	<!--action-->
+	<div class='col-xs-6 text-right'>
+		<button class="btn btn-primary" ng-click="create()" ng-disabled="form.$invalid">Lưu</button>
+		<button class="btn btn-default" ng-click="cancel()">Hủy</button>
+	</div>
+	<div ng-class="alertType" ng-show="messageError">{{messageError}}</div>
+</div>
+<hr />

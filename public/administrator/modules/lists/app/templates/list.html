@@ -1,0 +1,24 @@
+﻿<stplistheader></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr><th>#</th><th>Tên công ty</th><th>Cửa hàng trực tuyến</th><th style='width:150px'  class='text-center' ></th></tr>
+		<tr ng-repeat="r in list">
+			<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td   style='cursor:pointer' ng-click='open(r._id,r.active)'>
+					{{ r.name }}
+			</td>
+			<td>
+					<a ng-show="r.sale_online" target='_blank' href="http://cuahangvietonline.com/#!/{{r._id}}">Cửa hàng trực tuyến</a>
+					<span ng-show="!r.sale_online">Không bán trực tuyến</span>
+			</td>
+			
+			<td class='text-center'>
+				<div>
+					<button  ng-show ='!r.active' class='btn btn-primary btn-xs' ng-click='active(r._id)'>Kích hoạt</button>
+					<button class='btn btn-info btn-xs' ng-click='edit(r._id)'>Sửa</button>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

@@ -1,0 +1,203 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Mã vật tư </label>
+		<div class="col-sm-10">
+			<input type="text" name ='ma_vt' style="text-transform:uppercase" class="form-control" ng-model='data.ma_vt' placeholder='Mã sản phẩm sẽ tự sinh ra nếu để trống'>
+			
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2">Tên vật tư <span style='color:red' title='Tên vật tư không được trống'>(*)</span></label>
+		<div class="col-sm-10">
+			<input type="text" name ='ten_vt' class="form-control" ng-model='data.ten_vt' ng-required="true">
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2">Giá xuất <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-10">
+			<select ng-model="data.gia_xuat" ng-required="true" class="form-control">
+				<option value="1">Trung bình tháng</option>
+				<option value="2">Nhập trước xuất trước</option>
+				<option value="3">Đích danh</option>
+			</select>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2">Đơn vị tính <span style='color:red' title='Đơn vị tính không được trống'>(*)</span></label>
+		<div class="col-sm-4">
+			<ng-typeahead 
+				module="dmdvt" fields ="ma_dvt,ten_dvt" field-model="ma_dvt" field-label="ten_dvt"
+				ng-model="data.ma_dvt" label="data.ten_dvt">
+			</ng-typeahead>
+		</div>
+		<div class='col-sm-6'>{{data.ten_dvt}}</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Giá bán lẻ </label>
+		<div class="col-sm-4">
+			<input type="text" format="number" class="form-control" ng-model="data.gia_ban_le"/>
+		</div>
+		<label class="control-label col-sm-2">Thuế GTGT </label>
+		<div class="col-sm-4">
+			<ng-selector ng-model="data.ma_thue" module="dmvat" fields="ma_thue,ten_thue" field-model="ma_thue" field-label="ten_thue" emty-yn="true">
+			</ng-selector>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Tỷ lệ chiết khấu </label>
+		<div class="col-sm-4">
+			<input type="text" format="number" class="form-control" ng-model="data.ty_le_ck"/>
+		</div>
+		<label class="control-label col-sm-2">Tiền chiết khấu </label>
+		<div class="col-sm-4">
+			<input type="text" format="number" class="form-control" ng-model="data.tien_ck"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Nhóm sản phẩm <span style='color:red' title='không được trống'>(*)</span></label>
+		<div class="col-sm-4">
+			<ng-selector
+				module='dmnvt' fields ='_id,ten_nvt' field-model='_id' field-label='ten_nvt'
+				options ="item._id as item.ten_nvt for item in items" 
+				ng-model="data.ma_nvt" ng-required="true">
+			</ng-selector>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Ưu đãi & khuyến mãi</label>
+		<div class="col-sm-10">
+			<textarea class="form-control" ng-model="data.khuyen_mai">
+			</textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Mô tả <span style='color:red' title='không được trống'>(*)</span></label>
+		<div class="col-sm-10">
+			<textarea class="form-control" ng-model="data.mieu_ta" ng-required="true">
+			</textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Chi tiết sản phẩm</label>
+		<div class="col-sm-10">
+			<textarea class="form-control" rows="5" ng-model="data.mieu_ta_chi_tiet">
+			</textarea>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2">Hình slide</label>
+		<div class="col-sm-10">
+			<a ng-click="changePicture_slide()" title="Kích vào đây để thay đổi hình sản phẩm"><img ng-src="{{data.picture_slide_thumb}}" style="width:100%;height:250"/></a>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2">Hình sản phẩm</label>
+		<div class="col-sm-2">
+			<a ng-click="changePicture()" title="Kích vào đây để thay đổi hình sản phẩm"><img ng-src="{{data.picture_thumb}}" style="width:128px;height:128px"/></a>
+		</div>
+		<div class="col-sm-2">
+			<a ng-click="changePicture2()" title="Kích vào đây để thay đổi hình sản phẩm"><img ng-src="{{data.picture2_thumb}}" style="width:128px;height:128px"/></a>
+		</div>
+		<div class="col-sm-2">
+			<a ng-click="changePicture3()" title="Kích vào đây để thay đổi hình sản phẩm"><img ng-src="{{data.picture3_thumb}}" style="width:128px;height:128px"/></a>
+		</div>
+		<div class="col-sm-2">
+			<a ng-click="changePicture4()" title="Kích vào đây để thay đổi hình sản phẩm"><img ng-src="{{data.picture4_thumb}}" style="width:128px;height:128px"/></a>
+		</div>
+		<div class="col-sm-2">
+			<a ng-click="changePicture5()" title="Kích vào đây để thay đổi hình sản phẩm"><img ng-src="{{data.picture5_thumb}}" style="width:128px;height:128px"/></a>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2">Tình trạng  <span style='color:red' title='không được trống'>(*)</span></label>
+		<div class="col-sm-10">
+			<select class='form-control' ng-model='data.tinh_trang' ng-required='true'>
+				<option value='1'>Đang có hàng</option>
+				<option value='2'>Sắp có hàng</option>
+				<option value='3'>Hết hàng</option>
+			</select>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="data.hot" /> Sản phẩm HOT</label>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="data.status" /> Còn sử dụng</label>
+			</div>
+		</div>
+	</div>
+	<fieldset><legend ng-click='open_tk=!open_tk'><span ng-show='!open_tk'><i class="fa fa-plus-circle"></i></span><span ng-show='open_tk'><i class="fa fa-minus-circle"></i></span> Tài khoản kế toán mặc định</legend>
+		<div ng-show='open_tk'>
+			<div class="form-group">
+				<label class="control-label col-sm-2">TK vật tư <span style='color:red' title='không được trống'>(*)</span></label>
+				<div class="col-sm-4">
+					<ng-typeahead
+						module="dmtk" fields ="tk,ten_tk" field-model="tk" field-label ="ten_tk" condition="loai_tk:1"  ng-required="true"
+						ng-model="data.tk_vt" label="data.ten_tk_vt">
+					</ng-typeahead>
+				</div>
+				<div class='col-sm-6'>{{data.ten_tk_vt}}</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-sm-2">TK doanh thu</label>
+				<div class="col-sm-4">
+					<ng-typeahead
+						module="dmtk" fields ="tk,ten_tk" field-model="tk" field-label ="ten_tk" condition="loai_tk:1"
+						ng-model="data.tk_dt" label="data.ten_tk_dt">
+					</ng-typeahead>
+				</div>
+				<div class='col-sm-6' >{{data.ten_tk_dt}}</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-sm-2">TK giá vốn</label>
+				<div class="col-sm-4">
+					<ng-typeahead
+						module="dmtk" fields ="tk,ten_tk" field-model="tk" field-label ="ten_tk" condition="loai_tk:1"
+						ng-model="data.tk_gv" label="data.ten_tk_gv">
+					</ng-typeahead>
+				</div>
+				<div class='col-sm-6' >{{data.ten_tk_gv}}</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-sm-2">TK trả lại</label>
+				<div class="col-sm-4">
+					<ng-typeahead
+						module="dmtk" fields ="tk,ten_tk" field-model="tk" field-label ="ten_tk" condition="loai_tk:1"
+						ng-model="data.tk_tl" label="data.ten_tk_tl">
+					</ng-typeahead>
+				</div>
+				<div class='col-sm-6' >{{data.ten_tk_tl}}</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-sm-2">TK đại lý</label>
+				<div class="col-sm-4">
+					<ng-typeahead
+						module="dmtk" fields ="tk,ten_tk" field-model="tk" field-label ="ten_tk" condition="loai_tk:1"
+						ng-model="data.tk_dl" label="data.ten_tk_dl">
+					</ng-typeahead>
+				</div>
+				<div class='col-sm-6' >{{data.ten_tk_dl}}</div>
+			</div>
+		</div>
+	</fieldset>
+	
+	<footer-form-input></footer-form-input>
+</form>

@@ -1,0 +1,48 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Mã khách hàng</label>
+		<div class="col-sm-10">
+			<input type="text" name ='ma_kh'  style="text-transform:uppercase" class="form-control" ng-model='data.ma_kh' placeholder='Nếu để trống mà khách sẽ tự động được tạo ra'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Tên khách hàng <span style='color:red' title='Tên khách hàng không được trống'>(*)</span></label>
+		<div class="col-sm-10">
+			<input type="text" name ='ten_kh' class="form-control" ng-model='data.ten_kh'  ng-required="true">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Địa chỉ</label>
+		<div class="col-sm-10">
+			<input type="text" name ='dia_chi' class="form-control"  ng-model='data.dia_chi'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Điện thoại</label>
+		<div class="col-sm-10">
+			<input type="text" name ='dien_thoai' class="form-control"  ng-model='data.dien_thoai'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Email</label>
+		<div class="col-sm-10">
+			<input type="email" name ='email' class="form-control"  ng-model='data.email'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Mã số thuế</label>
+		<div class="col-sm-10">
+			<input type="text" name ='ma_so_thue' class="form-control" ng-model='data.ma_so_thue'>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="data.status" /> Còn sử dụng</label>
+			</div>
+		</div>
+	</div>
+	<footer-form-input></footer-form-input>
+	
+</form>

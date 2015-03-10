@@ -1,0 +1,102 @@
+﻿<rpt-header></rpt-header>
+<div class="container-fluid">
+	<form name='form' novalidate class='form-horizontal'  ng-show='condition_show'>
+		<div class='form-group'>
+			<label class='control-label col-sm-2'>Từ ngày</label>
+			<div class='col-sm-4'>
+				<ng-datepicker ng-model='condition.tu_ngay' ng-required='true'></ng-datepicker>
+			</div>
+			
+			<label class='control-label col-sm-2'>Đến ngày</label>
+			<div class='col-sm-4'>
+				<ng-datepicker ng-model='condition.den_ngay' ng-required='true'></ng-datepicker>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class='control-label col-sm-2'>Tùy chọn sắp xếp</label>
+			<div class='col-sm-10'>
+				<select class='form-control' ng-model='condition.sort' ng-options ='s.ma as s.text for s in sorts'>
+				
+				</select>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class='control-label col-sm-2'>Đơn vị cơ sở</label>
+			<div class='col-sm-10'>
+				<ng-selector
+					module="dvcs" fields ="_id,ten_dvcs" field-model="_id" field-label="ten_dvcs"
+					options ="item._id as item.ten_dvcs for item in items"
+					ng-model='condition.ma_dvcs' empty-yn='true'>
+				</ng-selector>
+			</div>
+		</div>
+	</form>
+	
+	
+</div>
+<div class='table-responsive'  id ='exportable'>
+	<table class='table  table-bordered  table-hover'>
+		<tr>
+			<th rowspan='2' class="text-center">STT</th>
+			<th colspan='5' class="text-center">Hoá đơn, chứng từ bán</th>
+			<th rowspan='2' class="text-center">Tên người mua</th>
+			<th rowspan='2' class="text-center">Mã số thuế người mua</th>
+			<th rowspan='2' class="text-center">Mặt hàng</th>
+			<th rowspan='2' class="text-center">Doanh số bán chưa có thuế</th>
+			<th rowspan='2' class="text-center">Thuế suất</th>
+			<th rowspan='2' class="text-center">Thuế GTGT</th>
+			<th rowspan='2' class="text-center">Ghi chú</th>
+		</tr>
+		<tr>
+			
+			<th class="text-center">Mã hóa đơn</th>
+			<th class="text-center">Ký hiệu mẫu hóa đơn</th>
+			<th class="text-center">Ký hiệu hóa đơn</th>
+			<th class="text-center">Số hóa đơn</th>
+			<th class="text-center">Ngày, tháng, năm phát hành</th>
+			
+			
+		</tr>
+		<tr ng-repeat='r in data'  style='cursor:pointer'  ng-click='viewVoucher(r.ma_ct,r.id_ct)' ng-style='r.style'>
+			
+			<td ng-show="r.sysorder!=1  ">{{r.stt}}</td>
+			<td  ng-show="r.sysorder==1  " colspan="12">
+				{{r.stt}}
+			</td>
+			<td ng-show="r.sysorder!=1  ">{{r.ma_hoa_don}}</td>
+			<td ng-show="r.sysorder!=1  ">{{r.ky_hieu_hoa_don}}</td>
+			<td ng-show="r.sysorder!=1  ">{{r.so_seri}}</td>
+			<td ng-show="r.sysorder!=1  ">
+				{{r.so_hd}}
+			</td>
+			<td ng-show="r.sysorder!=1  " class="text-right">
+				{{r.ngay_hd|date:'dd/MM/yyyy'}}
+			</td>
+			<td ng-show="r.sysorder!=1  ">
+				{{r.ten_kh}}
+			</td>
+			<td ng-show="r.sysorder!=1  ">
+				{{r.ma_so_thue}}
+			</td>
+			<td  ng-show="r.sysorder==1  " colspan="13">
+				{{r.ten_vt}}
+			</td>
+			<td  ng-show="r.sysorder!=1  ">
+				{{r.ten_vt}}
+			</td>
+			<td ng-show="r.sysorder!=1  "  class="text-right">
+				{{r.t_tien_nt|number:0}}
+			</td>
+			<td ng-show="r.sysorder!=1  " class="text-right">
+				{{r.thue_suat|number:0}}
+			</td>
+			<td ng-show="r.sysorder!=1  " class="text-right">
+				{{r.t_thue_nt|number:0}}
+			</td>
+			<td ng-show="r.sysorder!=1  ">
+				
+			</td>
+			
+		</tr>
+	</table>
+</div>

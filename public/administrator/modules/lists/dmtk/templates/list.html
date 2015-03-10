@@ -1,0 +1,30 @@
+﻿<stplistheader></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr><th>#</th><th>Tài khoản</th><th>Tên tài khoản</th><th>Ngoại tệ</th><th>Tài khoản mẹ</th><th class="text-center">TK công nợ</th></tr>
+		<tr ng-repeat="r in list">
+			<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td  style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.tk }}
+			</td>
+			<td  style='cursor:pointer' ng-click='edit(r._id)'>
+				
+					{{ r.ten_tk }}
+				
+			</td>
+			<td  style='cursor:pointer' ng-click='edit(r._id)'>
+				
+					{{ r.ma_nt }}
+				
+			</td>
+			<td  style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.tk_me }}
+				
+			</td>
+			<td class="text-center"  style='cursor:pointer' ng-click='edit(r._id)'>
+				<input type='checkbox' ng-model="r.tk_cn" disabled="false"/>
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

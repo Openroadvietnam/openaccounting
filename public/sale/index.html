@@ -1,0 +1,76 @@
+﻿<html ng-app="saleApp" id="controller" ng-controller="homeController">
+	<head>
+		<script>
+			if(window.location.href.indexOf('?_escaped_fragment_=')>=0){
+				window.location.href =window.location.href.replace('?_escaped_fragment_=','#!')
+			}
+		</script>
+		<meta charset="utf-8">
+		<meta name="fragment" content="!">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="description" content="Cửa hàng Việt">
+		<meta name="keywords" content="Bán lẻ, ban le, cửa hàng, cua hang, phần mềm, phan mem, bán hàng, ban hang, kiot, đơn, đặt hàng, dat hang, kế toán, ke toan, quản lý, quan ly, kho, quản trị, quan tri, Sao tiên phong, STP, {{keywords}}">
+		
+		<meta property="og:title" content="{{og_title}}" />
+		<meta property="og:url" content="{{og_url}}"/>
+		<meta property="og:image" content="{{og_image}}"/>
+		<meta property="og:description" content="{{og_description}}"/>
+
+		<link rel="icon" href="images/favicon.ico">
+		<title>CỬA HÀNG VIỆT</title>
+		<link rel ="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<!------->
+		<script src="libs/jquery/dist/jquery.min.js"></script>
+		<script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+		
+		<script src="libs/angular/angular.min.js"></script>
+		<script src="libs/angular-cookie/angular-cookie.min.js"></script>
+		<script src="libs/angular-route/angular-route.min.js"></script>
+		<script src="libs/underscore/underscore.js"></script>
+		<script src="libs/angular-easyfb/angular-easyfb.min.js"></script>
+		
+		<link href="libs/angular-carousel/dist/angular-carousel.css" rel="stylesheet" type="text/css" />
+		<script src="libs/angular-touch/angular-touch.min.js"></script>
+		<script src="libs/angular-carousel/dist/angular-carousel.min.js"></script>
+		<script src="libs/ngDialog/js/ngDialog.min.js"></script>
+		<link href="libs/ngDialog/css/ngDialog.min.css" rel="stylesheet" type="text/css" />
+		<link href="libs/ngDialog/css/ngDialog-theme-default.min.css" rel="stylesheet" type="text/css" />
+		
+		<script src="js/home.js"></script>
+		<script src="js/app.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+				$("body").tooltip({ selector: '[data-toggle=tooltip]',html:true});
+				
+			});
+		</script>
+	</head>
+	<body>
+		<!--header-->
+		<div class='container'>
+			<div class="navbar navbar-default">
+				<div class="col-xs-8 text-left" >
+					<h1><a href="#!/" title='Danh sách cửa hàng'><strong>CỬA HÀNG VIỆT</strong></a></h1>
+					<div>
+						Bạn muốn có một gian hàng?&nbsp;&nbsp;<a href="http://ungdungquanly.vn">đăng ký tại đây</a>
+					</div>
+				</div>
+				<div class="col-xs-4 text-right"  style='padding-top:5px'>
+					<a href ="#!/cart" class='btn btn-sm btn-danger'>Giỏ hàng({{cart.t_sl}})</a>
+				</div>
+			</div>
+			
+			<!--view-->
+			<div ng-view id="view" style='margin-top:-20px;min-height:{{mheight}}px'>
+			</div>
+			<div class='text-center' style='border-top:1px solid silver'>
+				<i>Bản quyền 2015 <a href='http://saotienphong.com.vn'>Sao Tiên Phong</a>. Mọi quyền được bảo lưu.</i>
+			</div>
+		</div>
+		
+	<body>
+</html>

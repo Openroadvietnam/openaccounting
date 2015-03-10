@@ -1,0 +1,1 @@
+var dmcpmhModule = new baseInput('dmcpmh','dmcpmh',["ma_cp","ten_cp"],'Danh mục chi phí mua hàng');

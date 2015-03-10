@@ -1,0 +1,1 @@
+﻿var dmkhModule = new baseInput('dmkh','customer',["ma_kh","ten_kh","dia_chi","dien_thoai","fax","email"],'Danh mục khách hàng');

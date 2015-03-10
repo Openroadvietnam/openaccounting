@@ -1,0 +1,19 @@
+﻿<stplistheader btnadd ='show:false'></stplistheader>
+<br/>
+<ul class="media-list">
+  <li class="media" ng-repeat="r in list" ng-click="chat(r)" style="cursor:pointer">
+	<a class="pull-left">
+	  <img  class="media-object" ng-src="{{r.picture_coll}}"  title ='{{r.name_coll}}' data-holder-rendered="true" style="width: 64px; height: 64px;">
+	</a>
+	<div class="media-body">
+	  <h4 class="media-heading">{{r.name_coll}} ({{r.email_coll}})</h4>
+	  <p>
+		{{r.latest_message}} 
+		<br/>
+		<i style="font-size:12px">{{r.latest_message_date|date:'dd/MM/yyyy HH:mm:ss'}}</i>
+	  </p> 
+	</div>
+  </li>
+</ul>
+
+	

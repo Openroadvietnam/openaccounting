@@ -1,0 +1,51 @@
+﻿<div>
+	<form name="form" novalidate class ="css-form form-horizontal" >
+		<div>
+			<div>
+				<h3><a ng-click='openProfile(profile.email)'><img ng-src='{{profile.picture}}' style='width:32px;height:32px'/> {{profile.name}}</a></h3>
+			</div>
+			
+			<div class="media-list" style="max-height: 450px;margin: 0; overflow-y: auto;padding:10px"  scroll-glue>
+				<div class="media"  ng-repeat='r in msgs'>
+					<!--logo-->
+					<div class='pull-left' ng-show="profile.email==r.email_sender">
+						<img ng-src='{{r.picture_sender}}'  style='width:32px;height:32px'/>
+					</div>
+					<div class='pull-right' ng-show="profile.email!=r.email_sender">
+						<img ng-src='{{r.picture_sender}}'  style='width:32px;height:32px'/>
+					</div>
+					<!--content-->
+					<div class='media-body'>
+						
+						<alert  class='pull-left' type="info" close="deleteMsg(r._id)" ng-show="profile.email==r.email_sender" style="width:90%">
+							{{r.content}}
+							<i class='pull-right' style='font-size:10px'>{{r.date_created|date:'dd/MM/yy HH:mm:ss'}}</i>
+						</alert>
+					
+					
+						<alert class='pull-right' type="success" close="deleteMsg(r._id)" ng-show="profile.email!=r.email_sender"  style="width:90%">
+							{{r.content}}
+							<i class='pull-right' style='font-size:10px'>{{r.date_created|date:'dd/MM/yy HH:mm:ss'}}</i>
+						</alert>
+						
+						
+						
+					</div>
+					
+				</div>
+				
+			</div>
+			<br/>
+			<div class='form-group'>
+				<div class='col-xs-10'>
+					<input type='text' class='form-control' ng-model='data.content' placeholder="Gửi một tin nhắn"/>
+				</div>
+				<div class='col-xs-2'>
+					 <button class='btn btn-primary' ng-click='send()' ng-keyup='enter2send($event)'>Gửi</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+

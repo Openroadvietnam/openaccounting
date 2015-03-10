@@ -1,0 +1,1 @@
+var dmkhoModule = new baseInput('dmkho','dmkho',["ma_kho","ten_kho"],'Danh mục kho');

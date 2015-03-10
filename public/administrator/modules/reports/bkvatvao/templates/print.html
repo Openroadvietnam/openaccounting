@@ -1,0 +1,101 @@
+﻿<navbar-print></navbar-print>
+<div><b>{{appInfo.name}}</b></div>
+<div><i>{{appInfo.address}}</i></div>
+<h3 class='text-center'>{{title}}</h3>
+<div class='text-center'>
+	(Kèm theo tờ khai thuế GTGT theo mẫu số 01/GTGT)																								
+</div>
+<div class='text-center'>
+	Kỳ tính thuế: Tháng {{condition.den_ngay.getMonth() +1}} năm {{condition.den_ngay.getFullYear()}} / Quý …. Năm 2014
+</div>
+<br/>
+<div>
+	Người nộp thuế: {{appInfo.nguoi_nop_thue}}
+</div>
+<div>
+	Mã số thuế: {{appInfo.ma_so_thue}}
+</div>
+<br/>
+<div class='table-responsive'>
+	<table class='table  table-bordered '>
+		<tr>
+			<th rowspan='2' class="text-center">STT</th>
+			<th colspan='5' class="text-center">Hoá đơn, chứng từ, biên lai nộp thuế</th>
+			<th rowspan='2' class="text-center">Tên người bán</th>
+			<th rowspan='2' class="text-center">Mã số thuế người bán</th>
+			<th rowspan='2' class="text-center">Mặt hàng</th>
+			<th rowspan='2' class="text-center">Doanh số mua chưa có thuế</th>
+			<th rowspan='2' class="text-center">Thuế suất</th>
+			<th rowspan='2' class="text-center">Thuế GTGT</th>
+			<th rowspan='2' class="text-center">Ghi chú</th>
+		</tr>
+		<tr>
+			
+			<th class="text-center">Mã hóa đơn</th>
+			<th class="text-center">Ký hiệu mẫu hóa đơn</th>
+			<th class="text-center">Ký hiệu hóa đơn</th>
+			<th class="text-center">Số hóa đơn</th>
+			<th class="text-center">Ngày, tháng, năm phát hành</th>
+			
+			
+		</tr>
+		<tr ng-repeat='r in data'  style='cursor:pointer' ng-style='r.style'>
+			
+			<td ng-show="r.sysorder!=1  ">{{r.stt}}</td>
+			<td  ng-show="r.sysorder==1  " colspan="13">
+				{{r.stt}}
+			</td>
+			
+			<td ng-show="r.sysorder!=1  ">{{r.ma_hoa_don}}</td>
+			<td ng-show="r.sysorder!=1  ">{{r.ky_hieu_hoa_don}}</td>
+			<td ng-show="r.sysorder!=1  ">{{r.so_seri}}</td>
+			<td ng-show="r.sysorder!=1  ">
+				{{r.so_hd}}
+			</td>
+			<td ng-show="r.sysorder!=1  " class="text-right">
+				{{r.ngay_hd|date:'dd/MM/yyyy'}}
+			</td>
+			<td ng-show="r.sysorder!=1  ">
+				{{r.ten_kh}}
+			</td>
+			<td ng-show="r.sysorder!=1  ">
+				{{r.ma_so_thue}}
+			</td>
+			<td  ng-show="r.sysorder!=1  ">
+				{{r.ten_vt}}
+			</td>
+			<td ng-show="r.sysorder!=1  "  class="text-right">
+				{{r.t_tien_nt|number:0}}
+			</td>
+			<td ng-show="r.sysorder!=1  " class="text-right">
+				{{r.thue_suat|number:0}}
+			</td>
+			<td ng-show="r.sysorder!=1  " class="text-right">
+				{{r.t_thue_nt|number:0}}
+			</td>
+			<td ng-show="r.sysorder!=1  ">
+				
+			</td>
+			
+		</tr>
+	</table>
+</div>
+<div type='margin-top:30px' class='row'>
+	<div class='col-xs-12'>
+		<span>
+			<div style='float:left;width:40%;text-align:center'></div>
+			<div style='float:left;width:40%;text-align:left'>
+				Tổng giá trị hàng hoá, dịch vụ mua vào: {{tong_tien_nt|number:0}} đồng	<br/>			
+				Tổng thuế GTGT của hàng hoá, dịch vụ mua vào: {{tong_thue_nt|number:0}} đồng.				
+			</div>
+			<div style='float:left;width:30%;text-align:center'></div>
+			<div style='float:left;width:30%;text-align:center'></div>
+			<div style='float:right;width:40%;text-align:center'>
+				..............., ngày......... tháng........... năm..........<br/>			
+				NGƯỜI NỘP THUẾ hoặc<br/>			
+				ĐẠI DIỆN HỢP PHÁP CỦA NGƯỜI NỘP THUẾ<br/>			
+				Ký tên, đóng dấu (ghi rõ họ tên và chức vụ)<br/>			
+			</div>
+		</span>
+	</div>
+</div>

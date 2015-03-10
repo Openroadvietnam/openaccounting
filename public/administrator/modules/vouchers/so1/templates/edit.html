@@ -1,0 +1,132 @@
+﻿<!--master form-->
+<div>
+	<form name="form" novalidate class ="css-form form-horizontal form-input">
+		<header-form-input></header-form-input>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Trạng thái<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+			<div class="col-sm-10">
+				<select class='form-control' ng-model='data.trang_thai'>
+					<option value='1'>Đặt hàng</option>
+					<option value='2'>Xác nhận</option>
+					<option value='3'>Đang giao hàng</option>
+					<option value='4'>Đã giao hàng</option>
+					<option value='5'>Hủy</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Số đơn hàng </label>
+			<div class="col-sm-4">
+				<input type="text" style='text-transform:uppercase' name ='so_ct' class="form-control" ng-model='data.so_ct' />
+			</div>
+			
+			<label class="control-label col-sm-2">Ngày <span class='required' title="Ngày chứng từ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-datepicker ng-model='data.ngay_ct' ng-required='true'></ng-datepicker>
+			</div>
+		</div>
+	
+		<div class="form-group">
+			<label class="control-label col-sm-2">Kho xuất <span ng-show="data.trang_thai=='3' || data.trang_thai=='4'" class='required' title="Ngày chứng từ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmkho' fields='ma_kho,ten_kho' field-model='ma_kho' field-label='ten_kho'
+					ng-model='data.ma_kho' label='data.ten_kho' ng-required-q="(data.trang_thai=='3' || data.trang_thai=='4')  && !data.ma_kho">
+				</ng-typeahead>
+			</div>
+			<div class="col-sm-6">{{data.ten_kho}}</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Khách hàng </label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmkh' fields='ma_kh,ten_kh' field-model='ma_kh' field-label='ten_kh'
+					ng-model='data.ma_kh' label='data.ten_kh'>
+				</ng-typeahead>
+			</div>
+			<div class="col-sm-6">{{data.ten_kh}}</div>
+		</div>
+		
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Diễn giải</label>
+			<div class="col-sm-10">
+				<input type="text"  name ='dien_giai' class="form-control" ng-model='data.dien_giai'/>
+			</div>
+		</div>
+	
+		<div class="form-group">
+			<!--table detail-->
+			<tabset class="col-sm-12">
+				<tab heading='Chi tiết'>
+					<so1-detail-table ng-master-data='data'></so1-detail-table>
+				</tab>
+				<tab heading="Chiết khấu theo hóa đơn">
+					<br/>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Tỷ lệ CK</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" format="number" ng-model="data.ty_le_ck_hd"/>
+						</div>
+
+						<label class="control-label col-sm-2">Tiền CK</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" format="number" ng-model="data.tien_ck_hd"/>
+						</div>
+					</div>
+				</tab>
+				<tab heading="Địa chỉ giao hàng">
+					<br/>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Tên người nhận<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="data.ten_nguoi_nhan"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Điện thoại<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" ng-model="data.dien_thoai"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Email<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" ng-model="data.email"/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2">Địa chỉ<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="data.dia_chi"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Xã/phường<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="data.xa_phuong"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Quận/huyện<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="data.quan_huyen"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Tỉnh/thành<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="data.tinh_thanh"/>
+						</div>
+					</div>
+				</tab>
+			</tabset>
+			
+		</div>
+		
+		<footer-form-input></footer-form-input>
+	</form>
+</div>
+
+

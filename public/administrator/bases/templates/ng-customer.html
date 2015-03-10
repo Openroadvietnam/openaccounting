@@ -1,0 +1,8 @@
+﻿<!--
+<input type="text" ng-model="ngModel" placeholder="{{placeholder}}" typeahead="kh as kh.ten_kh for kh in get($viewValue)" typeahead-loading="loadding" class="form-control">
+<i ng-show="loadding" class="glyphicon glyphicon-refresh"></i>
+-->
+
+<select class="form-control" ng-model="ngModel" ng-options="kh.ma_kh as kh.ma_kh +' - ' + kh.ten_kh for kh in get()">
+	<option value="">--{{placeholder}}--</option>
+</select> 

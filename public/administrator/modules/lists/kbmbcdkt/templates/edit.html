@@ -1,0 +1,106 @@
+﻿<div>
+	<form name="form" novalidate class ="css-form form-horizontal form-input" >
+		<header-form-input></header-form-input>
+		<div class="form-group">
+			<label class="control-label col-sm-2">STT</label>
+			<div class="col-sm-4">
+				<input type="text" format='number' name ='stt' class="form-control"  ng-model='data.stt' ng-required='true'>
+			</div>
+			
+			<label class="control-label col-sm-2">Mã số</label>
+			<div class="col-sm-4">
+				<input type="text"  name ='ma_so' style='text-transform:uppercase' class="form-control"  ng-model='data.ma_so' ng-required='true'>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Chỉ tiêu</label>
+			<div class="col-sm-10">
+				<input type="text" name ='chi_tieu' class="form-control" placeholder='Tên chỉ tiêu' ng-model='data.chi_tieu' ng-required='true'>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Thuyết minh</label>
+			<div class="col-sm-10">
+				<input type="text" name ='thuyet_minh' class="form-control" placeholder='Thuyết minh' ng-model='data.thuyet_minh'>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Phân loại</label>
+			<div class="col-sm-10">
+				<select class='form-control' name='phan_loai' ng-model='data.phan_loai' ng-required='true'>
+					<option value='1'>Tài sản</option>
+					<option value='2'>Nguồn vốn</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class='col-sm-offset-2 col-sm-10'>
+				<div class='checkbox'>
+					<label><input type='checkbox' ng-model='data.ngoai_bang'/>Chỉ tiêu ngoại bảng</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class='col-sm-offset-2 col-sm-4'>
+				<div class='checkbox'>
+					<label><input type='checkbox' ng-model='data.print'/>In</label>
+				</div>
+			</div>
+			<div class='col-sm-6'>
+				<div class='checkbox'>
+					<label><input type='checkbox' ng-model='data.bold'/>In đậm</label>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Phương pháp tính</label>
+			<div class="col-sm-10">
+				<select class='form-control' name='cach_tinh' ng-model='data.cach_tinh' ng-required='true'>
+					<option value='1'>Mã số</option>
+					<option value='2'>Số dư tài khoản</option>
+					<option value='3'>Số dư bên nợ</option>
+					<option value='4'>Số dư bên có</option>
+				</select>
+			</div>
+		</div>
+		<!--tinh theo tai khoan-->
+		<div ng-show="data.cach_tinh !='1'">
+			<div class="form-group">
+				<label class="control-label col-sm-2">Tài khoản</label>
+				<div class="col-sm-4">
+					<ng-typeahead
+						module ='dmtk' fields='tk,ten_tk' field-model='tk' field-label='ten_tk'
+						ng-model='data.tk' label='data.ten_tk'>
+					</ng-typeahead>
+				</div>
+				<label>{{data.ten_tk}}</label>
+			</div>
+			<div class="form-group" ng-show="data.cach_tinh =='3' || data.cach_tinh =='4'">
+				<div class='col-sm-offset-2 col-sm-10'>
+					<div class='checkbox'>
+						<label><input type='checkbox' ng-model='data.bu_tru_cong_no'/>Bù trừ công nợ</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class='col-sm-offset-2 col-sm-10'>
+					<div class='checkbox'>
+						<label><input type='checkbox' ng-model='data.khong_am'/>Chỉ lấy giá trị không âm</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--tinh theo cong thuc-->
+		<div class="form-group"  ng-show="data.cach_tinh =='1'">
+			<label class="control-label col-sm-2">Công thức tính</label>
+			<div class="col-sm-10">
+				<input type="text" name ='cong_thuc' class="form-control" placeholder='Nhập công thức tính' ng-model='data.cong_thuc'>
+			</div>
+		</div>
+		<footer-form-input></footer-form-input>
+	</form>
+</div>
+
+

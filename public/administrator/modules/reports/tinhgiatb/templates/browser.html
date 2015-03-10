@@ -1,0 +1,93 @@
+﻿<rpt-header btnok ="text:'Tính'"></rpt-header>
+<div class="container-fluid">
+	<form name='form' novalidate class='form-horizontal'  ng-show='condition_show'>
+		<div class='form-group'>
+			<label class='control-label col-sm-2'>Từ tháng</label>
+			<div class='col-sm-4'>
+				<select ng-model="condition.tu_thang" class="form-control" ng-options ="thang for thang in thangs" ng-required="true">
+				</select>
+				
+			</div>
+			
+			<label class='control-label col-sm-2'>Đến tháng</label>
+			<div class='col-sm-4'>
+				<select ng-model="condition.den_thang" class="form-control" ng-options ="thang for thang in thangs" ng-required="true">
+				</select>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class='control-label col-sm-2'>Năm</label>
+			<div class='col-sm-4'>
+				<select ng-model="condition.nam" class="form-control" ng-options ="nam for nam in nams" ng-required="true">
+				</select>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class='control-label col-sm-2'>Vật tư</label>
+			<div class='col-sm-4'>
+				<ng-typeahead
+					module="dmvt" fields ="ma_vt,ten_vt" field-model="ma_vt" field-label="ten_vt"
+					ng-model='condition.ma_vt' label="condition.ten_vt">
+				</ng-typeahead>
+			</div>
+			<label>{{condition.ten_vt}}</label>
+		</div>
+		<div class='form-group'>
+			<label class='control-label col-sm-2'>Kho</label>
+			<div class='col-sm-4'>
+				<ng-typeahead
+					module="dmkho" fields ="ma_kho,ten_kho" field-model="ma_kho" field-label="ten_kho"
+					ng-model='condition.ma_kho' label="condition.ten_kho">
+				</ng-typeahead>
+			</div>
+			<label>{{condition.ten_kho}}</label>
+		</div>
+	</form>
+	
+	
+</div>
+<div class='table-responsive'  id ='exportable'>
+	<table class='table  table-striped  table-hover table-bordered'>
+		<tr>
+			<th>Mã vật tư</th>
+			<th>Tên vật tư</th>
+			<th>Tồn đầu</th>
+			<th>Dư đầu</th>
+			<th>SL nhập</th>
+			<th>Tiền nhập</th>
+			<th>Tổng SL</th>
+			<th>Tổng tiền</th>
+			<th>Giá trung bình</th>			
+		</tr>
+		<tr ng-repeat='r in data'  ng-style='r.style'>
+			<td>
+				{{r.ma_vt}}
+			</td>
+			<td>
+				{{r.ten_vt}}
+			</td>
+			<td>
+				{{r.ton_dau|number:2}}
+			</td>
+			<td>
+				{{r.du_dau|number:0}}
+			</td>
+			<td>
+				{{r.sl_nhap|number:2}}
+			</td>
+			<td>
+				{{r.tien_nhap|number:0}}
+			</td>
+			<td>
+				{{r.tong_sl|number:2}}
+			</td>
+			<td>
+				{{r.tong_tien|number:0}}
+			</td>
+			<td>
+				{{r.gia|number:0}}
+			</td>
+			
+		</tr>
+	</table>
+</div>

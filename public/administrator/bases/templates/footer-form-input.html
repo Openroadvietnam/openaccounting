@@ -1,0 +1,16 @@
+﻿<hr />
+<div class='form-group'>
+	<div class='col-xs-7 text-left'>
+		<div ng-show="action=='Sửa'">
+		<div><i>Người tạo:<a ng-click="openProfile(data.user_created)">{{data.user_created}}</a></i></div>
+		<div><i>Ngày tạo:{{data.date_created|date:'dd/MM/yyyy HH:mm:ss'}}</i></div>
+		<div><i>Người sửa:<a ng-click="openProfile(data.user_updated)">{{data.user_updated}}</a></i></div>
+		<div><i>Ngày sửa:{{data.date_updated|date:'dd/MM/yyyy HH:mm:ss'}}</i></div>
+		</div>
+	</div>
+	<!--action-->
+	<div class='col-xs-5 text-right'>
+		<button class="btn btn-primary navbar-btn" ng-click="create()" ng-disabled="form.$invalid">Lưu</button>
+		<button class="btn btn-default" ng-click="cancel()">Hủy</button>
+	</div>
+</div>

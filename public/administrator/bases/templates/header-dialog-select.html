@@ -1,0 +1,22 @@
+﻿<button type="button" class="close" ng-click ='cancel()' aria-hidden="true"> &times;</button>
+<h4 class="modal-title" id="detailModalLabel">
+   {{title}}
+</h4>
+<div class="row">
+	<div class="col-xs-10">
+		<div class="input-group">
+			<div class="input-group-btn">
+				<button class="btn btn-default form-control" ng-click ="getList(findvalue)"><i class="fa fa-search"></i></button>
+			</div>
+			<input type="text" class="form-control" ng-model="findvalue" placeholder="{{placeholder}}" ng-keyup ="keyup($event,findvalue)"/>
+		</div>
+	</div>
+	<div class="col-xs-2">
+		<span class="btn btn-primary" ng-click="quickadd()" title="Thêm nhanh">
+			Mới
+		</span>
+		<span class="btn btn-danger" ng-click="openList()" title="Mở danh mục để thêm mới, chỉnh sửa">
+			Mở
+		</span>
+	</div>
+</div>

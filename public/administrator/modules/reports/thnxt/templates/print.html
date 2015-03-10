@@ -1,0 +1,62 @@
+﻿<navbar-print></navbar-print>
+<div><b>{{appInfo.name}}</b></div>
+<div><i>{{appInfo.address}}</i></div>
+<h3 class='text-center'>{{title}}</h3>
+<h5 class='text-center'>Từ ngày {{condition.tu_ngay|date:'dd/MM/yyyy'}} đến ngày {{condition.den_ngay|date:'dd/MM/yyyy'}}</h5>
+<div>
+	<table class='table table-bordered'>
+		<tr>
+			<th>Mã vật tư</th>
+			<th>Tên vật tư</th>
+			<th>Tồn đầu</th>
+			<th>Dư đầu</th>
+			<th>SL nhập</th>
+			<th>Tiền nhập</th>
+			<th>SL xuất</th>
+			<th>Tiền xuất</th>
+			<th>Tồn cuối</th>
+			<th>Dư cuối</th>
+			
+		</tr>
+		<tr ng-repeat='r in data'  ng-class="r.bold?'cbold':'cnormal'">
+			<td>
+				{{r.ma_vt}}
+			</td>
+			<td>
+				{{r.ten_vt}}
+			</td>
+			<td style="text-align:right">
+				{{r.ton_dau|number:2}}
+			</td>
+			<td style="text-align:right">
+				{{r.du_dau|number:0}}
+			</td>
+			
+			<td style="text-align:right">
+				{{r.sl_nhap|number:2}}
+			</td>
+			<td style="text-align:right">
+				{{r.tien_nhap|number:0}}
+			</td>
+			<td style="text-align:right">
+				{{r.sl_xuat|number:2}}
+			</td>
+			<td style="text-align:right">
+				{{r.tien_xuat|number:0}}
+			</td>
+			<td style="text-align:right">
+				{{r.ton_cuoi|number:2}}
+			</td>
+			<td style="text-align:right">
+				{{r.du_cuoi|number:0}}
+			</td>
+			
+		</tr>
+	</table>
+</div>
+<div type='margin-top:30px' class='row'>
+	<span class='col-xs-12'>
+		<div style='float:left;width:30%;text-align:center'>Kế toán trưởng</div>
+		<div style='float:right;width:30%;text-align:center'>Người lập</div>
+	</span>
+</div>

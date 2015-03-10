@@ -1,0 +1,75 @@
+﻿<div class="modal-header">
+	<button type="button" class="close" ng-click ='cancelDetail()' aria-hidden="true"> &times;</button>
+	<h4 class="modal-title" id="detailModalLabel">
+	   Thông tin chi tiết
+	</h4>
+ </div>
+ <div class="modal-body">
+	<form name="formdetail" novalidate class="css-form form-horizontal">
+		<div class="form-group">
+			<label class="control-label col-sm-2">Tài khoản nợ</label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmtk' field-model='tk' field-label='ten_tk' fields='tk,ten_tk'
+					placeholder="Nhập tk hoặc tên tk..."
+					ng-model='dt_current.tk_no' condition="loai_tk:1" label='dt_current.ten_tk_no' ng-required='true'>
+				</ng-typeahead>
+			</div>
+			<div class=' col-sm-6'>{{dt_current.ten_tk_no}}</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Tài khoản có</label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmtk' field-model='tk' field-label='ten_tk' fields='tk,ten_tk'
+					placeholder="Nhập tk hoặc tên tk..."
+					ng-model='dt_current.tk_co' condition="loai_tk:1" label='dt_current.ten_tk_co' ng-required='true'>
+				</ng-typeahead>
+			</div>
+			<div class='col-sm-6'>{{dt_current.ten_tk_co}}</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Tiền {{data.ma_nt}}</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" format="number" ng-model="dt_current.tien_nt"  ng-required="true"/>
+			</div>
+				
+			<label class="control-label col-sm-2"  ng-show="data.ma_nt!='VND'">Tiền quy đổi</label>
+			<div class="col-sm-4"  ng-show="data.ma_nt!='VND'">
+				<input type="text" class="form-control " format="number" ng-model="dt_current.tien"  ng-required="true"/>
+			</div>
+			
+		</div>
+		
+			
+		<div class="form-group">
+			<label class="control-label col-sm-2">Khách hàng nợ</label>
+			<div class="col-sm-4">
+				<ng-typeahead
+					module='dmkh' field-model='ma_kh' field-label='ten_kh' fields ='ma_kh,ten_kh'
+					placeholder ='Nhập mã hoặc tên khách hàng...'
+					ng-model='dt_current.ma_kh_no' label='dt_current.ten_kh_no' ng-required-cn='dt_current.tk_no'>
+				</ng-typeahead>
+			</div>
+			<div class='col-sm-6'>{{dt_current.ten_kh_no}}</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Khách hàng có</label>
+			<div class="col-sm-4">
+				<ng-typeahead
+					module='dmkh' field-model='ma_kh' field-label='ten_kh' fields ='ma_kh,ten_kh'
+					placeholder ='Nhập mã hoặc tên khách hàng...'
+					ng-model='dt_current.ma_kh_co' label='dt_current.ten_kh_co' ng-required-cn='dt_current.tk_co'>
+				</ng-typeahead>
+			</div>
+			<div class='col-sm-6'>{{dt_current.ten_kh_co}}</div>
+		</div>
+		
+	</form>
+ </div>
+ <div class="modal-footer">
+	<button type="button" class="btn btn-primary" ng-click="updateDetail()"  ng-disabled="formdetail.$invalid">
+	   Nhận
+	</button>
+	<button type="button" class="btn btn-default" ng-click='cancelDetail()'>Hủy</button>
+ </div>

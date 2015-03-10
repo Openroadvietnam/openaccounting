@@ -1,0 +1,1 @@
+var dmloaitsModule = new baseInput('dmloaits','dmloaits',["ma_loai_ts","ten_loai_ts"],'Danh mục loại tài sản');

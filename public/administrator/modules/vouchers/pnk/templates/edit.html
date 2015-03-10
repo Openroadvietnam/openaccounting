@@ -1,0 +1,62 @@
+﻿<!--master form-->
+<div>
+	<form name="form" novalidate class ="css-form form-horizontal form-input">
+		<header-form-input></header-form-input>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Đơn vị cơ sở <span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+			<div class="col-sm-10">
+				<ng-selector
+					module='dvcs' fields ='_id,ten_dvcs' field-model='_id' field-label='ten_dvcs'
+					options ="item._id as item.ten_dvcs for item in items" 
+					ng-model="data.ma_dvcs" ng-required="true">
+				</ng-selector>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Số chứng từ <span class='required' title="Số chứng từ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" style='text-transform:uppercase' name ='so_ct' class="form-control" ng-model='data.so_ct' ng-required="true"/>
+			</div>
+			
+			<label class="control-label col-sm-2">Ngày chứng từ <span class='required' title="Ngày chứng từ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-datepicker ng-model='data.ngay_ct' ng-required='true'></ng-datepicker>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Ngoại tệ <span class='required' title="Ngoại tệ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-selector 
+					module='dmnt' fields ='ma_nt,ten_nt' field-model='ma_nt' field-label='ten_nt'
+					ng-model="data.ma_nt" ng-required="true">
+				</ng-selector>
+			</div>
+			
+			<label class="control-label col-sm-2">Tỷ giá <span class='required' title="Tỷ giá không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" ng-tygia="data.ma_nt" ng-data-loaded='isDataLoaded'  ng-disabled="data.ma_nt=='VND' || !isDataLoaded" format="number" name ='ty_gia' class="form-control" placeholder='Nhập tỷ giá' ng-model='data.ty_gia' ng-required="true"/>
+			</div>
+		</div>
+	
+		<div class="form-group">
+			<label class="control-label col-sm-2">Diễn giải</label>
+			<div class="col-sm-10">
+				<input type="text"  name ='dien_giai' class="form-control" ng-model='data.dien_giai'/>
+			</div>
+		</div>
+	
+		<div class="form-group">
+			<!--table detail-->
+			<tabset class="col-sm-12">
+				<tab heading='Chi tiết'>
+					<pnk-detail-table ng-master-data='data'></pnk-detail-table>
+				</tab>
+			</tabset>
+			
+		</div>
+		
+		<footer-form-input></footer-form-input>
+	</form>
+</div>
+
+

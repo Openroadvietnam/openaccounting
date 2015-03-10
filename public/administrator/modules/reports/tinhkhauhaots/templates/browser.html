@@ -1,0 +1,63 @@
+﻿<rpt-header btnok ="text:'Tính'"></rpt-header>
+<div class="container-fluid">
+	<form name='form' novalidate class='form-horizontal'  ng-show='condition_show'>
+		<div class='form-group'>
+			<label class='control-label col-sm-2'>Tháng</label>
+			<div class='col-sm-4'>
+				<select ng-model="condition.thang" class="form-control" ng-options ="thang for thang in thangs" ng-required="true">
+				</select>
+				
+			</div>
+			
+			<label class='control-label col-sm-2'>Năm</label>
+			<div class='col-sm-4'>
+				<select ng-model="condition.nam" class="form-control" ng-options ="nam for nam in nams" ng-required="true">
+				</select>
+			</div>
+		</div>
+		<div class='form-group'>
+			<div class='col-sm-10 col-sm-offset-2 checkbox'>
+				<label>
+					<input type="checkbox" ng-model="condition.tinh_kh_theo_ngay"/>
+					Tính khấu hao theo ngày
+				</label>
+			</div>
+		</div>
+	</form>
+	
+	
+</div>
+<div class='table-responsive'  id ='exportable'>
+	<table class='table  table-striped  table-hover table-bordered'>
+		<tr>
+			<th>Tài sản</th>
+			<th>Nguyên giá</th>
+			<th>Đã khấu hao</th>
+			<th>Còn lại</th>
+			<th>Khấu hao của tháng</th>	
+			<th>Bộ phận</th>
+		</tr>
+		<tr ng-repeat='r in data' style='cursor:pointer'  ng-click='viewVoucher(r.ma_ct,r.id_ts)'>
+			<td>
+				<div><b>{{r.ten_ts}}</b></div>
+				<i>Số thẻ: {{r.so_the_ts}}</i>
+			</td>
+			<td>
+				{{r.nguyen_gia|number:0}}
+			</td>
+			<td>
+				{{r.gia_tri_da_kh|number:0}}
+			</td>
+			<td>
+				{{r.gia_tri_con_lai|number:0}}
+			</td>
+			<td>
+				{{r.gia_tri_kh_ky|number:0}}
+			</td>
+			<td>
+				<div>{{r.ten_bp}}</div>
+				<i>{{r.ma_bp}}</i>
+			</td>
+		</tr>
+	</table>
+</div>

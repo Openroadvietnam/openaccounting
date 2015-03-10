@@ -1,0 +1,57 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Tháng <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-4">
+			<select ng-model="data.thang" class="form-control" ng-options ="thang as thang for thang in thangs"></select>
+		</div>
+		<label class="control-label col-sm-2">Năm <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-4">
+			<select ng-model="data.nam" class="form-control" ng-options ="nam as nam  for nam in nams"></select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Số thẻ tài sản <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-4">
+			<ng-typeahead module="qts" fiedls="so_the_ts,ten_ts" field-model ="so_the_ts" field-label="ten_ts" group ="vouchers"
+				ng-model="data.so_the_ts" ng-required="true" label="data.ten_ts">
+			</ng-typeahead>
+		</div>
+		<div class='col-sm-6' >{{data.ten_ts}}</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">TK khấu hao <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-4">
+			<ng-typeahead module="dmtk" fiedls="tk,ten_tk" field-model ="tk" field-label="ten_tk"
+				ng-model="data.tk_kh" label="data.ten_tk_kh" ng-required="true">
+			</ng-typeahead>
+		</div>
+		 <div class='col-sm-6' >{{data.ten_tk_kh}}</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">TK chi phí <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-4">
+			<ng-typeahead module="dmtk" fiedls="tk,ten_tk" field-model ="tk" field-label="ten_tk"
+				ng-model="data.tk_cp" label="data.ten_tk_cp" ng-required="true">
+			</ng-typeahead>
+		</div>
+		<div class='col-sm-6' >{{data.ten_tk_cp}}</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2">Bộ phận </label>
+		<div class="col-sm-4">
+			<ng-typeahead module="dmbp" fiedls="ma_bp,ten_bp" field-model ="ma_bp" field-label="ten_bp"
+				ng-model="data.ma_bp" label="data.ten_bp">
+			</ng-typeahead>
+		</div>
+		<div class='col-sm-6' >{{data.ten_bp}}</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Hệ số </label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" format="number" ng-model="data.he_so" ng-required="true"/>
+		</div>
+	</div>
+	<footer-form-input></footer-form-input>
+</form>

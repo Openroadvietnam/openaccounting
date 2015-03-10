@@ -1,0 +1,1 @@
+var dmbpModule = new baseInput('dmbp','dmbp',["ma_bp","ten_bp"],'Danh mục bộ phận');

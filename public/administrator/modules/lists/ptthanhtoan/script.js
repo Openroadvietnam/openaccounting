@@ -1,0 +1,1 @@
+var ptthanhtoanModule = new baseInput('ptthanhtoan','ptthanhtoan',["ten"],'Danh mục phương thức thanh toán');

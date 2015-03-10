@@ -1,0 +1,19 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	<div class="form-group">
+		<label class="control-label col-md-3">Tên nhóm <span class="required">(*)</span></label>
+		<div class="col-md-6">
+			<input type="text" name ='ten_nvt' class="form-control input-md" ng-model='data.ten_nvt' required>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-md-offset-3 col-md-10">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="data.status" /> Còn sử dụng</label>
+			</div>
+		</div>
+	</div>
+
+	<footer-form-input></footer-form-input>
+</form>

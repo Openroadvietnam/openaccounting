@@ -1,0 +1,37 @@
+﻿<navbar-print></navbar-print>
+<div><b>{{appInfo.name}}</b></div>
+<div><i>{{appInfo.address}}</i></div>
+<h3 class='text-center'>{{title}}</h3>
+<h5 class='text-center'>Đến ngày {{condition.den_ngay|date:'dd/MM/yyyy'}}</h5>
+<div>
+	<table class='table table-bordered'>
+		<tr>
+			<th>Chỉ tiêu</th>
+			<th>Mã số</th>
+			<th>Thuyết minh</th>
+			<th>Số đầu năm</th>
+			<th>Số cuối kỳ</th>
+		</tr>
+		<tr ng-repeat='r in data' ng-class="r.bold?'cbold':'cnormal'" ng-show='r.print'>
+			<td>
+				{{r.chi_tieu}}
+			</td>
+			<td>
+				{{r.ma_so}}
+			</td>
+			<td>
+				{{r.thuyet_minh}}
+			</td>
+			<td class='text-right'>
+				{{r.so_dn|number:0}}
+			</td>
+			<td class='text-right'>
+				{{r.so_ck|number:0}}
+			</td>
+		</tr>
+	</table>
+</div>
+<div type='margin-top:30px' class='row'>
+	<div style='float:left;width:30%;text-align:center' class='col-xs-6'>Kế toán trưởng</div>
+	<div style='float:right;width:30%;text-align:center' class='col-xs-6'>Người lập</div>
+</div>

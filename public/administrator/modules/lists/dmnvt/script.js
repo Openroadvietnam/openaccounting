@@ -1,0 +1,1 @@
+var dmnvtModule = new baseInput('dmnvt','dmnvt',["ten_nvt"],'Danh mục nhóm sản phẩm');

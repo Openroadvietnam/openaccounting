@@ -1,0 +1,212 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input">
+		<header-form-input></header-form-input>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Kiểu <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<select ng-model="data.ma_gd" class="form-control" ng-required="true">
+					<option value="1">Tài sản</option>
+					<option value="2">Công cụ, dụng cụ</option>
+				</select>
+			</div>
+			
+			<label class="control-label col-sm-2">Đơn vị cơ sở <span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-selector
+					module='dvcs' fields ='_id,ten_dvcs' field-model='_id' field-label='ten_dvcs'
+					options ="item._id as item.ten_dvcs for item in items" 
+					ng-model="data.ma_dvcs" ng-required="true">
+				</ng-selector>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Số chứng từ <span class='required' title="Số chứng từ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" style='text-transform:uppercase' name ='so_ct' class="form-control" ng-model='data.so_ct' ng-required="true"/>
+			</div>
+			
+			<label class="control-label col-sm-2">Ngày chứng từ <span class='required' title="Ngày chứng từ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-datepicker ng-model='data.ngay_ct' ng-required='true'></ng-datepicker>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Số thẻ tài sản <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text"  style='text-transform:uppercase' class="form-control" ng-model='data.so_the_ts' ng-required="true"/>
+			</div>
+			
+			<label class="control-label col-sm-2">Ngày tăng <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-datepicker ng-model='data.ngay_tang' ng-required='true'></ng-datepicker>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Tên tài sản <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-10">
+				<input type="text"  class="form-control" ng-model='data.ten_ts'  ng-required="true"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Loại tài sản <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-selector 
+					module='dmloaits' fields='ma_loai_ts,ten_loai_ts' field-model='ma_loai_ts' field-label='ten_loai_ts'
+					ng-model='data.ma_loai_ts' ng-required='true'>
+				</ng-selector>
+			</div>
+			
+			<label class="control-label col-sm-2">Kiểu tăng <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-selector 
+					module='dmtanggiamts' fields='ma_tang_giam_ts,ten_tang_giam_ts' field-model='ma_tang_giam_ts' field-label='ten_tang_giam_ts'
+					ng-model='data.ma_tang_giam_ts' ng-required='true'>
+				</ng-selector>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Bộ phận sử dụng <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmbp' fields='ma_bp,ten_bp' field-model='ma_bp' field-label='ten_bp'
+					ng-model='data.ma_bp' label='data.ten_bp' ng-required='true'>
+				</ng-typeahead>
+			</div>
+			<label>{{data.ten_bp}}</label>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Ngày khấu hao <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-datepicker ng-model='data.ngay_kh' ng-required='true'></ng-datepicker>
+			</div>
+			
+			<label class="control-label col-sm-2">PP khấu hao <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<select ng-model="data.pp_tinh_kh" class="form-control" ng-required="true">
+					<option value='1'>Trung bình tháng</option>
+				</select>
+			</div>
+			
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Số kỳ khấu hao <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" format="number"  class="form-control" ng-model='data.so_ky_kh' ng-required="true"/>
+			</div>
+			
+			<label class="control-label col-sm-2">Làm tròn khấu hao</label>
+			<div class="col-sm-4">
+				<input type="text" format="number"  class="form-control" ng-model='data.lam_tron_kh' ng-required="true"/>
+			</div>
+			
+		</div>
+		<div class="form-group">
+			<div class="col-sm-10 col-sm-offset-2 checkbox">
+				<label>
+					<input type="checkbox" ng-model="data.tinh_kh_gia_tri_con_lai"/>
+					Tính khấu hao trên giá trị còn lại
+				</label>
+			</div>
+		</div>
+	
+		<div class="form-group">
+			<!--table detail-->
+			<tabset class="col-sm-12">
+				<tab heading='Nguồn vốn'>
+					<qts-detail-table ng-master-data='data'></qts-detail-table>
+				</tab>
+				<tab heading="Tài khoản mặc định">
+					<br/>
+					<div class="form-group">
+						<label class="control-label col-sm-2">TK tài sản <span class='required' title="Không được trống">(*)</span></label>
+						<div class="col-sm-4">
+							<ng-typeahead 
+								module='dmtk' fields='tk,ten_tk' field-model='tk' field-label='ten_tk'
+								ng-model='data.tk_ts' label='data.ten_tk_ts' condition="loai_tk:1">
+							</ng-typeahead>
+						</div>
+						<div  class="col-sm-6">{{data.ten_tk_ts}}</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">TK chi phí <span class='required' title="Không được trống">(*)</span></label>
+						<div class="col-sm-4">
+							<ng-typeahead 
+								module='dmtk' fields='tk,ten_tk' field-model='tk' field-label='ten_tk'
+								ng-model='data.tk_cp' label='data.ten_tk_cp' condition="loai_tk:1">
+							</ng-typeahead>
+						</div>
+						<div  class="col-sm-6">{{data.ten_tk_cp}}</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">TK khấu hao <span class='required' title="Không được trống">(*)</span></label>
+						<div class="col-sm-4">
+							<ng-typeahead 
+								module='dmtk' fields='tk,ten_tk' field-model='tk' field-label='ten_tk'
+								ng-model='data.tk_kh' label='data.ten_tk_kh' condition="loai_tk:1">
+							</ng-typeahead>
+						</div>
+						<div  class="col-sm-6">{{data.ten_tk_kh}}</div>
+					</div>
+				</tab>
+				<tab heading="Thông tin khác">
+					<br/>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Số hiệu</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" ng-model='data.so_hieu'/>
+						</div>
+						<label class="control-label col-sm-2">Thông tin kỹ thuật</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" ng-model='data.thong_tin_ky_thuat'/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Nước sản xuất</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" ng-model='data.nuoc_san_xuat'/>
+						</div>
+						<label class="control-label col-sm-2">Năm sản xuất</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" ng-model='data.nam_san_xuat'/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Ngày sử dụng</label>
+						<div class="col-sm-4">
+							<ng-datepicker ng-model='data.ngay_su_dung'></ng-datepicker>
+						</div>
+						
+					</div>
+					
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2">Ngày đình chỉ</label>
+						<div class="col-sm-4">
+							<ng-datepicker ng-model='data.ngay_dinh_chi'></ng-datepicker>
+						</div>
+						<label class="control-label col-sm-2">Lý do đình chỉ</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" ng-model='data.ly_do_dinh_chi'/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2">Ngày giảm</label>
+						<div class="col-sm-4">
+							<ng-datepicker ng-model='data.ngay_giam'></ng-datepicker>
+						</div>
+						
+						<label class="control-label col-sm-2">Ngày thôi khấu hao</label>
+						<div class="col-sm-4">
+							<ng-datepicker ng-model='data.ngay_thoi_kh'></ng-datepicker>
+						</div>
+						
+					</div>
+				</tab>
+			</tabset>
+			
+		</div>
+		
+		<footer-form-input></footer-form-input>
+	</form>

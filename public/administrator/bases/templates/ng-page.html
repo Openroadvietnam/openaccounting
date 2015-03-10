@@ -1,0 +1,12 @@
+﻿<nav ng-show="total_page>1">
+  <ul class="pager">
+    <li><a class="btn btn-lg btn-default" ng-click='goToPage(0)' ng-disabled='current_page<=1'><span class='glyphicon glyphicon-fast-backward'></span></a></li>
+	<li><a class="btn btn-lg btn-default" ng-click='goToPage(current_page-1)' ng-disabled='current_page<=1'><span class='glyphicon glyphicon-backward'></span></a></li>
+    
+	<li><span> Trang <select ng-model='current_page' ng-options="p as p for p in pages" ng-change='goToPage(current_page)'></select>/{{total_page}}</span></li>
+	
+	
+	<li><a class="btn btn-lg btn-default" ng-click='goToPage(current_page+1)' ng-disabled='current_page==total_page'> <span class='glyphicon glyphicon-forward'></span></a></li>
+	<li><a class="btn btn-lg btn-default" ng-click='goToPage(total_page)' ng-disabled='current_page==total_page'> <span class='glyphicon glyphicon-fast-forward'></span></a></li>
+  </ul>
+</nav>

@@ -1,0 +1,25 @@
+﻿<stplistheader btn1="text:'Báo cáo',click:function(){$location.url('/bcdkt');}"></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr><th>#</th><th>STT</th><th>Mẫu số</th><th>Chỉ tiêu</th><th>Công thức</th><th>Tài khoản</th></tr>
+		<tr ng-repeat="r in list" ng-class="r.bold?'cbold':'cnormal'">
+			<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.stt }}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.ma_so }}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.chi_tieu }}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.cong_thuc }}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.tk }}
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

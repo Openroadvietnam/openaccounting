@@ -1,0 +1,119 @@
+﻿<div>
+	<h3><small>Kết quả tìm kiếm cho từ: </small>{{word}}</h3> 
+</div>
+<div  ng-show='functions && functions.length>0'>
+	<h5>Chức năng</h5>
+	<div class="list-group">
+	  <a href="#{{fs.path}}" class="list-group-item" ng-repeat='fs in functions'>
+		{{fs.header}}
+	  </a>
+	</div>
+</div>
+<div  ng-show='vouchers && vouchers.length>0'>
+	<h5>Sổ cái</h5>
+	<div class='table-responsive'  id ='exportable'>
+		<table class='table  table-striped  table-hover table-bordered'>
+			<tr>
+				<th>Ngày chứng từ</th>
+				<th>Số chứng từ</th>
+				<th>Diễn giải</th>
+				<th>Tài khoản nợ</th>
+				<th>Tài khoản có</th>
+				<th>Tiền</th>
+				<th>Mã KH nợ</th>
+				<th>Mã KH có</th>
+			</tr>
+			<tr ng-repeat='r in vouchers'  style='cursor:pointer'  ng-click='viewVoucher(r.ma_ct,r.id_ct)'  ng-class="r.bold?'cbold':'cnormal'">
+				<td>
+					{{r.ngay_ct|date:'dd/MM/yyyy'}}
+				</td>
+				<td>
+					{{r.so_ct}}
+				</td>
+				<td>
+					{{r.dien_giai}}
+				</td>
+				<td>
+					{{r.tk_no}}
+				</td>
+				<td>
+					{{r.tk_co}}
+				</td>
+				<td>
+					{{r.tien|number}}
+				</td>
+				<td>
+					{{r.ten_kh_no}}
+				</td>
+				<td>
+					{{r.ten_kh_co}}
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div ng-show='customers && customers.length>0'>
+	<h5>Khách hàng</h5>
+	<div class='table-responsive'>
+		<table class='table  table-striped  table-hover table-bordered'>
+			<tr>
+				<th>Mã khách</th>
+				<th>Tên khách</th>
+				<th>Địa chỉ</th>
+				<th>Điện thoại</th>
+			</tr>
+			<tr ng-repeat='r in customers'  style='cursor:pointer'  ng-click='viewCustomer(r._id)'  ng-class="r.bold?'cbold':'cnormal'">
+				<td>
+					{{r.ma_kh}}
+				</td>
+				<td>
+					{{r.ten_kh}}
+				</td>
+				<td>
+					{{r.dia_chi}}
+				</td>
+				<td>
+					{{r.dien_thoai}}
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div  ng-show='products && products.length>0'>
+	<h5>Sản phẩm</h5>
+	<div class='table-responsive'>
+		<table class='table  table-striped  table-hover table-bordered'>
+			<tr>
+				<th>Mã sản phẩm</th>
+				<th>Tên sản phẩm</th>
+			</tr>
+			<tr ng-repeat='r in products'  style='cursor:pointer'  ng-click='viewProduct(r._id)'  ng-class="r.bold?'cbold':'cnormal'">
+				<td>
+					{{r.ma_vt}}
+				</td>
+				<td>
+					{{r.ten_vt}}
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div  ng-show='accounts && accounts.length>0'>
+	<h5>Tài khoản</h5>
+	<div class='table-responsive'>
+		<table class='table  table-striped  table-hover table-bordered'>
+			<tr>
+				<th>Tài khoản</th>
+				<th>Tên tài khoản</th>
+			</tr>
+			<tr ng-repeat='r in accounts'  style='cursor:pointer'  ng-click='viewAccount(r._id)'  ng-class="r.bold?'cbold':'cnormal'">
+				<td>
+					{{r.tk}}
+				</td>
+				<td>
+					{{r.ten_tk}}
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

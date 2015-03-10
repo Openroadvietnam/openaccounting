@@ -1,0 +1,27 @@
+﻿<div>
+	<h3 class="text-center">Mời một đồng nghiệp mới</h3>
+	<form name="form" novalidate class ="css-form" >
+		<div class="form-group">
+			<label class="control-label"><i style='color:red' title='Không được trống'>* </i>Email</label>
+			<div>
+				<input type="text" name ='email'  class="form-control"placeholder="Nhập một địa chỉ email"  ng-model='data.email' ng-required="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label"><i style='color:red' title='Không được trống'>* </i>Nội dung</label>
+			<div>
+				<textarea  type="text" name ='content' rows='5'   class="form-control"  ng-model='data.content' ng-required="true">
+				</textarea >
+			</div>
+		</div>
+		<div  class="form-group">
+			<div>
+				<button class='btn btn-primary' ng-click ='create()'  ng-disabled="isUnchanged() || form.$invalid">Mời</button>
+				<button class='btn btn-default' ng-click ='cancel()'>Hủy</button>
+			</div>
+		</div>
+	</form>
+	
+</div>
+
+

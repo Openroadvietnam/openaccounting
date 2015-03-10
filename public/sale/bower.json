@@ -1,0 +1,15 @@
+{
+	"name": "Sale-Online",
+    "version": "1.0.0",
+    "dependencies": {
+        "bootstrap": "latest",
+		"font-awesome": "latest",
+		"underscore":"latest",
+		"angular": "latest",
+		"angular-cookie":"latest",
+		"angular-route": "latest",
+		"angular-easyfb":"latest",
+		"angular-carousel":"latest",
+		"ngDialog":"latest"
+    }
+}
