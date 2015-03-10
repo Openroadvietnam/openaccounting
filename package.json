@@ -37,9 +37,12 @@
 		"phantom":"latest"
 	},
 	"devDependencies": {
-		"jshint": "latest"
+		"jshint": "latest",
+		"mocha": "latest",
+		"should": "latest"
 	},
 	"scripts": {
-		"lint": "jshint app.js libs modules models auths controllers"
+		"lint": "jshint app.js libs modules models auths controllers",
+		"test": "mocha"
 	}
 }
