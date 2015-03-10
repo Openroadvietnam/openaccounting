@@ -6,10 +6,10 @@
 	"author": {
 		"name": "Van Truong Pham",
 		"email": "invncur@gmail.com"
-	  },
+	},
 	"keywords": [
 		"accounting"
-	  ],
+	],
 	"dependencies": {
 		"express": "latest",
 		"mongoose": "latest",
@@ -35,5 +35,11 @@
 		"excel-report":"latest",
 		"numeral":"latest",
 		"phantom":"latest"
+	},
+	"devDependencies": {
+		"jshint": "latest"
+	},
+	"scripts": {
+		"lint": "jshint app.js libs modules models auths controllers"
 	}
 }
