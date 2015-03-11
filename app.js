@@ -27,8 +27,8 @@ var connect = mongoose.connect(configs.database.url);
 //app
 var app = express();
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  return next();
+	res.header('Access-Control-Allow-Origin', '*');
+	return next();
 });
 app.use(function(req,res,next){
 	if(req.originalUrl.indexOf('?_escaped_fragment_')>=0){
@@ -37,33 +37,33 @@ app.use(function(req,res,next){
 		phantom.create(function (ph) {
 			ph.createPage(function (page) {
 				page.open(url, function (status) {
-				  page.evaluate(
-					  function (){
-						  return document.getElementsByTagName('html')[0].innerHTML;
-					  },
-					  function(result){
-						  res.send(result);
-						  ph.exit();
-					  }
-				  );
+					page.evaluate(
+						function (){
+							return document.getElementsByTagName('html')[0].innerHTML;
+						},
+						function(result){
+							res.send(result);
+							ph.exit();
+						}
+					);
 				});
 			});
 		},{
-			  dnodeOpts: {
+			dnodeOpts: {
 				weak: false
-			  }
 			}
-		);
+		}
+					  );
 	}else{
 		next()
 	}
-	
+
 });
 app.use("/",express.static(__dirname + '/public/administrator'));
 app.use("/sale",express.static(__dirname + '/public/sale'));
 app.use("/admin-material",express.static(__dirname + '/public/administrator-material'));
 app.use(bodyParser.urlencoded({
-  extended: true
+	extended: true
 }));
 app.use(bodyParser.json());
 app.use(passport.initialize());
@@ -105,7 +105,7 @@ socketIO.on("connection",function(socket){
 				console.log( c + " disconnect");
 			}
 		}
-		
+
 	});
 });
 //alert notification
