@@ -13,41 +13,31 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-var underscore = require("underscore");
+var _ = require("underscore");
 var async = require("async");
-Array.prototype.csum = function(field,condition){
-	if(!field) return 0;
-	var kq =0;
-	for(var i=0;i<this.length;i++){
-		var r = this[i];
-		//
-		if(condition){
-			var conti = true;
-			for(var key in condition){
-				var vc = condition[key];
-				var vd = r[key];
-				if(vc != vd){
-					conti = false;
-					break;
-				}
-			}
-			if(conti==false){
-				break;
-			}
+
+/**
+ * Sums a column in the array (table).
+ * @param {String} field A column in the table.
+ * @param {Object} condition A dictionary to filter the array with.
+ * @return {Number} Returns the sum.
+ */
+Array.prototype.csum = function(field, condition) {
+	return _.reduce(this, function(sum, row) {
+		if (_.isMatch(row, condition)) {
+			// If the field value can't be converted then use 0
+			return sum + (Number(row[field]) || 0);
+		} else {
+			return sum;
 		}
-		//
-		v = r[field];
-		if(v){
-			kq=kq+Number(v);
-		}
-	}
-	return kq;
-}
+	}, 0);
+};
+
 Array.prototype.groupBy=function(fieldkey,fieldsums,fn){
-	var groups = underscore.groupBy(this,function(item){
+	var groups = _.groupBy(this,function(item){
 		return item[fieldkey];
 	});
-	async.map(underscore.keys(groups)
+	async.map(_.keys(groups)
 		,function(key,callback){
 			var value = groups[key];
 			var r = {};
