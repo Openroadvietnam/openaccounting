@@ -1,4 +1,4 @@
-# openaccounting
+# Open Accounting
 
 * OpenAccounting là phần mềm  kế toán Việt Nam do công ty phần mềm Sao Tiên Phong phát triển (http://saotienphong.com.vn)
 * OpenAccounting có thể được cài đặt trên Windows, Linux và MacOS
