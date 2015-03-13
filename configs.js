@@ -19,11 +19,11 @@ exports.program ="Open Accounting"
 exports.version ="0.0.1 beta"
 //emai sender
 var wellknown = require('nodemailer-wellknown');
-var sender = wellknown('Zoho');
+var sender = wellknown('Gmail');
 sender.auth = {
-        user: 'email',
-        pass: 'password'
-    }
+		user: 'email',
+		pass: 'password'
+	}
 sender.name ="Open Accounting";
 exports.sender = sender;
 //oauth2.0
