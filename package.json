@@ -43,6 +43,6 @@
 	},
 	"scripts": {
 		"lint": "jshint app.js libs modules models auths controllers",
-		"test": "mocha"
+		"test": "NODE_ENV=test mocha"
 	}
 }
