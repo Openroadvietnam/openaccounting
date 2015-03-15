@@ -2,7 +2,7 @@
 <div class="table-responsive">
 	<table class="table table-striped  table-hover table-bordered">
 		
-		<tr><th class='text-center' style='width:30px'>Chọn</th><th>Tk nợ</th><th>Tiền {{ngMasterData.ma_nt}}</th> <th ng-show="ngMasterData.ma_nt!='VND'">Tiền quy đổi</th><th>Khách hàng</th></tr>
+		<tr><th class='text-center' style='width:30px'>Chọn</th><th>Tk nợ</th><th>Tiền {{ngMasterData.ma_nt}}</th> <th ng-show="ngMasterData.ma_nt!='VND'">Tiền quy đổi</th><th>Khách hàng</th><th>Vụ việc</th></tr>
 		
 		<tr ng-repeat="r in ngMasterData.details">
 			<td class='text-center'>
@@ -22,6 +22,10 @@
 			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
 				<div>{{r.ten_kh}}</div>
 				<div><i>{{r.ma_kh}}</i></div>
+			</td>
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				<div>{{r.ten_dt}}</div>
+				<div><i>{{r.ma_dt}}</i></div>
 			</td>
 			
 		</tr>

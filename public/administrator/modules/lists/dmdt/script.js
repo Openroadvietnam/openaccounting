@@ -1,0 +1,1 @@
+var dmdtModule = new baseInput('dmdt','dmdt',["ma_dt","ten_dt"],'Danh mục vụ việc, công trình');

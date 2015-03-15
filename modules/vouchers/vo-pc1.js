@@ -24,6 +24,7 @@ var Tdttco_tt = require("../../models/tdttco_tt");
 var Tdttco = require("../../models/tdttco");
 var dvcs = require("../../models/dvcs");
 var account = require("../../models/account");
+var dmdt = require("../../models/dmdt");
 var customer = require("../../models/customer");
 var model = require("../../models/pc1");
 var controller = require("../../controllers/controller");
@@ -178,6 +179,11 @@ module.exports = function(router){
 			},
 			tk:function(callback){
 				items.joinModel(id_app,account,[{akey:'tk_co',bkey:'tk',fields:[{name:'ten_tk_co',value:'ten_tk'}]}],function(kq){
+					callback();
+				});
+			},
+			dt:function(callback){
+				items.joinModel(id_app,dmdt,[{akey:'ma_dt',bkey:'ma_dt',fields:[{name:'ten_dt',value:'ten_dt'}]}],function(kq){
 					callback();
 				});
 			},

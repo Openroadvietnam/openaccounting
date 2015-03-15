@@ -44,6 +44,18 @@
 			<div class='col-sm-6'>{{dt_current.ten_kh}}</div>
 		</div>
 		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Vụ việc</label>
+			<div class="col-sm-4">
+				<ng-typeahead
+					module='dmdt' field-model='ma_dt' field-label='ten_dt' fields ='ma_dt,ten_dt'
+					placeholder ='Nhập mã hoặc tên vụ việc...'
+					ng-model='dt_current.ma_dt' label='dt_current.ten_dt'>
+				</ng-typeahead>
+			</div>
+			<div class='col-sm-6'>{{dt_current.ten_dt}}</div>
+		</div>
+		
 	</form>
  </div>
  <div class="modal-footer">

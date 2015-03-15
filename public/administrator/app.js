@@ -219,6 +219,7 @@ accApp.run(function ($rootScope,api,colleague,$window,user,app,$location) {
 				{path:'dmkho',type:'L',header:'Kho hàng',visiable:true},
 				//{path:'dmdvt',type:'L',header:'Đơn vị tính của vật tư, hàng hóa',visiable:true},
 				{path:'dmbp',type:'L',header:'Bộ phận',visiable:true},
+				{path:'dmdt',type:'L',header:'Vụ việc',visiable:true},
 				{path:'ptthanhtoan',type:'L',header:'Phương thức thanh toán',visiable:true}
 				
 			]}
