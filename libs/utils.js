@@ -18,35 +18,57 @@ var should = require("should");
 var _ = require('underscore');
 
 
-// Let's solve this by first breaking down the number into groups of
-// three digits with unit
-//
-// 256      -> [(256, '')]
-// 1024     -> [(001, 'ngan'), (024, '')]
-// 16384    -> [(016, 'ngan'), (384, '')]
-// 1750000  -> [(001, 'trieu'), (750, 'ngan'), (000, '')]
-//
-// Then the problem is reduced into converting a group of 3 digits
-// into words.
+/**
+ * Convert a number to its Vietnamese word representation.
+ * @number Number the number
+ * @options an object
+ *
+ * `options` may have the following attributes:
+ *   - `thousand`: the word for 'thousand'. Default: 'ngàn'.
+ *   - `decimal`: the word to separate integer and fractional parts. Default: 'phẩy'.
+ */
+function numberToWord(number, options) {
+	// Let's solve this by first breaking down the number into groups
+	// of three digits with unit:
+	//
+	// 256      -> [(256, '')]
+	// 1024     -> [(001, 'ngan'), (024, '')]
+	// 16384    -> [(016, 'ngan'), (384, '')]
+	// 1750000  -> [(001, 'trieu'), (750, 'ngan'), (000, '')]
+	//
+	// Then the problem is reduced into converting a group of 3 digits
+	// into words.
 
-function numberToWord(number, thousand) {
 	var sign = '';
 	if (number < 0) {
 		sign = 'âm ';
 		number = -number;
 	}
 
-	thousand = typeof thousand !== 'undefined' ? thousand : 'ngàn';
+	options = _.extend({
+		thousand: 'ngàn',
+		decimal: 'phẩy'
+	}, options);
+
+	// Round it up to 2 digits after the decimal separator
+	number = Number(number.toFixed(2));
+	var integerPart = Math.floor(number);
+	var fractionPart = number % 1;
+	var fractionText = '';
+
+	if (fractionPart) {
+		fractionText = convertFractionPart(fractionPart);
+		fractionText = ' ' + options.decimal + ' ' + fractionText;
+	}
 
 	// Break the number into groups of 3 digits
-	var digitGroups = breakDownNumber(number).reverse();
-
-	// Convert each group, add unit and sign
-	return sign + _.chain(digitGroups).map(function(group, index) {
-		var preserveZeros = index === digitGroups.length - 1 ? false : true;
+	var digitGroups = breakDownNumber(integerPart).reverse();
+	var integerText = _.chain(digitGroups).map(function(group, index) {
+		var preserveZeros =
+			index === digitGroups.length - 1 ? false : true;
 		var convertedGroup = convertGroup(group, preserveZeros);
 
-		var unit = unitAt(index, thousand);
+		var unit = unitAt(index, options.thousand);
 
 		// If the group consists of only zeros then don't add a unit
 		// unless the group is a 'tỉ'
@@ -60,6 +82,8 @@ function numberToWord(number, thousand) {
 
 		return convertedGroup + unit;
 	}).compact().reverse().join(' ');
+
+	return sign + integerText + fractionText;
 }
 
 
@@ -156,6 +180,40 @@ function breakDownNumber(number) {
 module.exports = {
 	numberToWord: numberToWord
 };
+
+
+function convertFractionPart(fractionPart) {
+	result = convertGroup(
+		breakDownNumber(fractionPart * 100)[0]);
+
+	// FIXME: better mapping using some kind of formula
+	var mapping = {
+		'mười': 'một',
+		'hai mươi': 'hai',
+		'ba mươi': 'ba',
+		'bốn mươi': 'bốn',
+		'năm mươi': 'năm',
+		'sáu mươi': 'sáu',
+		'bảy mươi': 'bảy',
+		'tám mươi': 'tám',
+		'chín mươi': 'chín',
+		'một': 'không một',
+		'hai': 'không hai',
+		'ba': 'không ba',
+		'bốn': 'không bốn',
+		'năm': 'không năm',
+		'sáu': 'không sáu',
+		'bảy': 'không bảy',
+		'tám': 'không tám',
+		'chín': 'không chín'
+	};
+
+	if (result in mapping) {
+		result = mapping[result];
+	}
+
+	return result;
+}
 
 
 if (process.env.NODE_ENV === 'test') {

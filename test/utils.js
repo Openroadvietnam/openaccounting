@@ -171,6 +171,21 @@ describe('numberToWord', function() {
 	});
 
 	it('should allow regional variations', function() {
-		utils.numberToWord(1000, thousand="nghìn").should.be.exactly("một nghìn");
+		utils.numberToWord(1000, {thousand: "nghìn"}).should.be.exactly("một nghìn");
+		utils.numberToWord(0.1, {decimal: "phảy"}).should.be.exactly("không phảy một");
+	});
+
+	it('should convert decimal numbers', function() {
+		utils.numberToWord(0.1).should.be.exactly("không phẩy một");
+		utils.numberToWord(0.01).should.be.exactly("không phẩy không một");
+		utils.numberToWord(0.12).should.be.exactly("không phẩy mười hai");
+		utils.numberToWord(0.2).should.be.exactly("không phẩy hai");
+		utils.numberToWord(0.21).should.be.exactly("không phẩy hai mươi mốt");
+		utils.numberToWord(0.99).should.be.exactly("không phẩy chín mươi chín");
+	});
+
+	it('should only preserve 2 significant digits after the decimal separator', function() {
+		utils.numberToWord(0.001).should.be.exactly("không");
+		utils.numberToWord(0.999).should.be.exactly("một");
 	});
 });
