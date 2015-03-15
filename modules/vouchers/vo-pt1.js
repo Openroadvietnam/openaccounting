@@ -158,11 +158,6 @@ module.exports = function(router){
 					callback();
 				});
 			},
-			dt:function(callback){
-				items.joinModel(id_app,dmdt,[{akey:'ma_dt',bkey:'ma_dt',fields:[{name:'ten_dt',value:'ten_dt'}]}],function(kq){
-					callback();
-				});
-			},
 			dv:function(callback){
 				items.joinModel(id_app,dvcs,[{akey:'ma_dvcs',bkey:'_id',fields:[{name:'ten_dvcs',value:'ten_dvcs'}]}],function(kq){
 					callback();
@@ -190,7 +185,7 @@ module.exports = function(router){
 				callback();
 			},
 			details_tk:function(callback){
-				async.each(
+				async.map(
 					items,
 					function(r,callback1){
 						var details = r.details;
@@ -206,11 +201,27 @@ module.exports = function(router){
 				);
 			},
 			details_customer:function(callback){
-				async.each(
+				async.map(
 					items,
 					function(r,callback1){
 						var details = r.details;
 						details.joinModel(id_app,customer,[{akey:'ma_kh',bkey:'ma_kh',fields:[{name:'ten_kh',value:'ten_kh'}]}
+															],function(kq){
+							callback1();
+						});
+					},
+					function(error){
+						
+						callback();
+					}
+				);
+			},
+			details_dt:function(callback){
+				async.map(
+					items,
+					function(r,callback1){
+						var details = r.details;
+						details.joinModel(id_app,dmdt,[{akey:'ma_dt',bkey:'ma_dt',fields:[{name:'ten_dt',value:'ten_dt'}]}
 															],function(kq){
 							callback1();
 						});

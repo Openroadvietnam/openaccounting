@@ -37,7 +37,8 @@ var accApp = angular.module("accApp",[
 		,'pnkModule','pxkModule','pxcModule'
 		,'tdttcoModule','tdttnoModule'
 		,'pc1Module','pt1Module'
-		,'dmbpModule','dmloaitsModule','dmtanggiamtsModule','dmnguonvonModule','qtsModule','tinhkhauhaotsModule','hspbtsModule','dckhauhaotsModule','pkhModule'
+		,'dmbpModule','dmdtModule'
+		,'dmloaitsModule','dmtanggiamtsModule','dmnguonvonModule','qtsModule','tinhkhauhaotsModule','hspbtsModule','dckhauhaotsModule','pkhModule'
 		,'dtbanletheongayModule','dtbanletheothangModule','dtbanletheoquyModule','dtbanletheonamModule','dtbanletheovtModule','dtbanletheokhModule','ctbanleModule'
 	]);
 accApp.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {

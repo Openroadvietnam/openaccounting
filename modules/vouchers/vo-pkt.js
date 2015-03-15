@@ -22,6 +22,7 @@ var Vsocai = require("../../models/vsocai");
 var socai = require("../../models/socai");
 var dvcs = require("../../models/dvcs");
 var account = require("../../models/account");
+var dmdt = require("../../models/dmdt");
 var customer = require("../../models/customer");
 var model = require("../../models/pkt");
 var controller = require("../../controllers/controller");
@@ -190,7 +191,7 @@ module.exports = function(router){
 				callback();
 			},
 			details_tk:function(callback){
-				async.each(
+				async.map(
 					items,
 					function(r,callback1){
 						var details = r.details;
@@ -206,12 +207,28 @@ module.exports = function(router){
 				);
 			},
 			details_customer:function(callback){
-				async.each(
+				async.map(
 					items,
 					function(r,callback1){
 						var details = r.details;
 						details.joinModel(id_app,customer,[{akey:'ma_kh_no',bkey:'ma_kh',fields:[{name:'ten_kh_no',value:'ten_kh'}]},
 															{akey:'ma_kh_co',bkey:'ma_kh',fields:[{name:'ten_kh_co',value:'ten_kh'}]}],function(kq){
+							callback1();
+						});
+					},
+					function(error){
+						
+						callback();
+					}
+				);
+			},
+			details_dt:function(callback){
+				async.map(
+					items,
+					function(r,callback1){
+						var details = r.details;
+						details.joinModel(id_app,dmdt,[{akey:'ma_dt',bkey:'ma_dt',fields:[{name:'ten_dt',value:'ten_dt'}]}
+															],function(kq){
 							callback1();
 						});
 					},

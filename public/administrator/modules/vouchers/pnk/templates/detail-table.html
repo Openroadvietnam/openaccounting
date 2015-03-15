@@ -7,6 +7,7 @@
 			<th>SL nhập</th>
 			<th>Giá vốn {{ngMasterData.ma_nt}}</th> <th ng-show="ngMasterData.ma_nt!='VND'">Giá vốn VND</th>
 			<th>Tiền nhập {{ngMasterData.ma_nt}}</th> <th ng-show="ngMasterData.ma_nt!='VND'">Tiền nhập VND</th>
+			<th>Vụ việc</th>
 		</tr>
 		
 		<tr ng-repeat="r in ngMasterData.details">
@@ -45,7 +46,10 @@
 			<td  ng-show="ngMasterData.ma_nt!='VND'"  style='cursor:pointer' ng-click='editDetail(r.line)'>
 				{{r.tien_nhap|number:0}}
 			</td>
-		
+			<td  style='cursor:pointer' ng-click='editDetail(r.line)'>
+				<div>{{r.ten_dt}}</div>
+				<div><i>{{r.ma_dt}}</i></div>
+			</td>
 		</tr>
 		
 		<tr ng-show='ngMasterData.details.length>0'>
@@ -55,7 +59,7 @@
 			<td  class='total' ng-show="ngMasterData.ma_nt!='VND'"></td>
 			<td  class='total' ng-data='ngMasterData.details' ng-sum ='tien_nhap_nt' ng-model='ngMasterData.t_tien_nhap_nt'>{{ngMasterData.t_tien_nhap_nt|number:2}}</td>
 			<td  class='total' ng-show="ngMasterData.ma_nt!='VND'" ng-data='ngMasterData.details' ng-sum='tien_nhap'  ng-model='ngMasterData.t_tien_nhap' >{{ngMasterData.t_tien_nhap|number:0}}</td>
-			
+			<td  class='total'></td>
 		</tr>
 		
 	</table>

@@ -26,6 +26,7 @@ var dvcs = require("../../models/dvcs");
 var dmvt = require("../../models/dmvt");
 var dmcpmh = require("../../models/dmcpmh");
 var account = require("../../models/account");
+var dmdt = require("../../models/dmdt");
 var customer = require("../../models/customer");
 var model = require("../../models/pnk");
 var controller = require("../../controllers/controller");
@@ -125,7 +126,7 @@ module.exports = function(router){
 				callback();
 			},
 			details_tk:function(callback){
-				async.each(
+				async.map(
 					items,
 					function(r,callback1){
 						var details = r.details;
@@ -142,11 +143,27 @@ module.exports = function(router){
 				);
 			},
 			details_vt:function(callback){
-				async.each(
+				async.map(
 					items,
 					function(r,callback1){
 						var details = r.details;
 						details.joinModel(id_app,dmvt,[{akey:'ma_vt',bkey:'ma_vt',fields:[{name:'ten_vt',value:'ten_vt'}]}],function(kq){
+							callback1();
+						});
+					},
+					function(error){
+						
+						callback();
+					}
+				);
+			},
+			details_dt:function(callback){
+				async.map(
+					items,
+					function(r,callback1){
+						var details = r.details;
+						details.joinModel(id_app,dmdt,[{akey:'ma_dt',bkey:'ma_dt',fields:[{name:'ten_dt',value:'ten_dt'}]}
+															],function(kq){
 							callback1();
 						});
 					},
