@@ -177,11 +177,6 @@ function breakDownNumber(number) {
 }
 
 
-module.exports = {
-	numberToWord: numberToWord
-};
-
-
 function convertFractionPart(fractionPart) {
 	result = convertGroup(
 		breakDownNumber(fractionPart * 100)[0]);
@@ -215,6 +210,10 @@ function convertFractionPart(fractionPart) {
 	return result;
 }
 
+
+module.exports = {
+	numberToWord: numberToWord
+};
 
 if (process.env.NODE_ENV === 'test') {
 	module.exports._private = {
