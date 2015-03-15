@@ -142,4 +142,8 @@ describe('numberToWord', function() {
 		utils.numberToWord(-26).should.be.exactly('âm hai mươi sáu');
 		utils.numberToWord(-39).should.be.exactly('âm ba mươi chín');
 	});
+
+	it('should allow regional variations', function() {
+		utils.numberToWord(1000, thousand="nghìn").should.be.exactly("một nghìn");
+	});
 });

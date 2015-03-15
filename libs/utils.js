@@ -13,6 +13,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 var should = require("should");
 var _ = require('underscore');
 
@@ -28,12 +29,14 @@ var _ = require('underscore');
 // Then the problem is reduced into converting a group of 3 digits
 // into words.
 
-function numberToWord(number) {
+function numberToWord(number, thousand) {
 	var sign = '';
 	if (number < 0) {
 		sign = 'âm ';
 		number = -number;
 	}
+
+	thousand = typeof thousand !== 'undefined' ? thousand : 'ngàn';
 
 	// Break the number into groups of 3 digits
 	var digitGroups = breakDownNumber(number).reverse();
@@ -41,7 +44,7 @@ function numberToWord(number) {
 	// Convert each group, add unit and sign
 	return sign + _.chain(digitGroups).map(function(group, index) {
 		// FIXME: Extract this into a function.
-		var unit = ['', 'ngàn', 'triệu', 'tỉ', 'ngàn',
+		var unit = ['', thousand, 'triệu', 'tỉ', thousand,
 					'triệu', 'tỉ tỉ'][index];
 		var preserveZeros = index === digitGroups.length - 1 ? false : true;
 
