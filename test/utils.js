@@ -121,9 +121,7 @@ describe('numberToWord', function() {
 	});
 
 	it('should convert numbers that span more than 3 digits', function() {
-		utils.numberToWord(1000).should.be.exactly('một ngàn');
 		utils.numberToWord(1005).should.be.exactly('một ngàn không trăm linh năm');
-		utils.numberToWord(1999000).should.be.exactly('một triệu chín trăm chín mươi chín ngàn');
 		utils.numberToWord(872438717633)
 			.should.be.exactly(
 				'tám trăm bảy mươi hai tỉ bốn trăm ba mươi tám triệu bảy trăm mười bảy ngàn sáu trăm ba mươi ba');
@@ -135,6 +133,35 @@ describe('numberToWord', function() {
 		utils.numberToWord(9007199254740991)
 			.should.be.exactly(
 				'chín triệu không trăm linh bảy ngàn một trăm chín mươi chín tỉ hai trăm năm mươi tư triệu bảy trăm bốn mươi ngàn chín trăm chín mươi mốt');
+	});
+
+	it('should skip trailing zeros', function() {
+		utils.numberToWord(1000)
+			.should.be.exactly('một ngàn');
+		utils.numberToWord(1100)
+			.should.be.exactly('một ngàn một trăm');
+		utils.numberToWord(1110)
+			.should.be.exactly('một ngàn một trăm mười');
+		utils.numberToWord(1000000)
+			.should.be.exactly('một triệu');
+		utils.numberToWord(1500000)
+			.should.be.exactly('một triệu năm trăm ngàn');
+		utils.numberToWord(10000000)
+			.should.be.exactly('mười triệu');
+		utils.numberToWord(100000000)
+			.should.be.exactly('một trăm triệu');
+		utils.numberToWord(1000000000)
+			.should.be.exactly('một tỉ');
+		utils.numberToWord(1000000000000)
+			.should.be.exactly('một ngàn tỉ');
+		utils.numberToWord(1000000000000000)
+			.should.be.exactly('một triệu tỉ');
+		utils.numberToWord(100000000000000000)
+			.should.be.exactly('một trăm triệu tỉ');
+		utils.numberToWord(1000000000000000000)
+			.should.be.exactly('một tỉ tỉ');
+		utils.numberToWord(1200000000000000000)
+			.should.be.exactly('một tỉ hai trăm triệu tỉ');
 	});
 
 	it('should convert negative numbers', function() {

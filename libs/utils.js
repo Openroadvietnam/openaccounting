@@ -43,14 +43,38 @@ function numberToWord(number, thousand) {
 
 	// Convert each group, add unit and sign
 	return sign + _.chain(digitGroups).map(function(group, index) {
-		// FIXME: Extract this into a function.
-		var unit = ['', thousand, 'triệu', 'tỉ', thousand,
-					'triệu', 'tỉ tỉ'][index];
 		var preserveZeros = index === digitGroups.length - 1 ? false : true;
+		var convertedGroup = convertGroup(group, preserveZeros);
 
-		unit = unit ? ' ' + unit : unit;
-		return convertGroup(group, preserveZeros) + unit;
+		var unit = unitAt(index, thousand);
+
+		// If the group consists of only zeros then don't add a unit
+		// unless the group is a 'tỉ'
+		if (!convertedGroup && index % 3 !== 0) {
+			unit = '';
+		}
+
+		if (convertedGroup && unit) {
+			unit = ' ' + unit;
+		}
+
+		return convertedGroup + unit;
 	}).compact().reverse().join(' ');
+}
+
+
+function unitAt(index, thousand) {
+	if (index === 0)
+		return '';
+
+	switch (index % 3) {
+	case 0:
+		return 'tỉ';
+	case 1:
+		return thousand;
+	case 2:
+		return 'triệu';
+	}
 }
 
 
