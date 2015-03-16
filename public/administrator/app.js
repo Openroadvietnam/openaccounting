@@ -22,7 +22,7 @@ var accApp = angular.module("accApp",[
 		,'dashboardModule'
 		,'dvcsModule','dmntModule','dmtkModule','dmkhModule','dmtcModule','dmvatModule','dmdvtModule','dmvtModule','dmnvtModule','dmkhoModule','ptthanhtoanModule'
 		,'dmcpmhModule','ctcpmhModule'
-		,'cdtkModule','cdkhModule','cdvtModule'
+		,'cdtkModule','cdkhModule','cdvtModule','cddtModule'
 		,'bkctModule','searchModule','cdpstkModule','scttkModule','sctcnkhModule','cdpskhModule'
 		,'bcdktModule','kbmbcdktModule'
 		,'bkvatvaoModule','bkvatraModule'
@@ -230,7 +230,8 @@ accApp.run(function ($rootScope,api,colleague,$window,user,app,$location) {
 			{group:'Số dư đầu kỳ',visiable:true,icon:'fa fa-folder fa-fw',items:[
 				{path:'cdtk',type:'L',header:'Đầu kỳ tài khoản',visiable:true},
 				{path:'cdkh',type:'L',header:'Đầu kỳ khách hàng',visiable:true},
-				{path:'cdvt',type:'L',header:'Đầu kỳ vật tư',visiable:true}
+				{path:'cdvt',type:'L',header:'Đầu kỳ vật tư',visiable:true},
+				{path:'cddt',type:'L',header:'Đầu kỳ vụ việc',visiable:true}
 			]},
 			{group:'Kết chuyển sang năm sau',visiable:true,icon:'fa fa-folder fa-fw',items:[
 				{path:'kcsns',header:'Kết chuyển sang năm sau',visiable:true}

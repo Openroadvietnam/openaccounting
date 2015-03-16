@@ -19,6 +19,7 @@ var Dmdvt = require("../models/dmdvt");
 var Vat = require("../models/vat");
 var Currency = require("../models/currency");
 var Dmbp = require("../models/dmbp");
+var Dmdt = require("../models/dmdt");
 var Dmloaits = require("../models/dmloaits");
 var Dmnguonvon = require("../models/dmnguonvon");
 var Dmtanggiamts = require("../models/dmtanggiamts");
@@ -110,6 +111,19 @@ exports.existsBp = [function(id_app,ma_bp,callback){
 		}
 	});
 },"Mã bộ phận ({PATH}) {VALUE} không tồn tại"];
+exports.existsDt = [function(id_app,ma_dt,callback){
+	if(!ma_dt || ma_dt.trim()==""){
+		callback(true);
+		return;
+	}
+	Dmdt.findOne({id_app:id_app,ma_dt:ma_dt},function(error,v){
+		if(error || !v){
+			return callback(false);
+		}else{
+			return callback(true);
+		}
+	});
+},"Mã vụ việc ({PATH}) {VALUE} không tồn tại"];
 exports.existsLts = [function(id_app,ma_loai_ts,callback){
 	if(!ma_loai_ts || ma_loai_ts.trim()==""){
 		callback(true);
