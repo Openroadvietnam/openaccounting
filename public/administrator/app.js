@@ -23,6 +23,7 @@ var accApp = angular.module("accApp",[
 		,'dvcsModule','dmntModule','dmtkModule','dmkhModule','dmtcModule','dmvatModule','dmdvtModule','dmvtModule','dmnvtModule','dmkhoModule','ptthanhtoanModule'
 		,'dmcpmhModule','ctcpmhModule'
 		,'cdtkModule','cdkhModule','cdvtModule','cddtModule'
+		,'sctdtModule'
 		,'bkctModule','searchModule','cdpstkModule','scttkModule','sctcnkhModule','cdpskhModule'
 		,'bcdktModule','kbmbcdktModule'
 		,'bkvatvaoModule','bkvatraModule'
@@ -121,10 +122,6 @@ accApp.run(function ($rootScope,api,colleague,$window,user,app,$location) {
 				{path:'pxc',type:'V',header:'Điều chuyển kho',visiable:true},
 				{path:'tinhgiatb',type:'R',header:'Tính giá trung bình',visiable:true}
 			]},
-			{group:'Giá thành theo vụ việc, dự án',visiable:true,icon:'fa fa-folder fa-fw',items:[
-				{path:'dxd',header:'Khai báo định mức NVL',visiable:true},
-				{path:'dxd',header:'Tính phát sinh lũy kế',visiable:true}
-			]},
 			{group:'Giá thành sản xuất sản phẩm',visiable:true,icon:'fa fa-folder fa-fw',items:[
 				{path:'dxd',header:'Cập nhật đầu kỳ',visiable:true},
 				{path:'dxd',header:'Điều chỉnh đầu kỳ',visiable:true},
@@ -182,11 +179,10 @@ accApp.run(function ($rootScope,api,colleague,$window,user,app,$location) {
 				{path:'dxd',header:'Trả lại nhà cung cấp',visiable:true}
 			]},
 			{group:'Giá thành theo vụ việc, dự án',visiable:true,icon:'fa fa-folder fa-fw',items:[
-				{path:'dxd',header:'Sổ chi tiết',visiable:true},
+				{path:'sctdt',header:'Sổ chi tiết',visiable:true},
 				{path:'dxd',header:'Cân đối phát sinh',visiable:true},
 				{path:'dxd',header:'Tổng hợp chi phí sản xuất',visiable:true},
-				{path:'dxd',header:'Kết quả kinh doanh',visiable:true},
-				{path:'dxd',header:'So sánh thực tế với định mức',visiable:true}
+				{path:'dxd',header:'Kết quả kinh doanh',visiable:true}
 			]},
 			{group:'Giá thành sản xuất sản phẩm',visiable:true,icon:'fa fa-folder fa-fw',items:[
 				{path:'dxd',header:'Thẻ giá thành',visiable:true},

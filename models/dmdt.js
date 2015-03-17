@@ -37,4 +37,19 @@ model.referenceKeys ={
 		{model:"vsocai",key:'ma_dt',error:'Đối tượng {{VALUE}} đã phát sinh dữ liệu'}
 	]
 }
+
+model.exists = [function(id_app,ma_dt,callback){
+	if(!ma_dt || ma_dt.trim()==""){
+		callback(true);
+		return;
+	}
+	model.findOne({id_app:id_app,ma_dt:ma_dt},function(error,v){
+		if(error || !v){
+			return callback(false);
+		}else{
+			return callback(true);
+		}
+	});
+},"Mã vụ việc ({PATH}) {VALUE} không tồn tại"];
+
 module.exports = model

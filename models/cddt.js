@@ -13,8 +13,9 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-var validator = require("../libs/validator");
+var dmdt = require("../models/dmdt");
 var validAccount = require("../libs/validator-account");
+var validator = require("../libs/validator");
 var cddtScheam = new Schema({
 	id_app:{type:String,required:true},
 	nam:{type:Number,required:true},
@@ -35,7 +36,7 @@ var cddtScheam = new Schema({
 });
 cddtScheam.validate = {
 	ma_dvcs:validator.existsDvcs,
-	ma_dt:validator.existsDt,
+	ma_dt:dmdt.exists,
 	tk: validAccount.isNotTkcn
 };
 cddtScheam.index({id_app:1,nam:1,ma_dvcs:1,tk:1,ma_dt:1});

@@ -1,13 +1,17 @@
 ﻿<stplistheader></stplistheader>
 <div class="table-responsive">
 	<table class ="table table-striped table-bordered">
-		<tr><th>#</th><th>Tài khoản</th><th>Đầu kỳ nợ ngoại tệ</th><th>Đầu kỳ có ngoại tệ</th><th>Đầu kỳ nợ</th><th>Đầu kỳ có</th><th>Đơn vị cơ sở</th></tr>
+		<tr><th>#</th><th>Tài khoản</th><th>Vụ việc</th><th>Đầu kỳ nợ ngoại tệ</th><th>Đầu kỳ có ngoại tệ</th><th>Đầu kỳ nợ</th><th>Đầu kỳ có</th><th>Đơn vị cơ sở</th></tr>
 		<tr ng-repeat="r in list">
 			<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
 			<td  style='cursor:pointer' ng-click='edit(r._id)'>
 				{{ r.tk }}
 			</td>
-			
+			<td  style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.ten_dt }}
+				<br/>
+				{{ r.ma_dt }}
+			</td>
 			<td  style='cursor:pointer' ng-click='edit(r._id)'>
 				{{ r.du_no_nt00|number:0 }}
 			</td>
