@@ -7,7 +7,4 @@ rptsctdt.defaultCondition = function(condition){
 rptsctdt.afterLoadData = function($scope,data){
 	$scope.title = 'Sổ chi tiết vụ việc: ' + $scope.condition.ma_dt + ' - ' + $scope.condition.ten_dt;
 }
-rptsctdt.exportConfig ={
-	title:'Sổ chi tiết vụ việc'
-}
 rptsctdt.useExcelTemplate = true;

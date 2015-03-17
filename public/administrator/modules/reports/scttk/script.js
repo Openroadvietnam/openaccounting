@@ -7,21 +7,4 @@ rptScttk.defaultCondition = function(condition){
 rptScttk.afterLoadData = function($scope,data){
 	$scope.title = 'Sổ cái tài khoản: ' + $scope.condition.tk + " - " + $scope.condition.ten_tk;
 }
-rptScttk.exportConfig ={
-	title:'SỔ CHI TIẾT TÀI KHOẢN',
-	conditions:[
-		{name:'tu_ngay',caption:'Từ ngày'},
-		{name:'den_ngay',caption:'Đến ngày'},
-		{name:'tk',caption:'Tài khoản'},
-		{name:'ten_tk',caption:'Tên tài khoản'},
-		{name:'ten_dvcs',caption:'Đơn vị cơ sở'}
-	],
-	columns:[
-		{name:'so_ct',caption:'Số chứng từ',type:'string',width:15},
-		{name:'ngay_ct',caption:'Ngày chứng từ',type:'date',width:15},
-		{name:'dien_giai',caption:'Diễn giải',type:'string',width:30},
-		{name:'tk_du',caption:'TK đối ứng',type:'string',width:15},
-		{name:'ps_no',caption:'PS nợ',type:'number',width:15},
-		{name:'ps_co',caption:'PS có',type:'number',width:15}
-	]
-}
+rptScttk.useExcelTemplate = true;

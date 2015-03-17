@@ -15,7 +15,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 var Vsocai = require("../../models/vsocai");
 var dktk = require("../../libs/dktk");
-var cktk = require("../../libs/cktk");
 var async = require("async");
 var underscore = require("underscore");
 var controller = require("../../controllers/controllerRPT");
@@ -81,29 +80,28 @@ module.exports = function(router){
 						callback(null,result);
 					});
 					
-				},
-				ck:function(callback){
-					var query = {};
-					underscore.extend(query,condition);
-					query.ngay = condition.den_ngay;
-					cktk(query,function(error,result){
-						if(error) return callback(error);
-						var data = {systotal:1,sysorder:9,bold:true
-							,dien_giai:'Cuối kỳ'
-							,ps_no:result.csum("du_no00")
-							,ps_co:result.csum("du_co00")
-							,ps_no_nt:result.csum("du_no_nt00")
-							,ps_co_nt:result.csum("du_co_nt00")
-							};
-						callback(null,data);
-					});
 				}
 			},
 			function(error,results){
 				if(error) return callback(error);
 				var data = results.ps;
 				data.push(results.dk);
-				data.push(results.ck);
+				var so_ck_nt = data.csum("ps_no_nt",{systotal:1}) - data.csum("ps_co_nt",{systotal:1})
+				var so_ck = data.csum("ps_no",{systotal:1}) - data.csum("ps_co",{systotal:1})
+				
+				var dong_cuoi_ky = {systotal:1,sysorder:9,bold:true
+					,dien_giai:'Cuối kỳ'
+					,ps_no:0
+					,ps_co:0
+					,ps_no_nt:0
+					,ps_co_nt:0
+				};
+				if(so_ck_nt>0) dong_cuoi_ky.ps_no_nt = so_ck_nt
+				if(so_ck>0) dong_cuoi_ky.ps_no = so_ck
+				if(so_ck_nt<0) dong_cuoi_ky.ps_co_nt = Math.abs(so_ck_nt)
+				if(so_ck<0) dong_cuoi_ky.ps_co = Math.abs(so_ck)
+				
+				data.push(dong_cuoi_ky);
 				
 				var report = underscore.sortBy(data,function(r){
 					return r.sysorder;
