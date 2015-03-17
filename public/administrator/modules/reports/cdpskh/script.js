@@ -29,25 +29,4 @@ rptcdpskh.init = function($scope,$http,$filter,$location,$config,$controller){
 		
 	}
 }
-rptcdpskh.exportConfig ={
-	title:'Cân đối phát sinh theo khách hàng',
-	conditions:[
-		{name:'tu_ngay',caption:'Từ ngày'},
-		{name:'den_ngay',caption:'Đến ngày'},
-		{name:'tk',caption:'Tài khoản'},
-		{name:'ten_tk',caption:'Tên tài khoản'},
-		{name:'ma_kh',caption:'Mã khách'},
-		{name:'ten_kh',caption:'Tên khách hàng'},
-		{name:'ten_dvcs',caption:'Đơn vị cơ sở'}
-	],
-	columns:[
-		{name:'ma_kh',caption:'Mã khách hàng',type:'string',width:15},
-		{name:'ten_kh',caption:'Tên khách hàng',type:'string',width:30},
-		{name:'dk_no',caption:'Đầu kỳ nợ',type:'number',width:15},
-		{name:'dk_co',caption:'Đầu kỳ có',type:'number',width:15},
-		{name:'ps_no',caption:'PS nợ',type:'number',width:15},
-		{name:'ps_co',caption:'PS có',type:'number',width:15},
-		{name:'ck_no',caption:'Cuối kỳ nợ',type:'number',width:15},
-		{name:'ck_co',caption:'Cuối kỳ có',type:'number',width:15}
-	]
-}
+rptcdpskh.useExcelTemplate = true;

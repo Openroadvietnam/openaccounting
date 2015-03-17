@@ -27,24 +27,4 @@ rptCdpstk.init = function($scope,$http,$filter,$location,$config,$controller){
 		
 	}
 }
-rptCdpstk.exportConfig ={
-	title:'CÂN ĐỐI PHÁT SINH TÀI KHOẢN',
-	conditions:[
-		{name:'tu_ngay',caption:'Từ ngày'},
-		{name:'den_ngay',caption:'Đến ngày'},
-		{name:'tk',caption:'Tài khoản'},
-		{name:'ten_tk',caption:'Tên tài khoản'},
-		{name:'bu_tru',caption:'Bù trừ công nợ'},
-		{name:'ten_dvcs',caption:'Đơn vị cơ sở'}
-	],
-	columns:[
-		{name:'tk',caption:'Tài khoản',type:'string',width:15},
-		{name:'ten_tk',caption:'Tên tài khoản',type:'string',width:30},
-		{name:'dk_no',caption:'Đầu kỳ nợ',type:'number',width:15},
-		{name:'dk_co',caption:'Đầu kỳ có',type:'number',width:15},
-		{name:'ps_no',caption:'PS nợ',type:'number',width:15},
-		{name:'ps_co',caption:'PS có',type:'number',width:15},
-		{name:'ck_no',caption:'Cuối kỳ nợ',type:'number',width:15},
-		{name:'ck_co',caption:'Cuối kỳ có',type:'number',width:15}
-	]
-}
+rptCdpstk.useExcelTemplate = true;
