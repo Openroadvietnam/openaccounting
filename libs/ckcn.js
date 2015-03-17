@@ -58,8 +58,15 @@ module.exports = function(condition,fn){
 	
 	
 	var ngay = new Date(condition.ngay);
-	var nam = ngay.getFullYear();
-	var ngay_dn = new Date(nam.toString() +"-01-01");
+	var  ngay_dn,nam;
+	if(condition.tu_ngay){
+		var tu_ngay = new Date(condition.tu_ngay); 
+		nam = tu_ngay.getFullYear();
+	}else{
+		nam = ngay.getFullYear();
+	}
+	ngay_dn = new Date(nam.toString() +"-01-01");
+	
 	var id_app = condition.id_app;
 		
 	async.parallel({

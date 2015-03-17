@@ -22,7 +22,7 @@ var async = require("async");
 var underscore = require("underscore");
 module.exports =function(query,fn){
 	if(!query.tu_ngay || !query.den_ngay || !query.id_app){
-		return fn(new Error("tu_ngay, den_ngay and id_app  parameter required"));
+		return fn(new Error("Hàm này yêu cầu các tham số tu_ngay,den_ngay,id_app"));
 	}
 	if(!query.tk){
 		query.tk ="";
@@ -103,7 +103,7 @@ module.exports =function(query,fn){
 					acc.loai_tk =1;
 					var tk = acc.tk;
 					async.forever(function(next){
-						Account.find({tk:tk},{tk_me:1},function(error1,r){
+						Account.find({tk:tk,id_app:query.id_app},{tk_me:1},function(error1,r){
 							if( r && r.length==1 && r[0].tk_me && r[0].tk_me!=''){ 
 								var vTK = {};
 								underscore.extend(vTK,acc);
@@ -139,7 +139,10 @@ module.exports =function(query,fn){
 					],function(error,dataTkMe){
 						if(error) return fn(error);
 						async.map(dataTkMe,function(tkMe,callback){
-							Account.find({tk:tkMe.tk},{tk_cn:1,loai_tk:1},function(e3,rtk){
+							Account.find({tk:tkMe.tk,id_app:query.id_app},{tk_cn:1,loai_tk:1},function(e3,rtk){
+								if(rtk.length!=1){
+									return callback(null);
+								}
 								var tk = rtk[0];
 								tkMe.loai_tk = tk.loai_tk;
 								if(tk.tk_cn==true && query.bu_tru==false){
