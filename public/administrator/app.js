@@ -23,7 +23,7 @@ var accApp = angular.module("accApp",[
 		,'dvcsModule','dmntModule','dmtkModule','dmkhModule','dmtcModule','dmvatModule','dmdvtModule','dmvtModule','dmnvtModule','dmkhoModule','ptthanhtoanModule'
 		,'dmcpmhModule','ctcpmhModule'
 		,'cdtkModule','cdkhModule','cdvtModule','cddtModule'
-		,'sctdtModule'
+		,'sctdtModule','cdpsdtModule'
 		,'bkctModule','searchModule','cdpstkModule','scttkModule','sctcnkhModule','cdpskhModule'
 		,'bcdktModule','kbmbcdktModule'
 		,'bkvatvaoModule','bkvatraModule'
@@ -180,7 +180,7 @@ accApp.run(function ($rootScope,api,colleague,$window,user,app,$location) {
 			]},
 			{group:'Giá thành theo vụ việc, dự án',visiable:true,icon:'fa fa-folder fa-fw',items:[
 				{path:'sctdt',header:'Sổ chi tiết',visiable:true},
-				{path:'dxd',header:'Cân đối phát sinh',visiable:true},
+				{path:'cdpsdt',header:'Cân đối phát sinh',visiable:true},
 				{path:'dxd',header:'Tổng hợp chi phí sản xuất',visiable:true},
 				{path:'dxd',header:'Kết quả kinh doanh',visiable:true}
 			]},

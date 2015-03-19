@@ -6,8 +6,8 @@
 <div>
 	<table class='table table-bordered'>
 			<tr>
-				<th>Mã khách hàng</th>
-				<th>Tên khách hàng</th>
+				<th>Mã vụ việc</th>
+				<th>Tên vụ việc</th>
 				<th>Đầu kỳ nợ</th>
 				<th>Đầu kỳ có</th>
 				<th>Phát sinh nợ</th>
@@ -18,12 +18,11 @@
 			</tr>
 			<tr ng-repeat='r in data'  ng-class="r.bold?'cbold':'cnormal'">
 				<td>
-					{{r.ma_kh}}
+					{{r.ma_dt}}
 				</td>
 				<td>
-					{{r.ten_kh}}
+					{{r.ten_dt}}
 				</td>
-	
 				<td style='text-align:right'>
 					{{r.dk_no|number:0}}
 				</td>
