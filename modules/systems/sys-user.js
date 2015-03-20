@@ -22,7 +22,7 @@ var async = require("async");
 var controller = require("../../controllers/controller");
 var fs = require('fs')
 var gm = require('gm').subClass({ imageMagick: true });
-
+var usersAdmin = require("../../configs").admins;
 module.exports = function(router){
 	router.route("/user").get(function(req,res,next){
 		var access_token = req.query.access_token;
@@ -32,6 +32,7 @@ module.exports = function(router){
 				user.local.password = undefined;
 				user.local.rspassword = undefined;
 				user.token = access_token;
+				user.admin = underscore.contains(usersAdmin,user.email);
 				res.send(user);
 			}else{
 				res.status(404).send("Không tìm thấy thông tin của tài khoản này");

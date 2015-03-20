@@ -53,7 +53,12 @@ var userSchema = new Schema({
 	tokens       : [String],
 	refreshToken : String,
 	server		 : String,
-	join_date	 :{type:Date,default:Date.now}
+	join_date	 :{type:Date,default:Date.now},
+	status:{type:String},
+	date_created:{type:Date,default:Date.now},
+	date_updated:{type:Date,default:Date.now},
+	user_created:{type:String,default:''},
+	user_updated:{type:String,default:''}
 });
 userSchema.methods.generateHash = function(password) {
     return crypto.createHash('md5').update(password).digest('hex');
