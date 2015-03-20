@@ -37,7 +37,7 @@ var baseInput = function(code,server_path,fields_find,title,group,services){
 	this.module.factory(code,function($http){
 		var url_service = function(){
 			var url;
-			if(server_path==="colleague" || server_path==="app"){
+			if(_.contains(paths_not_require_id_app,server_path)){
 				
 				url = "/api/" + server_path;
 			}else{

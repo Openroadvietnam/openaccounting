@@ -16,9 +16,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 "use strict";
 var id_app;
 var access_token;
+var paths_not_require_id_app = ['code','app','colleague','notification','message','profile','users'];
 var accApp = angular.module("accApp",[
 		'ngRoute','ui.bootstrap','angular-loading-bar','ngAnimate','luegg.directives',"highcharts-ng",'ngCookies','ngToast'
-		,'appInfoService','loginModule','appModule','colleagueModule','notificationModule','messageModule'
+		,'appInfoService','loginModule','appModule','colleagueModule','notificationModule','messageModule','usersModule'
 		,'dashboardModule'
 		,'dvcsModule','dmntModule','dmtkModule','dmkhModule','dmtcModule','dmvatModule','dmdvtModule','dmvtModule','dmnvtModule','dmkhoModule','ptthanhtoanModule'
 		,'dmcpmhModule','ctcpmhModule'
@@ -342,7 +343,7 @@ var checkIdApp = function(code,$cookies,user,$rootScope,$location,app,callback){
 			$rootScope.id_app = id_app;
 		}
 	}
-	if(!id_app && code!='app' && code!='colleague'&& code!='notification'&& code!='message' && code !='profile'){
+	if(!id_app && !_.contains(paths_not_require_id_app,code)){
 		if(callback){
 			callback("Lỗi: bạn phải chọn một công ty");
 		}

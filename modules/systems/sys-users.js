@@ -19,20 +19,20 @@ var underscore = require("underscore");
 var async = require("async");
 var controller = require("../../controllers/controller");
 module.exports = function(router){
-	var contr = new controller(router,model,'users-management',{
+	var contr = new controller(router,model,'users',{
 		require_id_app:false,
 		sort:{email:1}
 	});
 	contr.route();
 	contr.getting = function(user,id,next){
-			if(underscore.contains(usersAdmin,user.email)){
+			if(!underscore.contains(usersAdmin,user.email)){
 				return next("Bạn không có quyền truy cập đối tượng này");
 			}else{
 				return next();
 			}
 	}		
 	contr.finding = function(user,condition,next){
-		if(underscore.contains(usersAdmin,user.email)){
+		if(!underscore.contains(usersAdmin,user.email)){
 			return next("Bạn không có quyền truy cập đối tượng này");
 		}else{
 			return next(null,condition);
@@ -44,7 +44,7 @@ module.exports = function(router){
 		
 	},
 	contr.updating = function(user,data,obj,next){
-		if(underscore.contains(usersAdmin,user.email)){
+		if(!underscore.contains(usersAdmin,user.email)){
 			return next("Bạn không có quyền cập nhật người sử dụng này");
 		}else{
 			return next(null,data,obj);
@@ -52,7 +52,7 @@ module.exports = function(router){
 			
 	}	
 	contr.deleting = function(user,obj,next){
-		if(underscore.contains(usersAdmin,user.email)){
+		if(!underscore.contains(usersAdmin,user.email)){
 			return next("Bạn không có quyền xóa người sử dụng này");
 		}
 		next(null,obj);
