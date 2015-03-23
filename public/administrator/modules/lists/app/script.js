@@ -96,6 +96,19 @@ appModule.initAddController = function($controller,$scope){
 appModule.initEditController = function($controller,$scope){
 	initAddEditController($controller,$scope);
 }
+appModule.module.controller("appsController",["$scope","$rootScope","$routeParams","$http","$cookies","user","$location",'$modal'
+	,function($scope,$rootScope,$routeParams,$http,$cookies,user,$location,$modal){
+		var email = $routeParams.email
+		var url = "/api/app/apps/" + email
+		$scope.email = email;
+		$scope.openProfile = function(email){
+			viewProfile($modal,email);
+		}
+		$http.get(url).success(function(apps){
+			$scope.list = apps;
+		});
+	}
+]);
 appModule.module.controller("assignController",["$scope","$rootScope","$routeParams","$http","$cookies","user","$location","app"
 	,function($scope,$rootScope,$routeParams,$http,$cookies,user,$location,app){
 	checkIdApp("app",$cookies,user,$rootScope,$location,app,function(error,uerinfo,appinfo){
@@ -166,5 +179,8 @@ appModule.module.config(['$routeProvider','$locationProvider',function($routePro
 			.when("/assign/:id_app/:email",{
 				templateUrl:"modules/lists/app/templates/assign.html",
 				controller:"assignController"
-			})
+			}).when("/apps/:email",{
+				templateUrl:"modules/lists/app/templates/apps.html",
+				controller:"appsController"
+			});
 }])

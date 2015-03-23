@@ -332,6 +332,7 @@
 			<div ng-class ='printing || !isLogined || !id_app? "":"page-wrapper"'>
 				<div class="row">
 					<div class="col-xs-12"  style="margin-top:10px">
+						<div class="alert alert-danger" ng-show="error">{{error}}</div>
 						<div class='page' ng-view></div>
 					</div>
 				</div>

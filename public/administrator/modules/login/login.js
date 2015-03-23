@@ -6,6 +6,7 @@ loginModule.controller('loginController',['$scope','$rootScope','api','$cookieSt
 	$rootScope.isLogined = false;
 	id_app =undefined;
 	$rootScope.id_app = undefined;
+	$rootScope.user = undefined;
 	api.init();
 	$scope.data ={};
 	$scope.auth_google = function(){
@@ -109,10 +110,11 @@ function socketConnect () {
   
 
 }
-loginModule.factory("user",['$http','$cookies','$rootScope','ngToast',function($http,$cookies,$rootScope,ngToast){
+loginModule.factory("user",['$http','$cookies','$rootScope','ngToast','$location',function($http,$cookies,$rootScope,ngToast,$location){
 	return {
 		getInfo:function(fn){
 			$http.get("/api/user").success(function(user){
+				$rootScope.error =undefined;
 				$rootScope.user = user;
 				socketConnect();
 				// Add a connect listener
@@ -148,7 +150,14 @@ loginModule.factory("user",['$http','$cookies','$rootScope','ngToast',function($
 				
 				fn(null,user);
 			}).error(function(error){
+				if(!error){
+					error="Không thể kết nối với máy chủ";
+				}
+				$rootScope.error = error;
+				$rootScope.user = undefined;
 				fn(error);
+				$location.url("login");
+				
 			});
 		},
 		getProfile:function(email,fn){
@@ -307,6 +316,7 @@ loginModule.controller('logoutController',['$scope','$cookieStore','api','$locat
 			if($rootScope.user.server=='facebook'){
 				//url = "https://facebook.com/logout.php?next=http://localhost:8000&access_token=" + token;
 			}
+			$rootScope.user = undefined;
 			if(url){
 				var w = $window.open(url,"Logout",'height=400,width=400');
 				$timeout(function(){

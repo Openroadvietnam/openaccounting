@@ -23,6 +23,9 @@ module.exports = function(passport){
 		if(user) {
 			user.current_user = user.email;
 			user.token = token;
+			if(user.status==false){
+				return fn("Người sử dụng này đã bị khóa.")
+			}
 			return fn(null,user);
 		}
 		return fn(null, null);

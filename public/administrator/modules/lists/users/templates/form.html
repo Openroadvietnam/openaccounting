@@ -9,25 +9,32 @@
 	<div class="form-group">
 		<label class='col-sm-2'>Họ và tên <span class='required'>(*)</span></label>
 		<div  class='col-sm-10'>
-			<input  type="text" class="form-control"  ng-model="data.name" ng-required="true"/>
+			<input  type="text" class="form-control"  ng-model="data.name" ng-required="true"  ng-readonly="true"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class='col-sm-2'>Địa chỉ</label>
 		<div  class='col-sm-10'>
-			<input  type="text" class="form-control"  ng-model="data.address"/>
+			<input  type="text" class="form-control"  ng-model="data.address"  ng-readonly="true"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class='col-sm-2'>Điện thoại</label>
 		<div  class='col-sm-10'>
-			<input type="text" class="form-control"  ng-model="data.phone"/>
+			<input type="text" class="form-control"  ng-model="data.phone"  ng-readonly="true"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class='col-sm-2'>Tổ chức, công ty </label>
 		<div  class='col-sm-10'>
-			<input  type="text" class="form-control"  ng-model="data.company"/>
+			<input  type="text" class="form-control"  ng-model="data.company"  ng-readonly="true"/>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="data.status" /> Còn hoạt động</label>
+			</div>
 		</div>
 	</div>
 	<footer-form-input></footer-form-input>

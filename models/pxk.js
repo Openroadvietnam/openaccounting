@@ -61,7 +61,6 @@ var pxkSchema = new Schema({
 	date_updated:{type:Date,default:Date.now},
 	user_created:{type:String,default:''},
 	user_updated:{type:String,default:''},
-	status: {type:String,default:'5'},
 	details:{type:[detailSchema]}
 });
 pxkSchema.validate ={

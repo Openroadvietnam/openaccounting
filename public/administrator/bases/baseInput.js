@@ -13,7 +13,25 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
+var viewProfile = function($modal,email){
+	var modalInstance = $modal.open({
+	  templateUrl: 'bases/templates/profile.html',
+	  controller: ['$scope','$modalInstance','user','$location','$rootScope',function($scope,$modalInstance,user,$location,$rootScope){
+			user.getProfile(email,function(error,profile){
+				$scope.profile = profile;
+			});
+			$scope.cancel = function () {
+				$modalInstance.dismiss('cancel');
+			};;
+			$scope.gotoChat = function(email){
+				$modalInstance.dismiss('cancel');
+				$location.path("/message/chat/" + email);
+			}
+			$scope.currentUser = $rootScope.user;
+		}],
+	  size: 'lg'
+	});
+}
 var baseInput = function(code,server_path,fields_find,title,group,services){
 	this.code = code;
 	this.server_path = server_path;
@@ -507,25 +525,6 @@ var baseInput = function(code,server_path,fields_find,title,group,services){
 		  }
 		});
 	}
-	this.viewProfile = function($modal,email){
-		var modalInstance = $modal.open({
-		  templateUrl: 'bases/templates/profile.html',
-		  controller: ['$scope','$modalInstance','user','$location','$rootScope',function($scope,$modalInstance,user,$location,$rootScope){
-				user.getProfile(email,function(error,profile){
-					$scope.profile = profile;
-				});
-				$scope.cancel = function () {
-					$modalInstance.dismiss('cancel');
-				};;
-				$scope.gotoChat = function(email){
-					$modalInstance.dismiss('cancel');
-					$location.path("/message/chat/" + email);
-				}
-				$scope.currentUser = $rootScope.user;
-			}],
-		  size: 'lg'
-		});
-	}
 	this.module.controller(code + "EditController",['$controller','$scope','$http',code,'$location','$routeParams',code + 'Config','$timeout','$cookies','$rootScope','user','app','$modal','$window',function($controller,$scope,$http,service,$location,$routeParams,config,$timeout,$cookies,$rootScope,user,app,$modal,$window){
 		$scope.masterData = null;
 		$scope.data = {};
@@ -546,7 +545,7 @@ var baseInput = function(code,server_path,fields_find,title,group,services){
 					$scope.masterData = _.find(config.list,function(r){return r._id==$routeParams.id});
 				}
 				$scope.openProfile = function(email){
-					input.viewProfile($modal,email);
+					viewProfile($modal,email);
 				}
 				if(!$scope.masterData){
 					$scope.masterData ={};

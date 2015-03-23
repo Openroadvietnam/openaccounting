@@ -24,6 +24,14 @@ module.exports = function(router){
 		sort:{email:1}
 	});
 	contr.route();
+	contr.view = function(user,items,fn){
+		items.forEach(function(item){
+			if(!item.status && item.status!=false){
+				item.status=true;
+			}
+		})
+		fn(null,items);
+	}
 	contr.getting = function(user,id,next){
 			if(!underscore.contains(usersAdmin,user.email)){
 				return next("Bạn không có quyền truy cập đối tượng này");

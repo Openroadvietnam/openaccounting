@@ -29,7 +29,7 @@ colleagueModule.module.controller('basecolleagueHomeController',function($scope,
 		},{email_receiver:email_receiver});
 	}
 	$scope.openProfile = function(email){
-		colleagueModule.viewProfile($modal,email);
+		viewProfile($modal,email);
 	}
 });
 colleagueModule.initHomeController = function($controller,$scope){

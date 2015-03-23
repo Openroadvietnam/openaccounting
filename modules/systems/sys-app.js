@@ -18,6 +18,7 @@ var User = require("../../models/user");
 var Notification = require("../../models/notification");
 var underscore = require("underscore");
 var async = require("async");
+var usersAdmin = require("../../configs").admins;
 var controller = require("../../controllers/controller");
 module.exports = function(router){
 	var contr = new controller(router,model,'app',{
@@ -161,6 +162,16 @@ module.exports = function(router){
 	contr.deleted = function(user,obj,next){
 			next(null,obj);
 		}
+	contr.router.route(contr.route_name + "/apps/:email_owner").get(function(req,res,next){
+		var email = req.params.email_owner;
+		if(!underscore.contains(usersAdmin,req.user.email)){
+			return res.status(403).send("Bạn không có quyền truy cập đối tượng này");
+		}
+		model.find({user_created:email}).lean().exec(function(error,apps){
+			if(error) return res.status(400).send(error);
+			res.send(apps);
+		});
+	});
 	contr.router.route(contr.route_name + "/active/:id").get(function(req,res,next){
 		var id = req.params.id;
 		var email = req.user.email;

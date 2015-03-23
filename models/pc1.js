@@ -117,7 +117,6 @@ var pc1Schema = new Schema({
 	date_updated:{type:Date,default:Date.now},
 	user_created:{type:String,default:''},
 	user_updated:{type:String,default:''},
-	status: {type:String,default:'5'},
 	details:{type:[detailSchema]},
 	vatvaos:[vatvaoSchema],
 	tdttcos:[tdttco_ttSchema]

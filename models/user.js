@@ -54,7 +54,7 @@ var userSchema = new Schema({
 	refreshToken : String,
 	server		 : String,
 	join_date	 :{type:Date,default:Date.now},
-	status:{type:String},
+	status:{type:Boolean,default:true},
 	date_created:{type:Date,default:Date.now},
 	date_updated:{type:Date,default:Date.now},
 	user_created:{type:String,default:''},
