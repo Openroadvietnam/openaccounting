@@ -27,7 +27,7 @@ sender.auth = {
 sender.name ="Open Accounting";
 exports.sender = sender;
 //user admin
-exports.admins =['invncur@gmail.com']
+exports.admins =['invncur@gmail.com','hoangminhthanh@saotienphong.com.vn']
 //oauth2.0
 exports.google = {
 		clientID: "cliendID",

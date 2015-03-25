@@ -19,7 +19,7 @@ var access_token;
 var paths_not_require_id_app = ['code','app','colleague','notification','message','profile','users'];
 var accApp = angular.module("accApp",[
 		'ngRoute','ui.bootstrap','angular-loading-bar','ngAnimate','luegg.directives',"highcharts-ng",'ngCookies','ngToast'
-		,'appInfoService','loginModule','appModule','colleagueModule','notificationModule','messageModule','usersModule'
+		,'appInfoService','loginModule','appModule','colleagueModule','notificationModule','messageModule','usersModule','rptModule'
 		,'dashboardModule'
 		,'dvcsModule','dmntModule','dmtkModule','dmkhModule','dmtcModule','dmvatModule','dmdvtModule','dmvtModule','dmnvtModule','dmkhoModule','ptthanhtoanModule'
 		,'dmcpmhModule','ctcpmhModule'

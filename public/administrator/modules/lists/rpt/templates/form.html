@@ -1,0 +1,34 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2">Mã chức năng <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-10">
+			<input type="text" name ='ma_cn' class="form-control" ng-model='data.ma_cn' ng-required="true">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Tên mẫu in <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-10">
+			<input type="text" name ='ten_mau_in' class="form-control" ng-model='data.ten_mau_in' ng-required="true">
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2">Tệp mẫu in (xlsx)</label>
+		<div class="col-sm-10">
+			<a href='{{data.file_mau_in}}' ng-show='data.file_mau_in'>Tệp hiện tại</a>
+			<br/>
+			<a class='btn btn-md btn-default' ng-click="changeFile()" title="Kích vào đây để chọn tệp mẫu in">Chọn tệp mới</a>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="data.status" /> Còn sử dụng</label>
+			</div>
+		</div>
+	</div>
+	<footer-form-input></footer-form-input>
+</form>

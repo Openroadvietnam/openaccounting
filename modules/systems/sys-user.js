@@ -149,6 +149,58 @@ module.exports = function(router){
 			}
 		});
 	});
+	router.route("/uploadexcel").post(function(req,res,next){
+		var access_token = req.query.access_token;
+		var folder = "excels";
+		var id_app = req.query.id_app;
+		//
+		if(!req.files.fileupload){
+			res.status(400).send("File không tồn tại");
+			return;
+		}
+		//
+		var path = require('path');
+		var ext = path.extname(req.files.fileupload.path);
+		if(ext){
+			ext = ext.toLowerCase();
+			if(ext!='.xlsx'){
+				res.status(400).send("Chỉ chấp nhận các định dạng file: xlsx");
+				return;
+			}
+		}else{
+			res.status(400).send("Chỉ chấp nhận các định dạng file: xlsx");
+			return;
+		}
+
+		User.findOne({tokens:access_token},function(error,user){
+			if(error) return res.status(400).send(error);
+			if(user){
+				fs.readFile(req.files.fileupload.path, function (err, data) {
+					if(err) return res(err);
+					if(!fs.existsSync("./images/" + folder)){
+						fs.mkdirSync("./images/" + folder);
+					}
+					//
+					var newPath = folder + "/" + user._id.toString() + "_" + path.basename(req.files.fileupload.path);
+					fs.unlink(req.files.fileupload.path);
+					fs.writeFile("./images/" + newPath,data,function(error){
+						if(error){
+							return res.status(404).send(error);
+						}
+						//
+						var url_file = "/getfile/" + newPath;
+						if(req.query.json){
+							return res.send({fileUrl:url_file});
+						}
+						res.writeHead(200, {'Content-Type': 'text/html'});
+						res.end("<html><head><title>" + url_file + "</title></head><body>success</body></html>");
+					});
+				});
+			}else{
+				res.status(404).send("Not found");
+			}
+		});
+	});
 	router.route("/updateprofile").post(function(req,res,next){
 		var access_token = req.query.access_token;
 		User.findOne({tokens:access_token},function(error,user){

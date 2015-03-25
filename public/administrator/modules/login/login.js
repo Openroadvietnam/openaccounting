@@ -234,6 +234,9 @@ loginModule.controller('uploadController',['$scope','user','$cookies','$rootScop
 	var folder = $routeParams.folder;
 	$scope.action = "/api/uploadfile?access_token=" + eval("(" + $cookies.token + ")") + "&folder=" + folder;
 }]);
+loginModule.controller('uploadExcelController',['$scope','user','$cookies','$rootScope','$location','app','$window','$routeParams',function($scope,user,$cookies,$rootScope,$location,app,$window,$routeParams){
+	$scope.action = "/api/uploadexcel?access_token=" + eval("(" + $cookies.token + ")");
+}]);
 loginModule.controller('profileController',['$scope','user','$cookies','$rootScope','$location','app','$window','$interval',function($scope,user,$cookies,$rootScope,$location,app,$window,$interval){
 	checkIdApp("profile",$cookies,user,$rootScope,$location,app,function(error,uerinfo,appinfo){
 		if(error){
@@ -358,5 +361,9 @@ loginModule.config(['$routeProvider','$locationProvider',function($routeProvider
 			.when("/uploadfile/:folder",{
 				templateUrl:"modules/login/templates/upload.html",
 				controller:"uploadController"
+			})
+			.when("/uploadexcel",{
+				templateUrl:"modules/login/templates/upload.html",
+				controller:"uploadExcelController"
 			});
 }]);
