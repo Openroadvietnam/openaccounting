@@ -218,7 +218,8 @@ accApp.run(function ($rootScope,api,colleague,$window,user,app,$location) {
 				//{path:'dmdvt',type:'L',header:'Đơn vị tính của vật tư, hàng hóa',visiable:true},
 				{path:'dmbp',type:'L',header:'Bộ phận',visiable:true},
 				{path:'dmdt',type:'L',header:'Vụ việc',visiable:true},
-				{path:'ptthanhtoan',type:'L',header:'Phương thức thanh toán',visiable:true}
+				{path:'ptthanhtoan',type:'L',header:'Phương thức thanh toán',visiable:true},
+				{path:'rpt',type:'L',header:'Quản lý mẫu in',visiable:true}
 				
 			]}
 		]}

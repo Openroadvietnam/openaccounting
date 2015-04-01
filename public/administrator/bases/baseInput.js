@@ -1,4 +1,4 @@
-﻿/*Copyright (C) 2015  Sao Tien Phong (http://saotienphong.com.vn)
+/*Copyright (C) 2015  Sao Tien Phong (http://saotienphong.com.vn)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published
@@ -90,7 +90,6 @@ var baseInput = function(code,server_path,fields_find,title,group,services){
 			
 			$scope.goToPage = function(page){
 				//get total pages
-				
 				service.list(id_app,$scope.condition,null,1)
 					.success(function(data){
 						$scope.total_page = Math.round(data.rows_number/$scope.limit,0);
@@ -400,9 +399,14 @@ var baseInput = function(code,server_path,fields_find,title,group,services){
 		$scope.$http = $http;
 		$scope.$window = $window;
 		if(input.defaultValues){
-				_.extend($scope.data,input.defaultValues);
-				_.extend($scope.masterData,input.defaultValues);
+			_.extend($scope.data,input.defaultValues);
+			_.extend($scope.masterData,input.defaultValues);
 				
+		}
+		var paras = $location.search();
+		if(paras){
+			_.extend($scope.data,paras);
+			_.extend($scope.masterData,paras);
 		}
 		if(input.init){
 			input.init($scope,$controller);
@@ -485,6 +489,12 @@ var baseInput = function(code,server_path,fields_find,title,group,services){
 					}
 				}
 				
+				var paras = $location.search();
+				if(paras){
+					_.extend($scope.data,paras);
+					_.extend($scope.masterData,paras);
+				}
+		
 				angular.extend($scope,config);
 				
 				if(input.initAddController){
