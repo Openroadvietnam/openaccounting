@@ -15,10 +15,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 var EventEmitter = require("events").EventEmitter;
 var underscore = require("underscore");
+var excelReport = require("excel-report")
 var validate = require("../libs/validate");
 var vsocai = require("../models/vsocai");
 var Socai = require("../models/socai");
+var rpt = require("../models/rpt");
 var log = require("../models/log");
+var app = require("../models/app");
 var counter = require("../models/counter");
 var async = require("async");
 var excel = require("../libs/excel")
@@ -310,6 +313,93 @@ controller.prototype.getVsocai = function(){
 			res.send(obj4view);
 		});
 	}
+	);
+	
+}
+controller.prototype.exportToExcel = function(){
+	var sort = this.sort;
+	var model = this.model;
+	var ctrl = this;
+	this.router.route(this.route_name +"/excel/:rpt_id").get(
+		function(req,res,next){
+			var id = req.query._id;
+			var id_app = req.query.id_app;
+			if(!id){
+				return res.status(400).send("Hàm này yêu cầu tham số _id");
+			}
+			model.findById(id,function(err,obj){
+				if(err) return res.status(400).send(err);
+				//log
+				log.create({id_app:req.user.current_id_app,id_func:ctrl.name,action:'ExportTOExcel',data:{id:id}},req.user.email,req.header('user-agent'),req)
+				//
+				if(!obj) return res.status(404).send("Lỗi: Không thể tìm thấy đối tượng này");
+				if(underscore.has(model.schema.paths,"id_app")==true && req.user.current_id_app!=obj.id_app){
+					return res.status(403).send("Lỗi: Không có quyền truy cập đối tượng này");
+				}
+				if(ctrl.getting){
+					ctrl.getting(req.user,req.params.id,function(error){
+						if(error){
+							return res.status(400).send(error);
+						}else{
+							req.obj = obj;
+							next();
+						}
+					},obj);
+				}else{
+					req.obj = obj;
+					next();
+				}
+				
+			});
+		},
+		function(req,res,next){
+			obj = req.obj;
+			if(obj){
+				obj = obj.toObject();
+			}
+			if(ctrl.view && obj){
+				result=obj;
+				ctrl.view(req.user,[result],function(error,viewValue){
+					if(error){
+						return res.status(400).send(error);
+					}
+					req.obj = viewValue[0];
+					next();
+				});
+			}else{
+				req.obj = obj;
+				next();
+			}
+			
+		},
+		function(req,res,next){
+			var rpt_id = req.params.rpt_id;
+			var id_app = req.query.id_app;
+			rpt.findById(rpt_id,function(error,rs){
+				if(error){
+					res.status(400).send(error);
+				}
+				//
+				var obj = req.obj;
+				var path = require("path");
+				var templatePath = path.dirname(__dirname) + "/" +  rs.file_mau_in;
+				if(!fs.existsSync(templatePath)){
+					
+					return res.status(400).send("File mẫu không tồn tại");
+				}
+				app.findOne({_id:id_app},function(error,app){
+					if(error) return res.status(400).send("Không tồn tại app này");
+					underscore.extend(app,req.query);
+					underscore.extend(app,obj);
+					excelReport(templatePath,app,function(error,result){
+						if(error) return res.status(400).send(error);
+						res.setHeader('Content-Type', 'application/vnd.openxmlformats');
+						res.setHeader("Content-Disposition", "attachment; filename=" + ctrl.name + ".xlsx");
+						res.end(result, 'binary');
+					});
+				});	
+			});
+		}
 	);
 	
 }
@@ -755,6 +845,7 @@ controller.prototype.route = function(setRoute){
 		this.getSocai();
 		this.getVsocai();
 		this.getNextId();
+		this.exportToExcel();
 		this.importFromExcel();
 	}
 }

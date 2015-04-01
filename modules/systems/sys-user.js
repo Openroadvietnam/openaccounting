@@ -177,18 +177,18 @@ module.exports = function(router){
 			if(user){
 				fs.readFile(req.files.fileupload.path, function (err, data) {
 					if(err) return res(err);
-					if(!fs.existsSync("./images/" + folder)){
-						fs.mkdirSync("./images/" + folder);
+					if(!fs.existsSync("./templates/" + folder)){
+						fs.mkdirSync("./templates/" + folder);
 					}
 					//
-					var newPath = folder + "/" + user._id.toString() + "_" + path.basename(req.files.fileupload.path);
+					var newPath = "./templates/" +  folder + "/" + user._id.toString() + "_" + path.basename(req.files.fileupload.path);
 					fs.unlink(req.files.fileupload.path);
-					fs.writeFile("./images/" + newPath,data,function(error){
+					fs.writeFile(newPath,data,function(error){
 						if(error){
 							return res.status(404).send(error);
 						}
 						//
-						var url_file = "/getfile/" + newPath;
+						var url_file = newPath;
 						if(req.query.json){
 							return res.send({fileUrl:url_file});
 						}

@@ -14,7 +14,22 @@
 			<button type="button" class="btn btn-danger  navbar-btn" ng-disabled="isUnSelected()" ng-click ="delete()">Xóa</button>
 			
 			<button type="button" class="btn btn-primary  navbar-btn" ng-click="find()">Tìm</button>
-			<button type="button" class="btn btn-primary  navbar-btn" ng-disabled="isUnSelected()" ng-click="print()">In</button>
+			
+			
+			<span class="dropdown">
+			  <button class="btn btn-primary dropdown-toggle navbar-btn"  ng-disabled="isUnSelected()" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+				In
+				<span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				<li role="presentation" ng-repeat='rpt in rpts'>
+					<a role="menuitem" tabindex="-1" ng-click="print(rpt._id)">{{rpt.ten_mau_in}}</a>
+				</li>
+				<li ng-show='!rpts || rpts.length==0'>
+					Chứng từ này chưa có mẫu in nào.
+				</li>
+			  </ul>
+			</span>
 			
 			
 			<button type="button" class="btn btn-default  navbar-btn" ng-click="btn3_click()" ng-show='btn3_show'>{{btn3_text}}</button>

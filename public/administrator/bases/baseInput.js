@@ -275,8 +275,22 @@ var baseInput = function(code,server_path,fields_find,title,group,services){
 			if(input.init){
 				input.init($scope,$controller);
 			}
-			$scope.print = function(){
-				$location.path("/"+code+"/print");
+			//load RPTs
+			var url_get_rpts = "/api/" + id_app + "/rpt?q={ma_cn:'" + code.toUpperCase()  + "'}"
+			$http.get(url_get_rpts).success(function(rpts){
+				$scope.rpts = rpts;
+			}).error(function(e){
+				console.log(e);
+			})
+			//print
+			$scope.print = function(rpt_id){
+				var url = "/api/"  + id_app + "/" + code + "/excel/" + rpt_id + "?access_token=" + eval("(" + $cookies.token + ")");
+				$scope.list.forEach(function(r){
+					if(r.sel){
+						var url_c = url + "&_id=" + r._id;
+						$window.open(url_c);
+					}
+				})
 			}
 			$scope.import = function(){
 				var w = $window.open("#"+code+"/import","Import","width=800,height=500");

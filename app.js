@@ -61,6 +61,7 @@ app.use(function(req,res,next){
 });
 app.use("/",express.static(__dirname + '/public/administrator'));
 app.use("/sale",express.static(__dirname + '/public/sale'));
+app.use("/templates",express.static(__dirname + '/templates'));
 app.use("/admin-material",express.static(__dirname + '/public/administrator-material'));
 app.use(bodyParser.urlencoded({
 	extended: true
