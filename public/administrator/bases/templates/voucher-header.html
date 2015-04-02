@@ -17,16 +17,19 @@
 			
 			
 			<span class="dropdown">
-			  <button class="btn btn-primary dropdown-toggle navbar-btn"  ng-disabled="isUnSelected()" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+			  <button class="btn btn-primary dropdown-toggle navbar-btn"  type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 				In
 				<span class="caret"></span>
 			  </button>
 			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 				<li role="presentation" ng-repeat='rpt in rpts'>
-					<a role="menuitem" tabindex="-1" ng-click="print(rpt._id)">{{rpt.ten_mau_in}}</a>
+					<a role="menuitem" tabindex="-1" ng-click="print(rpt._id)" ng-show='isUnSelected()==false'>{{rpt.ten_mau_in}}</a>
+					<span class="dropdown-header" ng-show='isUnSelected()'>{{rpt.ten_mau_in}}</span>
 				</li>
-				<li ng-show='!rpts || rpts.length==0'>
-					Chứng từ này chưa có mẫu in nào.
+				<li role="presentation" class="dropdown-header" ng-show='!rpts || rpts.length==0'>Chưa có mẫu in</li>
+				<li role="presentation" class="divider"></li>
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" ng-click="rptManagement()">Khai báo mẫu in</a>
 				</li>
 			  </ul>
 			</span>

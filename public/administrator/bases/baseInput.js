@@ -81,7 +81,7 @@ var baseInput = function(code,server_path,fields_find,title,group,services){
 		$scope.pages =[1];
 		$scope.limit = 50;
 		$scope.$modal = $modal;
-		
+		var queryParams = $location.search();
 		checkIdApp(code,$cookies,user,$rootScope,$location,app,function(error,uerinfo,appinfo){
 			if(error){
 				return;
@@ -90,7 +90,7 @@ var baseInput = function(code,server_path,fields_find,title,group,services){
 			
 			$scope.goToPage = function(page){
 				//get total pages
-				service.list(id_app,$scope.condition,null,1)
+				service.load(id_app,{condition:$scope.condition,count:1,queryParams:queryParams})
 					.success(function(data){
 						$scope.total_page = Math.round(data.rows_number/$scope.limit,0);
 						if($scope.total_page< data.rows_number/$scope.limit){
@@ -105,7 +105,7 @@ var baseInput = function(code,server_path,fields_find,title,group,services){
 						}
 					});
 				//load page
-				service.list(id_app,$scope.condition,null,null,page,$scope.limit)
+				service.load(id_app,{condition:$scope.condition,page:page,limit:$scope.limit,queryParams:queryParams})
 					.success(function(data){
 						config.list = data;
 						config.id_app = id_app;
@@ -126,7 +126,7 @@ var baseInput = function(code,server_path,fields_find,title,group,services){
 					$scope.current_page =1;
 				}
 				//get total pages
-				service.list(id_app,$scope.condition,null,1)
+				service.load(id_app,{condition:$scope.condition,count:1,queryParams:queryParams})
 				.success(function(data){
 					$scope.total_page = Math.round(data.rows_number/$scope.limit,0);
 					if($scope.total_page< data.rows_number/$scope.limit){
@@ -290,6 +290,10 @@ var baseInput = function(code,server_path,fields_find,title,group,services){
 						$window.open(url_c);
 					}
 				})
+			}
+			$scope.rptManagement = function(){
+				var url = "/#/rpt?ma_cn=" + code.toUpperCase();
+				$window.open(url);
 			}
 			$scope.import = function(){
 				var w = $window.open("#"+code+"/import","Import","width=800,height=500");

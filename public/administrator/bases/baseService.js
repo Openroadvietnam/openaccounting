@@ -15,7 +15,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 var baseService = function($http,url_service,fields_find,services){
 	var sv =  {
-			list:function(id_app,condition,fields,count,page,limit){
+			list:function(id_app,condition,fields,count,page,limit,queryParams){
 				var url = url_service() + "?t=1" ;
 				
 				if(count==1){
@@ -28,6 +28,9 @@ var baseService = function($http,url_service,fields_find,services){
 					url = url + "&limit=" + limit.toString();
 				}
 				if(angular.isObject(condition)){
+					if(queryParams){
+						_.extend(condition,queryParams);
+					}
 					var q =JSON.stringify(condition);
 					
 					url = url + "&q=" + q;
@@ -35,18 +38,24 @@ var baseService = function($http,url_service,fields_find,services){
 					if(!(!condition || condition.trim()=="" || !fields_find || fields_find.length==0)){
 						var query = "";
 						fields_find.forEach(function(field){
+							var v = condition;
 							if(query==""){
-								query = field + "=" + condition;
+								query = field + "=" + v;
 							}else{
-								query =query + "&" +  field + "=" + condition;
+								query =query + "&" +  field + "=" + v;
 							}
 						});
 						if(query!=""){
 							url = url + "&" + query;
 						}
 						
+					}else{
+						if(queryParams){
+							url = url + "&q=" + JSON.stringify(queryParams);
+						}
 					}
 				}
+				
 				
 				if(fields){
 					url = url + "&fields=" + fields;
@@ -77,6 +86,11 @@ var baseService = function($http,url_service,fields_find,services){
 			}
 			
 		}
+	//add function load
+	sv.load = function(id_app,options){
+		return sv.list(id_app,options.condition,options.fields,options.count,options.page,options.limit,options.queryParams);
+	}
+	
 	if(services){
 		_.extend(sv,services($http));
 	}
