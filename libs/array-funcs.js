@@ -57,20 +57,25 @@ Array.prototype.joinModel = function(id_app,model,joinFields,fn){
 	var array = this;	
 	async.map(array,function(a,callback){
 		async.map(joinFields,function(join,callback){
-			var akey = join.akey;
-			var bkey = join.bkey;
-			var avalue = a[akey];
+			
 			var query = {id_app:id_app};
-			query[bkey] = avalue;
+			if(join.where){
+				for(var bkey in join.where){
+					var akey = join.where[bkey];
+					query[bkey] = a[akey]
+				}
+				
+			}
+			if(join.akey && join.bkey){
+				query[join.bkey] = a[join.akey];
+			}
 			model.findOne(query).lean().exec(function(error,b){
 				if(error) return callback(error);
 				if(b){
 					join.fields.forEach(function(map){
 						var name = map.name;
 						var value = map.value;
-						if(b[value]){
-							a[name] = b[value];
-						}
+						a[name] = b[value];
 					});
 				}
 				callback(null);
